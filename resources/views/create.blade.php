@@ -122,10 +122,10 @@
             <div class="relative z-0 w-full mb-5 group">
             <label for="options" class="block text-gray-700 mb-2">select an option:</label>
                 <select id="options" name="position" class=" focus:ring-blue-300 font-medium rounded-lg  w-full px-5 py-2.5 text-left dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 block border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:">
-                    <option value="visitor" {{ old('position') == 'visitor' ? 'selected' : '' }}>Visitor</option>
+                    <option value="Individual" {{ old('position') == 'Individual' ? 'selected' : '' }}>Individual</option>
                     <option value="student" {{ old('position') == 'student' ? 'selected' : '' }}>Student</option>
-                    <option value="tour-guide" {{ old('position') == 'tourguid' ? 'selected' : '' }}>Tour guide</option>
-                    <option value="content-moderator" {{ old('position') == 'content-moderator' ? 'selected' : '' }}>Content moderator</option>
+                    <option value="manager" {{ old('position') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                    <!-- <option value="content-moderator" {{ old('position') == 'content-moderator' ? 'selected' : '' }}>Content moderator</option> -->
                     </select>
                 @error('position')
                 <p class="text-red-600  mt-1">{{ $message }}</p>

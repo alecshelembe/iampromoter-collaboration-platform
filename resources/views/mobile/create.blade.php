@@ -4,7 +4,7 @@
 
 
 <script defer src="{{ asset('js/jq_app.js') }}"></script>
-<script defer src="{{ asset('js/app.js') }}"></script>
+<script defer src="{{ asset('js/places-search.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
 
@@ -29,11 +29,20 @@
     <div id="checkbox-container" class="my-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       <!-- Checkboxes will be populated dynamically -->
     </div>
+
     
-    <span class=" text-gray-500"> <i class="fa-solid fa-location-dot"> </i> Tag an address <i class="fa-solid fa-circle-check"></i> address search</span>
+    <div id="location-result" class="mt-4 text-gray-700"></div>
+    <div id="address-result" class="mt-4 text-gray-700"></div>
+    
+    <div class="flex justify-center items-center min-h-screen">
+      <button type="button" id="geo-locate-btn" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+        <span><i class="fa-solid fa-location-arrow"></i> Get My Location <i class="fa-solid fa-location-dot"> </i> Tag an address <i class="fa-solid fa-circle-check"></i> address search</span>
+      </button>
+    </div>
+
     <div class="relative z-0 w-full mb-5 group">
     
-      <input type="text" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+      <input type="text" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="text-center block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
             <!-- <label for="floating_address" class="peer-focus:font-medium absolute  text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Street name...</label> -->
             @error('floating_address')
             <p class="text-red-600  mt-1">{{ $message }}</p>
