@@ -1,0 +1,104 @@
+https://chatgpt.com/share/59d7c8ea-c92a-49a1-a4ac-4cd42aa2da31
+npx tailwindcss -o public/css/output.css
+php artisan qrcode:generate-daily
+php artisan schedule:list
+https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migration-to-new-installation-methods.html
+git pull origin main --rebase
+sudo systemctl restart ufw apache2 mysql ssh
+sudo lsof -i -n -P | grep LISTEN
+
+sudo systemctl restart apache2 ssh ufw
+sudo ufw reload
+sudo nano /etc/apache2/ports.conf
+
+/etc/ssh/sshd_config
+sudo apt install openssh-server -y
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+sudo ufw allow ssh
+sudo ufw allow 22/tcp
+sudo ufw allow 8081/tcp
+sudo systemctl start ssh
+sudo systemctl enable ssh
+sudo ufw status
+sudo systemctl restart ssh
+sudo ufw enable
+
+sudo apt install apache2 -y
+sudo ufw allow 'Apache'
+sudo ufw allow 'Apache Full'
+sudo tail -f /var/log/apache2/error.log
+
+create user 'alec'@'localhost' identified by '1!Alec123';
+GRANT ALL PRIVILEGES ON api.* TO 'alec'@'localhost';
+
+sudo apt install mysql-server -y
+sudo mysql_secure_installation
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
+sudo apt remove nodejs npm
+sudo apt clean
+sudo apt autoremove
+sudo apt purge nodejs
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt install npm
+
+sudo apt install gh -y
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:ondrej/php
+sudo apt install -y php8.2 
+sudo apt install php8.2-curl php8.2-dom php8.2-mbstring php8.2-xml php8.2-mysql zip unzip
+
+sudo apt install phpmyadmin -y
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo a2enconf phpmyadmin
+
+mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+sudo a2enmod rewrite
+wget https://wordpress.org/latest.zip
+sudo chown -R www-data:www-data /var/www/html/wordpress
+cd /var/www/html/wordpress
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;`
+chmod 600 wp-config.php
+sudo chown -R www-data:www-data /var/www/html/wordpress
+
+ssh-keygen -t ed25519 -C "alecshelembe@gmail.com"
+sudo apt install espeak
+
+
+php -m
+sudo a2enmod rewrite
+sudo service apache2 restart
+cd /usr/bin
+curl -sS https://getcomposer.org/installer | sudo php
+sudo mv composer.phar composer
+composer
+
+sudo apt install php8.2-gd -y
+https://codewithsusan.com/notes/deploy-laravel-on-apache
+git clone git@github.com:alecshelembe/finetrades.register.git
+cd demo
+chown -R www-data storage
+chown -R www-data bootstrap/cache
+composer install --optimize-autoloader --no-dev
+
+sudo nano /etc/apache2/ports.conf
+sudo ufw status verbose
+Listen 8081
+sudo a2ensite demo.conf
+
+cp .env.example .env
+php artisan key:generate
+
+innodb_log_file_size = 256M
+sudo find /etc -name "my.cnf"
+cd /etc/mysql/mysql.conf.d/
+
+php artisan config:cache
+php artisan config:clear
+php artisan view:clear
+php artisan route:list
+php artisan cache:clear
