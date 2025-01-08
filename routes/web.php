@@ -60,11 +60,11 @@ Route::post('/update-user', [UserController::class, 'profileStore'])->name('prof
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
 
-// Route::get('/create', [CreateController::class, 'create'])->name('create.post');
+Route::get('/create', [CreateController::class, 'create'])->name('create.post');
 
-// Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
+Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
 
-// Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
+Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
 
 Route::post('/create-social-post', [CreateController::class, 'saveSocialPost'])->name('social.save.post');
 
@@ -72,19 +72,19 @@ Route::get('/view-social-posts', [CreateController::class, 'viewSocialPosts'])->
 
 Route::get('/view-social-post/{id}', [CreateController::class, 'viewSocialPost'])->name('social.view.post');
 
-// Route::get('/view-science-post/{id}', [CreateController::class, 'viewSciencePost'])->name('science.view.post');
+Route::get('/view-science-post/{id}', [CreateController::class, 'viewSciencePost'])->name('science.view.post');
 
 Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'])->name('create.mobile.post');
 
-// Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
+Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
 
-// Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
-// Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
+Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
+Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
 
-// Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-// Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
-// Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
-// Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
 
 Route::get('/rockclimbing', [DirectorController::class, 'rockClimbing'])->name('events.rockclimbing');
 

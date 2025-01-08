@@ -103,10 +103,10 @@ class CreateController extends Controller
 
     // Convert the timestamps to a readable format
     foreach ($socialPosts as $post) {
-    $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
-    $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
-    $post->author = $emailParts[0]; // Get the part before the '@'
-    $post->email = $post->email;// Get the part before the '@'
+        $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+        $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
+        $post->author = $emailParts[0]; // Get the part before the '@'
+        $post->email = $post->email;// Get the part before the '@'
     }
 
     // Fetch data from the 'posts' table
@@ -115,11 +115,11 @@ class CreateController extends Controller
     ->get();
 
     foreach ($posts as $post) {
-    $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
-    // Extract the author's name from the email
-    $post->email = $post->author; // Get the part before the '@'
-    $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
-    $post->author = $emailParts[0]; // Get the part before the '@'
+        $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+        // Extract the author's name from the email
+        $post->email = $post->author; // Get the part before the '@'
+        $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
+        $post->author = $emailParts[0]; // Get the part before the '@'
     }
 
         return view('layouts.viewboth', [

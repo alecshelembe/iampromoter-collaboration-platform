@@ -26,7 +26,7 @@
      <!-- Description -->
      <div class="my-4">
         <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-        <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="write your review, description or other."></textarea>
+        <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your review, description or other."></textarea>
         @error('description')
         <p class="text-red-600 mt-1">{{ $message }}</p>
         @enderror

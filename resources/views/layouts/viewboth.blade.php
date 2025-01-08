@@ -25,7 +25,7 @@
             {{-- Loop through merged and sorted posts --}}
             @foreach ($combinedPosts as $post)
                 @php
-                    $isSocialPost = isset($post->images); // Check if it's a social post
+                    $isSocialPost = isset($post->social_p); // Check if it's a social post
                 @endphp
 
                 <div class="bg-white p-4 rounded-lg shadow mb-4">
@@ -42,7 +42,7 @@
                             @endif
                         </p>
 
-                                                {{-- Post Description --}}
+                    {{-- Post Description --}}
                         @if ($post->description)
                             {{-- Truncated Description --}}
                             <div class="mt-2 text-gray-700 overflow-hidden" 
@@ -99,7 +99,7 @@
 
                         {{-- Post Author and Time --}}
                         <div class="mt-2 text-sm text-gray-500">
-                            <p>By: {{ $post->author }}</p>
+                            <p>By {{ $post->author }}</p>
                             <p>{{ $post->formatted_time }}</p>
                         </div>
                         <div class="text-right">
