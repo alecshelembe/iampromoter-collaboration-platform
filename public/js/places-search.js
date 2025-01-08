@@ -181,13 +181,19 @@ function previewImage(event) {
                
                      // Create HTML content to display additional details with TailwindCSS styling
                      var content = `
-                       <div class="bg-white rounded-lg shadow-md p-4 mb-4">
-                         <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
-                         ${result.opening_hours && result.opening_hours.open_now !== undefined ? `<p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}</p>` : ''}
-                         ${result.formatted_address ? `<p class="text-sm text-gray-600">Address: ${result.formatted_address}</p>` : ''}
-                         ${result.rating ? `<p class="text-sm text-yellow-500">Rating: ${result.rating} stars</p>` : ''}
+                     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                       <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
+                       ${result.opening_hours && result.opening_hours.open_now !== undefined ? `<p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}</p>` : ''}
+                       ${result.formatted_address ? `<p class="text-sm text-gray-600">Address: ${result.formatted_address}</p>` : ''}
+                       ${result.rating ? `<p class="text-sm text-yellow-500">Rating: ${result.rating} stars</p>` : ''}
+                       <div class="flex justify-center items-center">
+                         <button class="hover:bg-blue-600 p-2 text-sm rounded-full shadow-lg" 
+                                 name="user_selected_place" value="name:${result.name}|address:${result.formatted_address || ''}|rating:${result.rating || ''}">
+                           Select
+                         </button>
                        </div>
-                     `;
+                     </div>
+                   `;
                
                      // Add content to the results container
                      $("#results").append(content);

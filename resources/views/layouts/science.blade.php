@@ -3,7 +3,7 @@
 
 @section('content')
   
-<!-- @include('layouts.navbar')   -->
+@include('layouts.navbar')  
 
 @if($posts->isEmpty())
         <div class="flex flex-col justify-between p-4 leading-normal">

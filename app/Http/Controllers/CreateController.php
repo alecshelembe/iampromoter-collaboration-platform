@@ -214,6 +214,7 @@ class CreateController extends Controller
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description' => 'required|string',
+            'user_selected_place' => 'sometimes|string|max:255',
         ]);
     
         $imagePaths = [];
