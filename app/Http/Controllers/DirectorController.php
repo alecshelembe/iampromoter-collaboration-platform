@@ -22,9 +22,9 @@ class DirectorController extends Controller
         return view('layouts.events.venuehire');
     }
 
-    public function testSearch()
+    public function landing()
     {
-        return view('layouts.test');
+        return view('layouts.landing');
     }
 
     public function showImages()

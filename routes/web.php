@@ -43,7 +43,7 @@ Route::get('/register', [UserController::class, 'create'])->name('users.create')
 Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.create.ref');
 
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
-Route::get('/', [CreateController::class, 'viewboth'])->name('home');
+Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
@@ -88,7 +88,7 @@ Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll
 
 Route::get('/rockclimbing', [DirectorController::class, 'rockClimbing'])->name('events.rockclimbing');
 
-Route::get('/testSearch', [DirectorController::class, 'testSearch'])->name('testSearch');
+Route::get('/', [DirectorController::class, 'landing'])->name('landing');
 
 Route::get('/venue-hire', [DirectorController::class, 'venueHire'])->name('events.venuehire');
 Route::get('/science-posts', [CreateController::class, 'sciencePosts'])->name('science.posts');
