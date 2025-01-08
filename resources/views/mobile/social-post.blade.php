@@ -30,6 +30,7 @@
         </div>
 
         {{-- Display post description and email --}}
+        <p class="text-center"><i class="fa-solid fa-location-dot"></i> {{ $socialPost->address }}<span class="text-sm"> - tag</span></p>
         <div class="mt-4">
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>

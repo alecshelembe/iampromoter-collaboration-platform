@@ -15,6 +15,9 @@ class AddColumnToSocialPostsTable extends Migration
     {
         Schema::table('social_posts', function (Blueprint $table) {
             $table->integer('social_p')->default(1); // Add the 'social_p' column with default value of 1
+            $table->string('place_id')->nullable(); 
+            $table->string('address')->nullable(); 
+
         });
     }
 
@@ -27,6 +30,9 @@ class AddColumnToSocialPostsTable extends Migration
     {
         Schema::table('social_posts', function (Blueprint $table) {
             $table->dropColumn('social_p'); // Remove the 'social_p' column if rolled back
+            $table->dropColumn('place_id');
+            $table->dropColumn('address');
+
         });
     }
 }
