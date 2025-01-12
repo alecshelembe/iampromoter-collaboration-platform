@@ -238,7 +238,7 @@ class CreateController extends Controller
         // Save the description and image paths to the database
 
         $postData = [
-            'place_id' => $validatedData['user_selected_place'],
+            'place_id' => $validatedData['user_selected_place'] ?? null,
             'address' => $validatedData['floating_address'],
             'description' => $validatedData['description'],
             'email' => auth()->user()->email, // Add the logged-in user's email

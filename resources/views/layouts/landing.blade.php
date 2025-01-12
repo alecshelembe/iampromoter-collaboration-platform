@@ -32,6 +32,7 @@
 
     <div class="relative z-0 w-full mb-5 group " >
       <input type="text" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="text-center block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+      <span class="text-sm" id="floating_sectors"></span>
             <!-- <label for="floating_address" class="peer-focus:font-medium absolute  text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Street name...</label> -->
             @error('floating_address')
             <p class="text-red-600  mt-1">{{ $message }}</p>
@@ -137,6 +138,11 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
 
         var selectedTypes = selectedTypes.length > 0 ? selectedTypes : ['restaurant'];
 
+        var floating_sectors = document.getElementById('floating_sectors');
+
+        // Update the content of floating_sectors to reflect the selected types
+        floating_sectors.innerHTML = selectedTypes.join(', ');
+
 
         var address = $("#floating_address").val();
     
@@ -155,7 +161,6 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
                 };
     
                var service = new google.maps.places.PlacesService(document.createElement('div'));
-               var service = new google.maps.places.PlacesService(document.createElement('div'));
                service.nearbySearch(request, function(results, status) {
                  if (status === google.maps.places.PlacesServiceStatus.OK) {
                    $("#results").empty(); // Clear previous results
@@ -168,7 +173,7 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
                      <div class="bg-white rounded-lg shadow-md p-4 mb-4">
                        <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
                        ${result.opening_hours && result.opening_hours.open_now !== undefined ? `<p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}</p>` : ''}
-                       ${result.vicinity ? `<p class="text-sm text-gray-600">Near by: ${result.vicinity}</p>` : ''}
+                       ${result.vicinity ? `<p class="text-sm text-gray-600">Near: ${result.vicinity}</p>` : ''}
                        ${result.rating ? `<p class="text-sm text-yellow-500">Rating: ${result.rating} stars</p>` : ''}
                      </div>
                    `;
@@ -176,6 +181,18 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
                      // Add content to the results container
                      $("#results").append(content);
                    }
+                 } else {
+                    console.log('Nothing found');
+                   $("#results").empty(); // Clear previous results
+                   var content = `
+                     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                       <h3 class="text-xl font-semibold text-gray-800">Nothing Found</h3>
+                     </div>
+                   `;
+               
+                     // Add content to the results container
+                     $("#results").append(content);
+
                  }
                });
                

@@ -153,6 +153,10 @@ function previewImage(event) {
 
         var selectedTypes = selectedTypes.length > 0 ? selectedTypes : ['restaurant'];
 
+        var floating_sectors = document.getElementById('floating_sectors');
+
+        // Update the content of floating_sectors to reflect the selected types
+        floating_sectors.innerHTML = selectedTypes.join(', ');
 
         var address = $("#floating_address").val();
     
@@ -198,6 +202,17 @@ function previewImage(event) {
                      // Add content to the results container
                      $("#results").append(content);
                    }
+                 } else {
+                    console.log('Nothing found');
+                    $("#results").empty(); // Clear previous results
+                    var content = `
+                      <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Nothing Found</h3>
+                      </div>
+                    `;
+
+                    $("#results").append(content);
+
                  }
                });
                

@@ -64,12 +64,13 @@ class LoginController extends Controller
             $user = Auth::user();
             // Retrieve the user's name
             $first_name = $user->first_name; // Adjust if your name field is different
+            $email = $user->email; // Adjust if your name field is different
             $last_name = $user->last_name; // Adjust if your name field is different
             $phone = $user->phone; // Adjust if your name field is different
             $ref = $user->ref; // Adjust if your name field is different
 
             // Optionally, store the user's name in the session
-            session(['first_name' => $first_name]);
+            session(['email' => $email]);
             session(['last_name' => $last_name]);
             session(['phone' => $phone]);
             session(['ref' => $ref]);
