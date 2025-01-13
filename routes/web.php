@@ -8,8 +8,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\OcrController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\SpeechController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DirectorController;
@@ -48,8 +46,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
 
-Route::get('/calendar/google/events', [CalendarController::class, 'index'])->name('calendar.index');
-Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
+// Route::get('/calendar/google/events', [CalendarController::class, 'index'])->name('calendar.index');
+// Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
 
 Route::get('/QrCodeLogin', [LoginController::class, 'showLoginFormQrCode'])->name('login.qrcode');
 
