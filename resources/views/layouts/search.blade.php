@@ -22,13 +22,13 @@
 
     <!-- Search Bar -->
     <div class="flex justify-center items-center">
-        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class=" block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="mb-2 block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                    
         <button type="button" placeholder="Search for places (e.g., restaurants, cafes)" id="searchButton" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
           <span> <i class="fa-solid fa-magnifying-glass"></i> Search</span>
         </button>
     </div>
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4" id="results"></div>
+    <div id="results"></div>
 </div>
 
 <script>
@@ -75,7 +75,7 @@
                             placeDiv.classList.add('rounded', 'transition');
 
                             placeDiv.innerHTML = `
-                            <div class="bg-white rounded-lg h-64 shadow-md p-2 mb-4">
+                            <div class="bg-white rounded-lg h-54 shadow-md p-2 mb-4">
                                 <img src="${place.icon}" alt="Restaurant Icon" class="w-10 h-10 mb-2">
                                 <h3 class="text-xl font-semibold text-gray-800">${place.name}</h3>
                                 ${place.opening_hours && place.opening_hours.open_now !== undefined ? `
