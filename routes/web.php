@@ -84,11 +84,9 @@ Route::post('/events/store', [EventController::class, 'store'])->name('events.st
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
 
-Route::get('/rockclimbing', [DirectorController::class, 'rockClimbing'])->name('events.rockclimbing');
-
 Route::get('/', [DirectorController::class, 'landing'])->name('landing');
 
-Route::get('/venue-hire', [DirectorController::class, 'venueHire'])->name('events.venuehire');
+Route::get('/places-search', [DirectorController::class, 'searchPlaces'])->name('layouts.search');
 Route::get('/science-posts', [CreateController::class, 'sciencePosts'])->name('science.posts');
 
 Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery');

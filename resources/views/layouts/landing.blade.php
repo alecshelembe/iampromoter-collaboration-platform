@@ -8,12 +8,20 @@
 <div class="max-w-3xl mx-auto bg-white rounded-lg">
 <div class="flex justify-center mb-4">
     
-    <div class="my-4">
-        <h5 class="text-xl my-4 text-center font-medium text-gray-900 dark:text-white">
-            <a href="{{ route('login') }}">
-                <span class="text-bold underline">Sign in</span> to our platform
-            </a>
-        </h5>
+  <div class="my-4">
+    <div class="text-center mb-6">
+        <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+          <!-- Plus icon -->
+          Search with Text 
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+    </div>
+    <h5 class="text-xl my-4 text-center font-medium text-gray-900 dark:text-white">
+        <a href="{{ route('login') }}">
+            <span class="text-bold underline">Sign in</span> to our platform
+        </a>
+    </h5>
+    
     <span class="text-gray-500"> Choose sectors to search </span>
     
     <div id="checkbox-container" class="my-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -23,10 +31,10 @@
     
     <div id="location-result" class="mt-4 text-gray-700"></div>
     <div id="address-result" class="mt-4 text-gray-700"></div>
-    
+
     <div class="flex justify-center items-center">
         <button type="button" id="geo-locate-btn" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-          <span><i class="fa-solid fa-location-arrow"></i> Get My Location <i class="fa-solid fa-location-dot"> </i> Tag an address <i class="fa-solid fa-circle-check"></i> address search</span>
+          <span><i class="fa-solid fa-location-arrow"></i> Get My Location <i class="fa-solid fa-location-dot"> </i> search an address <i class="fa-solid fa-circle-check"></i> auto search</span>
         </button>
     </div>
 
@@ -167,16 +175,26 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
                
                    for (var i = 0; i < results.length; i++) {
                      var result = results[i];
-                      // console.log(result);
+                      console.log(result);
                      // Create HTML content to display additional details with TailwindCSS styling
-                     var content = `
-                     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
-                       <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
-                       ${result.opening_hours && result.opening_hours.open_now !== undefined ? `<p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}</p>` : ''}
-                       ${result.vicinity ? `<p class="text-sm text-gray-600">Near: ${result.vicinity}</p>` : ''}
-                       ${result.rating ? `<p class="text-sm text-yellow-500">Rating: ${result.rating} stars</p>` : ''}
-                     </div>
-                   `;
+                     const content = `
+                      <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+                          <img src="${result.icon}" alt="Restaurant Icon" class="w-10 h-10 mb-2">
+                          <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
+                          ${result.opening_hours && result.opening_hours.open_now !== undefined ? `
+                              <p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">
+                                  Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}
+                              </p>` : ''}
+                          ${result.vicinity ? `
+                              <p class="text-sm text-gray-600">
+                                  Near: ${result.vicinity}
+                              </p>` : ''}
+                          ${result.rating ? `
+                              <p class="text-sm text-yellow-500">
+                                  Rating: ${result.rating} stars
+                              </p>` : ''}
+                      </div>
+                  `;
                
                      // Add content to the results container
                      $("#results").append(content);
@@ -243,8 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             `);
           });
-
-          
 
         initializeAutocomplete(); // Initialize the autocomplete functionality
 

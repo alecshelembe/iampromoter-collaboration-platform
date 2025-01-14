@@ -18,6 +18,11 @@ class DirectorController extends Controller
         return view('layouts.landing');
     }
 
+    public function searchPlaces()
+    {
+        return view('layouts.search');
+    }
+
     // public function showImages()
     // {
     //     // Get all files in the specified directory
