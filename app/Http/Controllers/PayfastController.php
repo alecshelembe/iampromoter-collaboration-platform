@@ -76,7 +76,7 @@ public function return_url() {
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
         $email = auth()->user()->email;
-        $campaign_number = rand(100,9999);
+        $campaign_number = rand(100,9999). ' Join our discord https://discord.gg/BRqsTrza';
     
         $registration = DailyRegistration::where('email', $email)
             ->where('login_time', '>=', Carbon::now()->subDay())
@@ -102,14 +102,14 @@ public function return_url() {
             $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
     
             if ($referrerHost === $pfHost) {
-                // Get the email of the curren`tly logged-in user
+                // Get the email of the currently logged-in user
                 $email = auth()->user()->email;
     
                 $registration = DailyRegistration::where('email', $email)
                     ->where('login_time', '>=', Carbon::now()->subDay())
                     ->first();
 
-                $campaign_number = rand(100,9999);
+                $campaign_number = rand(100,9999). ' Join our discord https://discord.gg/BRqsTrza';
     
                 if ($registration) {
                     // Update fields

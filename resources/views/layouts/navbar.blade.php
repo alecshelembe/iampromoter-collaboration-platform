@@ -23,16 +23,16 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           </li>--}}
           <li>
             <!-- Payment Status Banner -->
-            @if(session()->has('payment_status'))
+            @if(session()->has('payment_status') && session('payment_status') !== 'Cancelled')
                 <div class="bg-green-300 text-center p-2">
                     C # {{ session('payment_status') }}
                 </div>
-            @endif
-            @if(session()->has('payment_status') && session('payment_status') === 'Cancelled')
+            @else
                 <div class="bg-red-300 text-center p-2">
                     C # {{ session('payment_status') }}
                 </div>
             @endif
+
             @if (session('success'))
               <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('success') !!}</p>
             @endif
@@ -90,7 +90,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('login.qrcode') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        Start a Campain
+                        Get started
                       </a>
                     </li> 
                   </ul>
