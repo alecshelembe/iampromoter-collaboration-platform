@@ -22,7 +22,7 @@
 
     <!-- Search Bar -->
     <div class="flex justify-center items-center">
-        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="mb-2 block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" placeholder="Food in Johannesburg" class="mb-2 block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                    
         <button type="button" placeholder="Search for places (e.g., restaurants, cafes)" id="searchButton" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
           <span> <i class="fa-solid fa-magnifying-glass"></i> Search</span>

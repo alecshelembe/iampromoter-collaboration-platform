@@ -27,7 +27,7 @@
         <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
     </a>
     <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Entrance</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Influencer Campaign</h5>
     </a>
 
     <label for="adult-input" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Select Adults:</label>
@@ -45,15 +45,15 @@
         </button>
     </div>
 
-    <label for="children-input" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Select Children:</label>
+    <label for="time-input" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Select hours:</label>
     <div class="relative flex items-center">
-        <button type="button" id="decrement-children" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-8 w-10">
+        <button type="button" id="decrement-time" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-8 w-10">
             <svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
             </svg>
         </button>
-        <input type="text" id="children-input" data-input-counter class="text-gray-900 border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" value="1" required />
-        <button type="button" id="increment-children" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-8 w-10">
+        <input type="text" id="time-input" data-input-counter class="text-gray-900 border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" value="1" required />
+        <button type="button" id="increment-time" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-8 w-10">
             <svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
             </svg>
@@ -65,7 +65,7 @@
         <input id="item_description_notjson" type="text"  value="" required class="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600   
 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
     </div>
-    <p class="my-3 font-normal text-gray-700 dark:text-gray-400">This ticket grants the holder access to designated areas of Sci-Bono Discovery Science Center. It allows entry for adult or child as per ticket indicates. You may enquire and participate in all available activities and facilities. Each ticket is valid for one day only and is non-transferable.</p>
+    <p class="my-3 font-normal text-gray-700 dark:text-gray-400">Join the movement to make a difference! We're launching the "Hire an Influencer for a Day" campaign to promote Address King and the amazing businesses it supports. By partnering with influencers, we can amplify our platform's reach and showcase the unique value our businesses bring to the community. As part of this initiative, the business will cover all meals and reasonable expenses for the day in good faith, ensuring the influencer has everything they need to make an impactful promotion. Together, let's spread the word and elevate Address King to new heights!</p>
     <input type="text" id="total_notjson" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
 
 
@@ -78,23 +78,23 @@ dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const adultInput = document.getElementById('adult-input');
-        const childrenInput = document.getElementById('children-input');
+        const timeInput = document.getElementById('time-input');
         const itemDescriptionInput = document.getElementById('item_description');
         const itemDescriptionInputNotJson = document.getElementById('item_description_notjson');
 
         const adultPrice = {{ env('ADULT_PRICE', 80) }}; // Default value is 80 if env var is not set
-        const childrenPrice = {{ env('CHILDREN_PRICE', 60) }}; // Default value is 60 if env var is not set
+        const timePrice = {{ env('TIME_PRICE', 60) }}; // Default value is 60 if env var is not set
 
         console.log('Adult Price:', adultPrice);
-        console.log('Children Price:', childrenPrice);
+        console.log('Time Price:', timePrice);
 
         function updateDescription() {
             const adults = parseInt(adultInput.value) || 0;
-            const children = parseInt(childrenInput.value) || 0;
-            const total = (adults * adultPrice) + (children * childrenPrice);
+            const time = parseInt(timeInput.value) || 0;
+            const total = (adults * adultPrice) + (time * timePrice);
 
-            itemDescriptionInput.value = `Adults: ${adults}, Children: ${children}, Total: R ${total}`;
-            itemDescriptionInputNotJson.value = `Adults: ${adults}, Children: ${children}, Total: R ${total}`;
+            itemDescriptionInput.value = `Adults: ${adults}, time: ${time}, Total: R ${total}`;
+            itemDescriptionInputNotJson.value = `Adults: ${adults}, Time per hour: ${time}, Total: R ${total}`;
 
             document.getElementById('amount').value=total;
         }
@@ -112,14 +112,14 @@ dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
             }
         });
 
-        document.getElementById('increment-children').addEventListener('click', function () {
-            childrenInput.value = parseInt(childrenInput.value) + 1;
+        document.getElementById('increment-time').addEventListener('click', function () {
+            timeInput.value = parseInt(timeInput.value) + 1;
             updateDescription();
         });
 
-        document.getElementById('decrement-children').addEventListener('click', function () {
-            if (childrenInput.value > 0) {
-                childrenInput.value = parseInt(childrenInput.value) - 1;
+        document.getElementById('decrement-time').addEventListener('click', function () {
+            if (timeInput.value > 0) {
+                timeInput.value = parseInt(timeInput.value) - 1;
                 updateDescription();
             }
         });

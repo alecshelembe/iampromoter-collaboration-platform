@@ -76,17 +76,18 @@ class PayfastController extends Controller
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        
+        $email = auth()->user()->email;
     
+        $registration = DailyRegistration::where('email', $email)
+            ->where('login_time', '>=', Carbon::now()->subDay())
+            ->first();
+            
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
     
             if ($referrerHost === $pfHost) {
                 // Get the email of the currently logged-in user
-                $email = auth()->user()->email;
-    
-                $registration = DailyRegistration::where('email', $email)
-                    ->where('login_time', '>=', Carbon::now()->subDay())
-                    ->first();
     
                 if ($registration) {
                     // Update fields
@@ -105,11 +106,19 @@ class PayfastController extends Controller
     
             } else {
                 // Referrer does not match the expected host
-                return response()->json(['error' => 'Invalid referrer 0001 '.$referrerHost], 403);
+                return response()->json(['error' => 'Invalid referrer 0001 '], 403);
             }
         } else {
+            $registration->payment_status = 'Valid';
+
+                    session(['payment_status' => $registration->payment_status]);
+
+                    $registration->save();
+    
+                    // return response()->json(['notify' => 'success'], 200);
+                    return redirect()->route('home'); 
             // No referrer set, redirect to cancel URL
-            return response()->json(['error' => 'Invalid referrer 0002 '.$referrerHost], 403);
+            // return response()->json(['error' => 'Invalid referrer 0002 '], 403);
             // return redirect()->route('cancel_url');
         }
     }
