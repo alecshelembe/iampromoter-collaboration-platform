@@ -71,27 +71,49 @@ class PayfastController extends Controller
         }
         return md5( $getString );
     }
-
-    public function return_url() {
+public function return_url() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
-        
         $email = auth()->user()->email;
+        $campaign_number = rand(100,9999);
     
         $registration = DailyRegistration::where('email', $email)
             ->where('login_time', '>=', Carbon::now()->subDay())
             ->first();
-            
+
+        // Update fields
+        $registration->payment_status = $campaign_number;
+
+        session(['payment_status' => $registration->payment_status]);
+
+        $registration->save();
+
+        // return response()->json(['notify' => 'success'], 200);
+        return redirect()->route('home');
+    }
+
+    public function return_url_back() {
+        // Set PayFast host based on the environment
+        $testingMode = env('PAYFAST_TESTING_MODE', true);
+        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+    
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
     
             if ($referrerHost === $pfHost) {
-                // Get the email of the currently logged-in user
+                // Get the email of the curren`tly logged-in user
+                $email = auth()->user()->email;
+    
+                $registration = DailyRegistration::where('email', $email)
+                    ->where('login_time', '>=', Carbon::now()->subDay())
+                    ->first();
+
+                $campaign_number = rand(100,9999);
     
                 if ($registration) {
                     // Update fields
-                    $registration->payment_status = 'Valid';
+                    $registration->payment_status = $campaign_number;
 
                     session(['payment_status' => $registration->payment_status]);
 
@@ -109,16 +131,8 @@ class PayfastController extends Controller
                 return response()->json(['error' => 'Invalid referrer 0001 '], 403);
             }
         } else {
-            $registration->payment_status = 'Valid';
-
-                    session(['payment_status' => $registration->payment_status]);
-
-                    $registration->save();
-    
-                    // return response()->json(['notify' => 'success'], 200);
-                    return redirect()->route('home'); 
             // No referrer set, redirect to cancel URL
-            // return response()->json(['error' => 'Invalid referrer 0002 '], 403);
+            return response()->json(['error' => 'Invalid referrer 0002 '], 403);
             // return redirect()->route('cancel_url');
         }
     }

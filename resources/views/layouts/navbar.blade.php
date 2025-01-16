@@ -23,14 +23,14 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           </li>--}}
           <li>
             <!-- Payment Status Banner -->
-            @if(session()->has('payment_status') && session('payment_status') === 'Valid')
-                <div class="bg-green-500 text-center p-2">
-                    Entrance: {{ session('payment_status') }}
+            @if(session()->has('payment_status'))
+                <div class="bg-green-300 text-center p-2">
+                    C # {{ session('payment_status') }}
                 </div>
             @endif
             @if(session()->has('payment_status') && session('payment_status') === 'Cancelled')
-                <div class="bg-red-500 text-center p-2">
-                    Entrance: {{ session('payment_status') }}
+                <div class="bg-red-300 text-center p-2">
+                    C # {{ session('payment_status') }}
                 </div>
             @endif
             @if (session('success'))
@@ -72,7 +72,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
               </div>
         
           <li>
-              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Campaign <a href="{{ route('create.mobile.post') }}" class="fixed bottom-5 right-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">campaign <a href="{{ route('create.mobile.post') }}" class="fixed bottom-5 right-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>

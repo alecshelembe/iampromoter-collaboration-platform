@@ -58,7 +58,7 @@ Route::post('/update-user', [UserController::class, 'profileStore'])->name('prof
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
 
-Route::get('/create', [CreateController::class, 'create'])->name('create.post');
+// Route::get('/create', [CreateController::class, 'create'])->name('create.post');
 
 Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
 

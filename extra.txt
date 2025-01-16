@@ -97,8 +97,9 @@ innodb_log_file_size = 256M
 sudo find /etc -name "my.cnf"
 cd /etc/mysql/mysql.conf.d/
 
+php artisan route:list
 php artisan config:cache
+
 php artisan config:clear
 php artisan view:clear
-php artisan route:list
 php artisan cache:clear
