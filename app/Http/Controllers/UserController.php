@@ -96,20 +96,22 @@ class UserController extends Controller
             'x_handle' => 'nullable|string|max:255',
             'youtube_handle' => 'nullable|string|max:255',
             'other_handle' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
 
         ]);
 
+        $user = auth()->user();
+        $profile_image_url = auth()->user()->profile_image_url;
+
         // Handle image upload if provided
-        $imagePath = 'images/default-profile.png'; // Default image path
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_'.auth()->user()->email.'_'.$image->getClientOriginalExtension();
             $image->storeAs('public/images', $imageName);
             $imagePath = 'images/' . $imageName;
+        } else {
+            $imagePath = $profile_image_url; // old image path
         }
-
-        $user = auth()->user();
 
         // Update the user with the validated data
         $user->update([
