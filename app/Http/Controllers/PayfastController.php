@@ -76,7 +76,7 @@ public function return_url() {
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
         $email = auth()->user()->email;
-        $campaign_number = rand(100,9999). ' Join our discord https://discord.gg/BRqsTrza';
+        $campaign_number = rand(100,9999);
     
         $registration = DailyRegistration::where('email', $email)
             ->where('login_time', '>=', Carbon::now()->subDay())
@@ -109,7 +109,7 @@ public function return_url() {
                     ->where('login_time', '>=', Carbon::now()->subDay())
                     ->first();
 
-                $campaign_number = rand(100,9999). ' Join our discord https://discord.gg/BRqsTrza';
+                $campaign_number = rand(100,9999);
     
                 if ($registration) {
                     // Update fields
