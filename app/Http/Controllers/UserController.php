@@ -89,6 +89,13 @@ class UserController extends Controller
             'floating_first_name' => 'required|string|max:255',
             'floating_last_name' => 'required|string|max:255',
             'floating_phone' => 'required|digits:10',
+            'influencer' => 'sometimes|boolean',
+            'instagram_handle' => 'nullable|string|max:255',
+            'tiktok_handle' => 'nullable|string|max:255',
+            'linkedin_handle' => 'nullable|string|max:255',
+            'x_handle' => 'nullable|string|max:255',
+            'youtube_handle' => 'nullable|string|max:255',
+            'other_handle' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
 
         ]);
@@ -117,6 +124,13 @@ class UserController extends Controller
             'first_name' => $validatedData['floating_first_name'],
             'last_name' => $validatedData['floating_last_name'],
             'phone' => $validatedData['floating_phone'],
+            'influencer' => $validatedData['influencer'],
+            'instagram_handle' => $validatedData['instagram_handle'],
+            'tiktok_handle' => $validatedData['tiktok_handle'],
+            'linkedin_handle' => $validatedData['linkedin_handle'],
+            'x_handle' => $validatedData['x_handle'],
+            'youtube_handle' => $validatedData['youtube_handle'],
+            'other_handle' => $validatedData['other_handle'],
             'profile_image_url' => $imagePath,
         ]);
 

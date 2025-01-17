@@ -1,20 +1,20 @@
 // import './bootstrap';
 
-function previewImage(event) {
-    const file = event.target.files[0];
-    const preview = document.getElementById('image-preview');
+// function previewImage(event) {
+//     const file = event.target.files[0];
+//     const preview = document.getElementById('image-preview');
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.classList.remove('hidden');
-        }
-        reader.readAsDataURL(file);
-    } else {
-        preview.classList.add('hidden');
-    } 
-}
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onload = function(e) {
+//             preview.src = e.target.result;
+//             preview.classList.remove('hidden');
+//         }
+//         reader.readAsDataURL(file);
+//     } else {
+//         preview.classList.add('hidden');
+//     } 
+// }
  // Function to initialize the Google Maps Places Autocomplete
  function initializeAutocomplete() {
     var input = document.getElementById('floating_address');
@@ -68,9 +68,53 @@ function previewImage(event) {
     console.log('Autocomplete initialized');
 }
 
+  // Function to compress and preview image before uploading
+  async function handleImageUpload(inputId) {
+    const fileInput = document.getElementById(inputId);
+
+    fileInput.addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        try {
+          // Compress the image
+          const compressedBlob = await imageCompression(file, {
+            maxSizeMB: 1, // Max size 1MB
+            maxWidthOrHeight: 1920, // Resize to max width/height 1920px
+            useWebWorker: true,
+          });
+
+          // Convert the Blob back to a File object
+          const compressedFile = new File([compressedBlob], file.name, {
+            type: file.type,
+          });
+
+          // Preview the compressed image
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            // Update the preview image element
+            const previewImage = document.getElementById("image-preview");
+            previewImage.src = e.target.result; // Set preview image source
+            previewImage.classList.remove("hidden"); // Make the preview visible
+          };
+          reader.readAsDataURL(compressedFile); // Use the compressed file
+
+          // Update the file input with the compressed file
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(compressedFile);
+          fileInput.files = dataTransfer.files;
+        } catch (error) {
+          console.error("Image compression failed:", error);
+        }
+      }
+    });
+  }
+
+
 // Ensure the script runs after the Google Maps API is loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+     // Initialize the function for your file input
+    handleImageUpload("image-upload");
     // Check if the Google Maps API and Places library are available
     if (typeof google !== 'undefined' && google.maps && google.maps.places) {
         initializeAutocomplete(); // Initialize the autocomplete functionality
@@ -79,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 });
+
 // // Function to initialize the map
 // function initMap() {
 //     var map = new google.maps.Map(document.getElementById('map'), {

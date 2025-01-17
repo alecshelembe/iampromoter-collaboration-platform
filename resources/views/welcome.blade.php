@@ -31,6 +31,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
         <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/browser-image-compression@latest/dist/browser-image-compression.js"></script>
+
     </head>
     <style>
         @media (max-width: 700px) { /* Tailwind's sm breakpoint */

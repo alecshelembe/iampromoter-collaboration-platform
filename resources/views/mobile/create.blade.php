@@ -13,6 +13,15 @@
 <div class="flex justify-end mb-4">
   <form id="upload-form" action="{{ route('social.save.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <!-- Description -->
+    <div class="my-4">
+      <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+      <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion, review, description or other."></textarea>
+      @error('description')
+      <p class="text-red-600 mt-1">{{ $message }}</p>
+      @enderror
+    </div>
+
     <div class="grid grid-cols-2 gap-4">
         @for ($i = 1; $i <= 4; $i++)
             <figure class="max-w-lg relative">
@@ -22,18 +31,9 @@
             </figure>
         @endfor
     </div>
-
-     <!-- Description -->
-     <div class="my-4">
-        <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-        <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your review, description or other."></textarea>
-        @error('description')
-        <p class="text-red-600 mt-1">{{ $message }}</p>
-        @enderror
-    </div>
-
+    
     <div class="my-4">
-    <span class="text-gray-500"> Choose sectors to search </span>
+    <span class="text-gray-500"> Finish the above then choose sectors to search and link you post (Optional) </span>
     
     <div id="checkbox-container" class="my-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       <!-- Checkboxes will be populated dynamically -->
@@ -78,7 +78,6 @@
     </div>
 </form>
 
-<script src="https://unpkg.com/browser-image-compression@latest/dist/browser-image-compression.js"></script>
 <script>
   // Function to compress and preview image before uploading
   async function handleImageUpload(imgId, inputId) {

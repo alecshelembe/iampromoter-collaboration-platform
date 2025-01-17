@@ -35,6 +35,13 @@ class User extends Authenticatable
         'package_selected',
         'ref',
         'position',
+        'influencer',
+        'instagram_handle',
+        'tiktok_handle',
+        'linkedin_handle',
+        'x_handle',
+        'youtube_handle',
+        'other_handle',
     ];
 
     /**
