@@ -14,6 +14,7 @@ use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\PayfastController;
 use App\Http\Controllers\PayfastITNController;
 use App\Http\Controllers\OpenAIController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -110,7 +111,9 @@ Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->n
 Route::post('/generate', [OpenAIController::class, 'generate'])->name('generate');
 
 Route::get('/test-generate', [DirectorController::class, 'generate'])->name('test.generate');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
+Route::get('/search-for-posts', [SearchController::class, 'searchAddress'])->name('search_address');
 
 
 
