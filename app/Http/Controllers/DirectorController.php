@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class DirectorController extends Controller
 {
-
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        // to specific methods 
+        // $this->middleware('auth')->only(['create', 'store']);
+        // $this->middleware('auth')->except(['create', 'store']);
+    }
     public function generate()
     {
         return view('layouts.openai.test');
@@ -23,6 +31,17 @@ class DirectorController extends Controller
         return view('layouts.search');
     }
 
+    public function viewInfluencers()
+    {
+        // Fetch users where the 'influencer' column is true
+        $influencers = User::where('influencer', true)->get();
+
+        // Pass the influencers to the view
+        return view('layouts.influencers', ['influencers' => $influencers]);
+            
+    }
+}
+
     // public function showImages()
     // {
     //     // Get all files in the specified directory
@@ -31,5 +50,3 @@ class DirectorController extends Controller
 
     //     return view('layouts.events.guidedtour', compact('images'));
     // }
-
-}
