@@ -5,7 +5,7 @@
 @include('layouts.navbar')
 
 <div class=" max-w-3xl mx-auto p-6 bg-white rounded-lg"> 
-    <h1 class="text-2xl font-bold mb-4">Influencers</h1>
+    <h1 class="text-xl font-medium mb-4">Active</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
 
     @if ($influencers->isEmpty())
@@ -40,7 +40,7 @@
                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg"src="{{ Storage::url($influencer->profile_image_url) }}" alt="{{ $influencer->first_name }}'s image"/>
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $influencer->first_name }} {{ $influencer->last_name }}</h5>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{ $influencer->position ?? 'Influencer' }}</span>
-                <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">
+                <p class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">
                     {{ $influencer->google_location ?? 'No location available' }}
                 </p>
                 <div class="flex mt-4 md:mt-6">

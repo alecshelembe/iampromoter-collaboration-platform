@@ -115,7 +115,7 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/search-for-posts', [SearchController::class, 'searchAddress'])->name('search_address');
 
-Route::get('/influencers', [DirectorController::class, 'viewInfluencers'])->name('view_influencers');
+Route::get('/marketing', [DirectorController::class, 'viewInfluencers'])->name('view_influencers');
 
 
 

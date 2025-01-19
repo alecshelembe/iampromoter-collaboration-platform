@@ -91,13 +91,19 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('login.qrcode') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        Influencer campaign 
+                        Create campaign 
                       </a>
                     </li>
                     <li>
                       <a href="{{ route('my.profile') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        Become an influencer 
+                        Activate campaigns 
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('view_influencers') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                        <span class="">Marketing</span>
                       </a>
                     </li> 
                   </ul>
