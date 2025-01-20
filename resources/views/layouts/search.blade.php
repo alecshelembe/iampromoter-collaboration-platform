@@ -6,11 +6,13 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
 <div class="max-w-3xl mx-auto bg-white rounded-lg">
-    <h5 class="my-4 text-center">
-        <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-            <span class="text-bold ">Sign in</span>
-        </a>
-    </h5>
+    @if(session('exists'))
+        <h5 class="my-4 text-center">
+            <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <span class="text-bold ">Sign in</span>
+            </a>
+        </h5>
+    @endif
     <h1 class="text-2xl font-bold text-center mb-6">Find Places</h1>
 
     <!-- Search Bar -->

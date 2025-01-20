@@ -9,11 +9,13 @@
     
   <div>
     
-    <h5 class="my-4 text-center">
-        <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-            <span class="text-bold">Sign in</span>
-        </a>
-    </h5>
+  @if(session('exists'))
+        <h5 class="my-4 text-center">
+            <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <span class="text-bold ">Sign in</span>
+            </a>
+        </h5>
+    @endif
     
     <span class="text-gray-500"> Select topics to search </span>
     

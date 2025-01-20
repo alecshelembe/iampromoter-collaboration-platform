@@ -23,18 +23,17 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <div class="bg-green-300 text-center p-1 mb-1">
                     C # {{ session('payment_status') }} <a href='https://discord.gg/BRqsTrza' class="underline" target="_blank">Join our discord</a>
                 </div>
-            @else
                 
             @endif
 
             @if (session('success'))
-                <div class="bg-green-300 text-center p-1 mb-1">
-                    <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('success') !!}</p>
+                <div class="text-center p-1 mb-1">
+                    <p class="mx-auto" style="background-color:#f5f5f5; color: green;"> {!! session('success') !!}</p>
                 </div>
             @endif
             @if(session('exists'))
-                <div class="bg-green-300 text-center p-1 mb-1">
-                    <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('exists') !!}</p>
+                <div class="text-center p-1 mb-1">
+                    <p class="mx-auto" style="background-color:#f5f5f5; color: green;"> {!! session('exists') !!}</p>
                 </div>
                 @endif
           </li> 

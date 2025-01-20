@@ -40,11 +40,11 @@
             /* Background color */
             /* background-color: #f0f0f0; */
 
-            /* Background image */
+            /* Background image 
             background-image: url('{{ asset('storage/sci-bono-content/browser-fill-2.png') }}');
             background-size: cover;
             background-repeat: no-repeat;
-            /* background-position: center; */
+             background-position: center; */
             }
            
         }
