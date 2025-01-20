@@ -42,7 +42,7 @@ Route::get('/register', [UserController::class, 'create'])->name('users.create')
 Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.create.ref');
 
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
-Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
+Route::get('/', [CreateController::class, 'viewboth'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
@@ -85,7 +85,7 @@ Route::post('/events/store', [EventController::class, 'store'])->name('events.st
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
 
-Route::get('/', [DirectorController::class, 'landing'])->name('landing');
+Route::get('/landing', [DirectorController::class, 'landing'])->name('landing');
 
 Route::get('/places-search', [DirectorController::class, 'searchPlaces'])->name('layouts.search');
 Route::get('/science-posts', [CreateController::class, 'sciencePosts'])->name('science.posts');

@@ -37,8 +37,9 @@
             </div> -->
             <div class="flex flex-col items-center pb-10">
             
-                <img class="w-24 h-24 mb-3 rounded-full shadow-lg"src="{{ Storage::url($influencer->profile_image_url) }}" alt="{{ $influencer->first_name }}'s image"/>
+                <img style="width: 150px; height: 150px; border-radius: 50%;" class="mx-auto object-cover shadow-md m-2"  src="{{ Storage::url($influencer->profile_image_url) }}" alt="{{ $influencer->first_name }}'s image"/>
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $influencer->first_name }} {{ $influencer->last_name }}</h5>
+                <h5 class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">{{ $influencer->email }}</h5>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{ $influencer->position ?? 'Influencer' }}</span>
                 <p class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">
                     {{ $influencer->google_location ?? 'No location available' }}

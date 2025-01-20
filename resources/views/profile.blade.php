@@ -14,7 +14,7 @@
         name="image" 
         alt="Image Preview"  
         style="width: 150px; height: 150px; border-radius: 50%;" 
-        class="mx-auto object-cover shadow-md m" />
+        class="mx-auto object-cover shadow-md" />
 <form class="space-y-6 animate-fadeIn" action="{{ route('profile.store') }}" enctype="multipart/form-data" method="post">
     @csrf
     
