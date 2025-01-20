@@ -4,25 +4,18 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
-
 <div class="max-w-3xl mx-auto bg-white rounded-lg">
 <div class="flex justify-center mb-4">
     
-  <div class="my-4">
-    <div class="text-center mb-6">
-        <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-          <!-- Plus icon -->
-          Search with Text 
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </a>
-    </div>
-    <h5 class="text-xl my-4 text-center font-medium text-gray-900 dark:text-white">
-        <a href="{{ route('login') }}">
-            <span class="text-bold underline">Sign in</span> to our platform
+  <div>
+    
+    <h5 class="my-4 text-center">
+        <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <span class="text-bold">Sign in</span>
         </a>
     </h5>
     
-    <span class="text-gray-500"> Choose sectors to search </span>
+    <span class="text-gray-500"> Select topics to search </span>
     
     <div id="checkbox-container" class="my-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       <!-- Checkboxes will be populated dynamically -->
@@ -63,30 +56,51 @@
 <script>
   // import './bootstrap';
 
-document.getElementById("geo-locate-btn").addEventListener("click", function() {
-  // Simulate a fixed location (e.g., New York City)
-  var lat = -25.7460;  // Latitude for Pretoria, South Africa
-  var lng = 28.1881;   // Longitude for Pretoria, South Africa
 
-  
+  document.getElementById("geo-locate-btn").addEventListener("click", function() {
+  // Show a custom message to explain the need for geolocation
+  document.getElementById("location-result").innerHTML = `
+    <p>We need access to your location to show the closest address. Please allow location access in the prompt.</p>
+  `;
 
-  // Initialize the Geocoder
-  var geocoder = new google.maps.Geocoder();
-  var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+  if (navigator.geolocation) {
+    console.log("Geolocation is supported.");
 
-  // Get the address from the simulated coordinates
-  geocoder.geocode({ location: latLng }, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[0]) {
-        // Display the closest address
-        document.getElementById("floating_address").value = `${results[0].formatted_address}`;
-      } else {
-        document.getElementById("address-result").value = "<p>No address found for this location.</p>";
-      }
-    } else {
-      document.getElementById("address-result").value = "<p>Geocoder failed due to: " + status + "</p>";
-    }
-  });
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      
+      console.log(`Location: Latitude: ${lat}, Longitude: ${lng}`);
+      
+      // Initialize the Geocoder
+      var geocoder = new google.maps.Geocoder();
+      var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+      
+      // Get the address from the coordinates
+      geocoder.geocode({ location: latLng }, function(results, status) {
+        console.log("Geocode Status:", status);
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            // Display the closest address
+            document.getElementById("floating_address").value = `${results[0].formatted_address}`;
+
+          } else {
+            document.getElementById("address-result").innerHTML = "<p>No address found for this location.</p>";
+          }
+        } else {
+          document.getElementById("address-result").innerHTML = "<p>Geocoder failed due to: " + status + "</p>";
+        }
+      });
+
+    }, function(error) {
+      console.error("Error code: " + error.code + " - " + error.message);
+      // Handle errors (e.g., user denies location request)
+      document.getElementById("location-result").innerHTML = "<p>Unable to retrieve location. Please allow access to your location.</p>";
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+    document.getElementById("location-result").innerHTML = "<p>Geolocation is not supported by this browser.</p>";
+  }
 });
 
  // Function to initialize the Google Maps Places Autocomplete

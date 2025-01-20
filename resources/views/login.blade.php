@@ -31,11 +31,26 @@
             @endif
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
 
-        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
-            <a href="{{ route('login') }}">
-                <span class="text-bold underline">Sign in</span> to our platform
+        <!-- <h5 class="my-4 text-center">
+            <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <span class="text-bold ">Sign in</span>
             </a>
-        </h5>
+        </h5> -->
+        <div class="text-center my-4">
+            <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <!-- Plus icon -->
+            Search with Text 
+            <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+        </div>
+
+        <div class="text-center my-4">
+            <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <!-- Plus icon -->
+            <i class="fa-solid fa-arrow-left-long"></i>
+            Search with address
+            </a>
+        </div>
         
 
         <div class="text-center mx-auto">

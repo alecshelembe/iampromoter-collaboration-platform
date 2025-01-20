@@ -11,12 +11,12 @@
         </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="title" content="Address King | Your Platform for Connecting Businesses and Customers">
-        <meta name="description" content="Discover Address King – the ultimate platform for promoting businesses and connecting with influencers. Explore, connect, and grow your business today!">
-        <meta name="keywords" content="Address King, business promotion, influencer marketing, grow your business, connect with customers">
-        <meta name="author" content="alec - Address King">
+        <meta name="title" content="Street King | Your Platform for Connecting Businesses and Customers">
+        <meta name="description" content="Discover Street King – the ultimate platform for promoting businesses and connecting with influencers. Explore, connect, and grow your business today!">
+        <meta name="keywords" content="Street King, business promotion, influencer marketing, grow your business, connect with customers">
+        <meta name="author" content="alec - Street King">
         
-        <title>Laravel</title>
+        <title>Street King</title>
         
         <!-- Fonts -->
          <!-- Google tag (gtag.js) -->

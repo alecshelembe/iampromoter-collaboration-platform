@@ -5,24 +5,17 @@
 <!-- Load Google Maps API with Places library -->
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
-<div class="max-w-3xl mx-auto bg-white rounded-lg p-6">
-<div class="text-center mb-6">
-    <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-    <!-- Plus icon -->
-    Search with address
-    <i class="fa-solid fa-arrow-left-long"></i>
-    </a>
-</div>
-    <h5 class="text-xl my-4 text-center font-medium text-gray-900 dark:text-white">
-        <a href="{{ route('login') }}">
-            <span class="text-bold underline">Sign in</span> to our platform
+<div class="max-w-3xl mx-auto bg-white rounded-lg">
+    <h5 class="my-4 text-center">
+        <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <span class="text-bold ">Sign in</span>
         </a>
     </h5>
     <h1 class="text-2xl font-bold text-center mb-6">Find Places</h1>
 
     <!-- Search Bar -->
     <div class="flex justify-center items-center">
-        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" placeholder="Food in Johannesburg" class="mb-2 block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+        <input type="text" id="floating_address" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" placeholder="Food near me" class="mb-2 block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                    
         <button type="button" placeholder="Search for places (e.g., restaurants, cafes)" id="searchButton" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
           <span> <i class="fa-solid fa-magnifying-glass"></i> Search</span>

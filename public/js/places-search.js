@@ -1,83 +1,58 @@
 // import './bootstrap';
 
+
 document.getElementById("geo-locate-btn").addEventListener("click", function() {
-  // Simulate a fixed location (e.g., New York City)
-  var lat = -25.7460;  // Latitude for Pretoria, South Africa
-  var lng = 28.1881;   // Longitude for Pretoria, South Africa
+  // Show a custom message to explain the need for geolocation
+  document.getElementById("location-result").innerHTML = `
+    <p>We need access to your location to show the closest address. Please allow location access in the prompt.</p>
+  `;
 
-  
+  if (navigator.geolocation) {
+    console.log("Geolocation is supported.");
 
-  // Initialize the Geocoder
-  var geocoder = new google.maps.Geocoder();
-  var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      
+      console.log(`Location: Latitude: ${lat}, Longitude: ${lng}`);
+      
+      // Display the coordinates
+      document.getElementById("location-result").innerHTML = ` 
+        <p>Latitude: ${lat}</p>
+        <p>Longitude: ${lng}</p>
+      `;
+      
+      // Initialize the Geocoder
+      var geocoder = new google.maps.Geocoder();
+      var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+      
+      // Get the address from the coordinates
+      geocoder.geocode({ location: latLng }, function(results, status) {
+        console.log("Geocode Status:", status);
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            // Display the closest address
+            document.getElementById("address-result").innerHTML = `
+              <p>Closest Address: ${results[0].formatted_address}</p>
+            `;
+          } else {
+            document.getElementById("address-result").innerHTML = "<p>No address found for this location.</p>";
+          }
+        } else {
+          document.getElementById("address-result").innerHTML = "<p>Geocoder failed due to: " + status + "</p>";
+        }
+      });
 
-  // Get the address from the simulated coordinates
-  geocoder.geocode({ location: latLng }, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[0]) {
-        // Display the closest address
-        document.getElementById("floating_address").value = `${results[0].formatted_address}`;
-      } else {
-        document.getElementById("address-result").value = "<p>No address found for this location.</p>";
-      }
-    } else {
-      document.getElementById("address-result").value = "<p>Geocoder failed due to: " + status + "</p>";
-    }
-  });
+    }, function(error) {
+      console.error("Error code: " + error.code + " - " + error.message);
+      // Handle errors (e.g., user denies location request)
+      document.getElementById("location-result").innerHTML = "<p>Unable to retrieve location. Please allow access to your location.</p>";
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+    document.getElementById("location-result").innerHTML = "<p>Geolocation is not supported by this browser.</p>";
+  }
 });
-
-// document.getElementById("geo-locate-btn").addEventListener("click", function() {
-//   // Show a custom message to explain the need for geolocation
-//   document.getElementById("location-result").innerHTML = `
-//     <p>We need access to your location to show the closest address. Please allow location access in the prompt.</p>
-//   `;
-
-//   if (navigator.geolocation) {
-//     console.log("Geolocation is supported.");
-
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       var lat = position.coords.latitude;
-//       var lng = position.coords.longitude;
-      
-//       console.log(`Location: Latitude: ${lat}, Longitude: ${lng}`);
-      
-//       // Display the coordinates
-//       document.getElementById("location-result").innerHTML = ` 
-//         <p>Latitude: ${lat}</p>
-//         <p>Longitude: ${lng}</p>
-//       `;
-      
-//       // Initialize the Geocoder
-//       var geocoder = new google.maps.Geocoder();
-//       var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-      
-//       // Get the address from the coordinates
-//       geocoder.geocode({ location: latLng }, function(results, status) {
-//         console.log("Geocode Status:", status);
-//         if (status === google.maps.GeocoderStatus.OK) {
-//           if (results[0]) {
-//             // Display the closest address
-//             document.getElementById("address-result").innerHTML = `
-//               <p>Closest Address: ${results[0].formatted_address}</p>
-//             `;
-//           } else {
-//             document.getElementById("address-result").innerHTML = "<p>No address found for this location.</p>";
-//           }
-//         } else {
-//           document.getElementById("address-result").innerHTML = "<p>Geocoder failed due to: " + status + "</p>";
-//         }
-//       });
-
-//     }, function(error) {
-//       console.error("Error code: " + error.code + " - " + error.message);
-//       // Handle errors (e.g., user denies location request)
-//       document.getElementById("location-result").innerHTML = "<p>Unable to retrieve location. Please allow access to your location.</p>";
-//     });
-//   } else {
-//     console.log("Geolocation is not supported by this browser.");
-//     document.getElementById("location-result").innerHTML = "<p>Geolocation is not supported by this browser.</p>";
-//   }
-// });
 
   
   
