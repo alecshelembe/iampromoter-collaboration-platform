@@ -1,6 +1,7 @@
 // import './bootstrap';
 
 
+
 document.getElementById("geo-locate-btn").addEventListener("click", function() {
   // Show a custom message to explain the need for geolocation
   document.getElementById("location-result").innerHTML = `
@@ -16,12 +17,6 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
       
       console.log(`Location: Latitude: ${lat}, Longitude: ${lng}`);
       
-      // Display the coordinates
-      document.getElementById("location-result").innerHTML = ` 
-        <p>Latitude: ${lat}</p>
-        <p>Longitude: ${lng}</p>
-      `;
-      
       // Initialize the Geocoder
       var geocoder = new google.maps.Geocoder();
       var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
@@ -32,9 +27,8 @@ document.getElementById("geo-locate-btn").addEventListener("click", function() {
         if (status === google.maps.GeocoderStatus.OK) {
           if (results[0]) {
             // Display the closest address
-            document.getElementById("address-result").innerHTML = `
-              <p>Closest Address: ${results[0].formatted_address}</p>
-            `;
+            document.getElementById("floating_address").value = `${results[0].formatted_address}`;
+
           } else {
             document.getElementById("address-result").innerHTML = "<p>No address found for this location.</p>";
           }

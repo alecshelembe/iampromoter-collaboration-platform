@@ -28,7 +28,7 @@
                     $isSocialPost = isset($post->social_p); // Check if it's a social post
                 @endphp
 
-                <div class="bg-white p-4 rounded-lg shadow mb-4">
+                <div class="bg-white p-2 rounded-lg shadow mb-4">
                     {{-- Regular Post --}}
                     @if (!$isSocialPost)
                         <h3 class="font-bold text-2xl mb-2">{{ $post->title }}</h3>

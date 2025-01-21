@@ -14,7 +14,7 @@
             @endphp
 
             @if (is_array($images) && count($images) > 0)
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-2">
                     @foreach ($images as $image)
                         <figure class="max-w-lg relative">
                             <img class="h-auto max-w-full rounded-lg cursor-pointer" 
@@ -30,7 +30,10 @@
         </div>
 
         {{-- Display post description and email --}}
-        <p class="text-center"><i class="fa-solid fa-location-dot"></i> {{ $socialPost->address }}<span class="text-sm"> - tag</span></p>
+        <div class="flex justify-center my-4">
+            <p class="w-3/4 text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"> <i class="fa-solid fa-location-dot"></i>   {{ $socialPost->address }}<span class="text-sm"> - tag</span></p>
+        </div>
+        
         <div class="mt-4">
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
