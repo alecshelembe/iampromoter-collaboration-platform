@@ -29,30 +29,30 @@
             @else
                 <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
             @endif
-    <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
+    <form action="{{ route('users.the.login') }}"  method="post" class="space-y-4 animate-fadeIn">
 
         <!-- <h5 class="my-4 text-center">
             <a href="{{ route('login') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
                 <span class="text-bold ">Sign in</span>
             </a>
         </h5> -->
-        <div class="text-center my-4">
-            <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-            <!-- Plus icon -->
-            Search with Text 
-            <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
-        </div>
+        @if (!Request::is('QrCodeLogin'))
+            <div class="text-center my-4">
+                <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <!-- Plus icon -->
+                Search with Text 
+                <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
 
-        <div class="text-center my-4">
-            <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-            <!-- Plus icon -->
-            <i class="fa-solid fa-arrow-left-long"></i>
-            Search with address
-            </a>
-        </div>
-        
-
+            <div class="text-center my-4">
+                <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <!-- Plus icon -->
+                <i class="fa-solid fa-arrow-left-long"></i>
+                Search with address
+                </a>
+            </div>
+        @endif
         <div class="text-center mx-auto">
             @csrf
             @if(isset($code))
