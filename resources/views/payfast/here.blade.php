@@ -65,7 +65,7 @@
         <input id="item_description_notjson" type="text"  value="" required class="block py-2.5 px-0 w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600   
 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
     </div>
-    <p class="my-3 font-normal text-gray-700 dark:text-gray-400">Join the movement to make a difference! We're launching the "Hire an Influencer for a Day" campaign to promote Address King and the amazing businesses it supports. By partnering with influencers, we can amplify our platform's reach and showcase the unique value our businesses bring to the community. As part of this initiative, the business will cover all meals and reasonable expenses for the day in good faith, ensuring the influencer has everything they need to make an impactful promotion. Together, let's spread the word and elevate Address King to new heights!</p>
+    <p class="my-3 font-normal text-gray-700 dark:text-gray-400">Join the movement to make a difference! We're launching the "Hire an Influencer for a Day" campaign to promote Street King and the amazing businesses it supports. By partnering with influencers, we can amplify our platform's reach and showcase the unique value our businesses bring to the community. As part of this initiative, the business will cover all meals and reasonable expenses for the day in good faith, ensuring the influencer has everything they need to make an impactful promotion. Together, let's spread the word and elevate Street King to new heights!</p>
     <input type="text" id="total_notjson" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
 
 
