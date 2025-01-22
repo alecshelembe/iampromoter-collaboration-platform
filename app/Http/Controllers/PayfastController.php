@@ -71,7 +71,7 @@ class PayfastController extends Controller
         }
         return md5( $getString );
     }
-public function return_url() {
+public function return_url_test() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
@@ -93,7 +93,7 @@ public function return_url() {
         return redirect()->route('home');
     }
 
-    public function return_url_back() {
+    public function return_url() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';

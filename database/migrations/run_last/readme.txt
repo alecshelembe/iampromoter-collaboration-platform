@@ -1,0 +1,1 @@
+Hi make sure to temp remove "add columes to daily" and "create payfast transactions" they sould be the last migrations run
