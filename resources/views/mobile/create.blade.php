@@ -13,6 +13,124 @@
 <div class="flex justify-end mb-4">
   <form id="upload-form" action="{{ route('social.save.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <!-- Name -->
+    <div class="my-4">
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Place</label>
+      <input type="text" name="place_name" value="{{ old('place_name') }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of the place." />
+      @error('name')
+      <p class="text-red-600 mt-1">{{ $message }}</p>
+      @enderror
+    </div>
+
+    <!-- Options -->
+
+    
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="wifi" name="extras" value="wifi" class="peer hidden">
+          <label for="wifi" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-wifi"></i>
+              <span>WiFi</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="play-area" name="extras" value="play-area" class="peer hidden">
+          <label for="play-area" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-child"></i>
+              <span>Play Area</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="dogs-allowed" name="extras" value="dogs-allowed" class="peer hidden">
+          <label for="dogs-allowed" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-dog"></i>
+              <span>Dogs Allowed</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="parking" name="extras" value="parking" class="peer hidden">
+          <label for="parking" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-square-parking"></i>
+              <span>Parking</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="outdoor-seating" name="extras" value="outdoor-seating" class="peer hidden">
+          <label for="outdoor-seating" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-chair"></i>
+              <span>Outdoor Seating</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="wheelchair-accessible" name="extras" value="wheelchair-accessible" class="peer hidden">
+          <label for="wheelchair-accessible" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-wheelchair"></i>
+              <span>Wheelchair Accessible</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="smoking-area" name="extras" value="smoking-area" class="peer hidden">
+          <label for="smoking-area" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-smoking"></i>
+              <span>Smoking Area</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="food-available" name="extras" value="food-available" class="peer hidden">
+          <label for="food-available" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-utensils"></i>
+              <span>Food Available</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="alcohol-served" name="extras" value="alcohol-served" class="peer hidden">
+          <label for="alcohol-served" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-wine-glass"></i>
+              <span>Alcohol Served</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="bike-racks" name="extras" value="bike-racks" class="peer hidden">
+          <label for="bike-racks" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-bicycle"></i>
+              <span>Bike Racks</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="charging-stations" name="extras" value="charging-stations" class="peer hidden">
+          <label for="charging-stations" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Charging Stations</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="live-music" name="extras" value="live-music" class="peer hidden">
+          <label for="live-music" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-music"></i>
+              <span>Live Music</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
+          <input type="checkbox" id="sports-screening" name="extras" value="sports-screening" class="peer hidden">
+          <label for="sports-screening" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-tv"></i>
+              <span>Sports Screening</span>
+          </label>
+      </div>
+  </div>
+    
     <!-- Description -->
     <div class="my-4">
       <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>

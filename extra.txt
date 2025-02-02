@@ -12,7 +12,6 @@ sudo ufw reload
 sudo nano /etc/apache2/ports.conf
 sudo a2enmod ssl
 
-
 /etc/ssh/sshd_config
 sudo apt install openssh-server -y
 chmod 700 ~/.ssh
