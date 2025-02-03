@@ -25,20 +25,33 @@
                     @endforeach
                 </div>
             @else
-                <!-- <p>No images found.</p> -->
+                <p>No images found.</p>
             @endif
         </div>
 
         {{-- Display post description and email --}}
         <div class="flex justify-center my-4">
-            <p class="w-3/4 text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"> <i class="fa-solid fa-location-dot"></i>   {{ $socialPost->address }}<span class="text-sm"> - tag</span></p>
+            <p class="w-3/4 text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"> <i class="fa-solid fa-location-dot"></i>   {{ $socialPost->address }}</p>
         </div>
-        
+       
+
         <div class="mt-4">
+            <p class="text-sm my-2">{{ $socialPost->place_name }}</p>
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
         </div>
+
+        <div class="flex justify-center my-2">
+            <p class="text-gray-700 rounded-full shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
+        </div>
+
+        <div class="flex justify-center my-2">
+            <p class="text-gray-700 rounded-full shadow-lg px-2 text-sm py-2">
+                {{ implode(', ', $socialPost->extras) }}
+            </p>
+        </div>
+
         <div>
             {{-- Toggle post visibility if user is the author --}}
             @if (auth()->user()->email === $socialPost->email)
@@ -56,7 +69,6 @@
                
             @endif
         </div>
-
 
         {{-- Comments Section --}}
         

@@ -214,14 +214,12 @@ class CreateController extends Controller
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description' => 'required|string',
-            'user_selected_place' => 'sometimes|string|max:255',
             'floating_address' => 'required|string|max:255',
             'place_name' => 'required|string|max:255',
             'extras' => 'nullable|array', // Ensure it's an array if present
             'extras.*' => 'string|max:255', // Validate each selected checkbox value
-            'floating_sectors_value' => 'required|string',
+            'floating_sectors_value' => 'nullable|string',
         ]);
-        dd($validatedData);
 
         $imagePaths = [];
     
@@ -242,9 +240,11 @@ class CreateController extends Controller
         // Save the description and image paths to the database
 
         $postData = [
-            'place_id' => $validatedData['user_selected_place'] ?? null,
+            'place_name' => $validatedData['place_name'],
             'address' => $validatedData['floating_address'],
             'description' => $validatedData['description'],
+            'floating_sectors_value' => $validatedData['floating_sectors_value'],
+            'extras' => $validatedData['extras'],
             'email' => auth()->user()->email, // Add the logged-in user's email
         ];
         

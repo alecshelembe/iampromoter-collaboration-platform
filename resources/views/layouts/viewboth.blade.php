@@ -137,6 +137,7 @@
 
                         {{-- Post Description and Info --}}
                         <div class="mt-4">
+                            <p class="text-sm my-2">{{ $post->place_name }}</p>
                             <p class="text-sm text-gray-700">{{ $post->description }}</p>
                             <p class="text-xs text-gray-500">Posted by {{ $post->author }}</p>
                             <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
