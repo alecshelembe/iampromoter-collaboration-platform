@@ -219,8 +219,8 @@ class CreateController extends Controller
             'place_name' => 'required|string|max:255',
             'extras' => 'nullable|array', // Ensure it's an array if present
             'extras.*' => 'string|max:255', // Validate each selected checkbox value
+            'floating_sectors_value' => 'required|string',
         ]);
-        
         dd($validatedData);
 
         $imagePaths = [];

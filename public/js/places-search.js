@@ -123,72 +123,13 @@ function previewImage(event) {
         var selectedTypes = selectedTypes.length > 0 ? selectedTypes : ['restaurant'];
 
         var floating_sectors = document.getElementById('floating_sectors');
+        var floating_sectors_value = document.getElementById('floating_sectors_value');
 
         // Update the content of floating_sectors to reflect the selected types
         floating_sectors.innerHTML = selectedTypes.join(', ');
 
-        var address = $("#floating_address").val();
-    
-            // Geocode the address to get latitude and longitude
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ address: address }, function(results, status) {
-              if (status === 'OK') {
-                var lat = results[0].geometry.location.lat();
-                var lng = results[0].geometry.location.lng();
-    
-                // Make Places API request for nearby restaurants
-                var request = {
-                  location: { lat: lat, lng: lng },
-                  radius: '500',
-                  type: selectedTypes
-                };
-    
-               var service = new google.maps.places.PlacesService(document.createElement('div'));
-               var service = new google.maps.places.PlacesService(document.createElement('div'));
-               service.nearbySearch(request, function(results, status) {
-                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                   $("#results").empty(); // Clear previous results
-               
-                   for (var i = 0; i < results.length; i++) {
-                     var result = results[i];
-                      // console.log(result);
-                     // Create HTML content to display additional details with TailwindCSS styling
-                     var content = `
-                     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
-                       <h3 class="text-xl font-semibold text-gray-800">${result.name}</h3>
-                       ${result.opening_hours && result.opening_hours.open_now !== undefined ? `<p class="text-sm ${result.opening_hours.open_now ? 'text-green-500' : 'text-red-500'}">Open Now: ${result.opening_hours.open_now ? 'Yes' : 'No'}</p>` : ''}
-                       ${result.vicinity ? `<p class="text-sm text-gray-600">Near by: ${result.vicinity}</p>` : ''}
-                       ${result.rating ? `<p class="text-sm text-yellow-500">Rating: ${result.rating} stars</p>` : ''}
-                       <div class="flex justify-center items-center">
-                         <button class="hover:bg-blue-600 p-2 text-sm rounded-full shadow-lg" 
-                                 name="user_selected_place" value="${result.place_id || ''}">
-                           Select
-                         </button>
-                       </div>
-                     </div>
-                   `;
-               
-                     // Add content to the results container
-                     $("#results").append(content);
-                   }
-                 } else {
-                    console.log('Nothing found');
-                    $("#results").empty(); // Clear previous results
-                    var content = `
-                      <div class="bg-white rounded-lg shadow-md p-4 mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Nothing Found</h3>
-                      </div>
-                    `;
-
-                    $("#results").append(content);
-
-                 }
-               });
-               
-              } else {
-                alert("Geocode was not successful: " + status);
-              }
-            });
+        floating_sectors_value.value = selectedTypes.join(', ');
+          
     });
 
     console.log('Autocomplete initialized');

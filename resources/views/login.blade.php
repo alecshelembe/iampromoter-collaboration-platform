@@ -45,13 +45,6 @@
                 </a>
             </div>
 
-            <div class="text-center my-4">
-                <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-                <!-- Plus icon -->
-                <i class="fa-solid fa-arrow-left-long"></i>
-                Search with address
-                </a>
-            </div>
         @endif
         <div class="text-center mx-auto">
             @csrf
