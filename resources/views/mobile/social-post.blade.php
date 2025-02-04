@@ -36,21 +36,26 @@
        
 
         <div class="mt-4">
-            <p class="text-sm my-2">{{ $socialPost->place_name }}</p>
+            <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
         </div>
 
         <div class="flex justify-center my-2">
-            <p class="text-gray-700 rounded-full shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
-        </div>
-
-        <div class="flex justify-center my-2">
-            <p class="text-gray-700 rounded-full shadow-lg px-2 text-sm py-2">
-                {{ implode(', ', $socialPost->extras) }}
+            <p class="text-gray-700 rounded-full shadow-lg px-2 py-2 flex items-center space-x-2">
+                @foreach($socialPost->extras as $extra)
+                    <i class="fa-solid {{ getSectorIcon($extra) }} text-gray-700 text-sm"></i>
+                    <span>{{ ucwords(str_replace('-', ' ', $extra)) }}</span>@if(!$loop->last), @endif
+                @endforeach
             </p>
         </div>
+
+        
+        <div class="flex justify-center my-2 items-center space-x-2">
+            <p class="text-gray-700 rounded shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
+        </div>
+
 
         <div>
             {{-- Toggle post visibility if user is the author --}}
