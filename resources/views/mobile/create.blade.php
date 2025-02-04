@@ -10,6 +10,9 @@
 
 <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
 <h1 class="text-3xl font-bold mb-6">Create a mobile Post</h1>
+
+<h1 class="text-xl font-bold mb-6">Step 1</h1>
+
 <div class="flex justify-end mb-4">
   <form id="upload-form" action="{{ route('social.save.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -23,10 +26,11 @@
     </div>
 
     <!-- Options -->
+    <h1 class="text-xl font-bold mb-6">Step 2</h1>
     
     <p for="description" class="block text-sm font-medium text-gray-700 mb-2">Select amenities</p>
     
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4">
       <div class="flex items-center space-x-2">
           <input type="checkbox" id="wifi" name="extras[]" value="wifi" class="peer hidden">
           <label for="wifi" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
@@ -136,6 +140,8 @@
     @enderror
     
     <!-- Description -->
+    <h1 class="text-xl font-bold mb-6">Step 3</h1>
+
     <div class="my-4">
       <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
       <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion, review, description or other."></textarea>
@@ -144,15 +150,7 @@
       @enderror
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
-        @for ($i = 1; $i <= 4; $i++)
-            <figure class="max-w-lg relative">
-                <img id="img-{{ $i }}" class="h-auto max-w-full rounded-lg cursor-pointer" 
-                     src="{{ asset('/storage/images/default-camera.jpg') }}" alt="image description">
-                <input type="file" id="file-input-{{ $i }}" class="hidden" name="images[]" accept="image/*">
-            </figure>
-        @endfor
-    </div>
+    <h1 class="text-xl font-bold mb-6">Step 4</h1>
     
     <div class="my-4">
     <span class="text-gray-500"> Finish the above then choose sectors to link with your post (Optional) </span>
@@ -161,7 +159,8 @@
       <!-- Checkboxes will be populated dynamically -->
     </div>
 
-    
+    <h1 class="text-xl font-bold mb-6">Step 5</h1>
+
     <div id="location-result" class="mt-4 text-gray-700"></div>
     <div id="address-result" class="mt-4 text-gray-700"></div>
     
@@ -194,6 +193,18 @@
               <input type="text" name="location_id" id="location_id" value="{{ old('location_id') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
           </div>
         </div>
+    </div>
+
+    <h1 class="text-xl font-bold mb-6">Step 6 (Images last)</h1>
+
+    <div class="grid grid-cols-2 gap-4">
+        @for ($i = 1; $i <= 4; $i++)
+            <figure class="max-w-lg relative">
+                <img id="img-{{ $i }}" class="h-auto max-w-full rounded-lg cursor-pointer" 
+                     src="{{ asset('/storage/images/default-camera.jpg') }}" alt="image description">
+                <input type="file" id="file-input-{{ $i }}" class="hidden" name="images[]" accept="image/*">
+            </figure>
+        @endfor
     </div>
 
     <div class="text-right h-64">
