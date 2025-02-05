@@ -98,7 +98,7 @@
                         </div>
 
                         {{-- Post Author and Time --}}
-                        <div class="mt-2 text-sm text-gray-500">
+                        <div class="mt-2 text-sm text-gray-400">
                             <p>By {{ $post->author }}</p>
                             <p>{{ $post->formatted_time }}</p>
                         </div>
@@ -138,9 +138,10 @@
                         {{-- Post Description and Info --}}
                         <div class="mt-4">
                             <p class="text-sm my-2">{{ $post->place_name }}</p>
-                            <p class="text-sm text-gray-700">{{ $post->description }}</p>
-                            <p class="text-xs text-gray-500">Posted by {{ $post->author }}</p>
-                            <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
+                            <!-- <p class="text-sm text-gray-700">{{ $post->description }}</p> -->
+                            <p class="text-sm text-gray-700">{{ $post->address }}</p>
+                            <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
+                            <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
                             <div class="text-right">
                                 <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg">
                                     View

@@ -61,4 +61,39 @@
         <footer>
         </footer>
     </body>
+    <script>
+    function toggleImageModal(src) {
+        let existingModal = document.getElementById("image-modal");
+        
+        if (existingModal) {
+            existingModal.remove(); // Close the modal if it exists
+            return;
+        }
+
+        // Create modal container with gray background
+        let modal = document.createElement("div");
+        modal.id = "image-modal";
+        modal.classList.add("fixed", "inset-0", "flex", "items-center", "justify-center", "bg-gray-800", "bg-opacity-75", "z-50");
+
+        // Create image element
+        let img = document.createElement("img");
+        img.src = src;
+        img.classList.add("max-w-full", "max-h-screen", "rounded-lg", "shadow-lg");
+
+        // Close modal when clicking outside image
+        modal.onclick = () => modal.remove();
+
+        // Close modal on ESC key
+        document.addEventListener("keydown", function escListener(event) {
+            if (event.key === "Escape") {
+                modal.remove();
+                document.removeEventListener("keydown", escListener);
+            }
+        });
+
+        modal.appendChild(img);
+        document.body.appendChild(modal);
+    }
+</script>
+
    </html>

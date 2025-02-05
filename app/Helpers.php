@@ -19,6 +19,7 @@ if (!function_exists('getSectorIcon')) {
             'live-music' => 'fa-solid fa-music',
             'sports-screening' => 'fa-solid fa-tv',
             'smoking-area' => 'fa-solid fa-smoking',
+            'paid-parking' => 'fa-solid fa-car-side',
 
 
             // Technology & IT

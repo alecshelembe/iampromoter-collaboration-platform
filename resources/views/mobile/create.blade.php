@@ -63,6 +63,14 @@
       </div>
 
       <div class="flex items-center space-x-2">
+          <input type="checkbox" id="paid-parking" name="extras[]" value="paid-parking" class="peer hidden">
+          <label for="paid-parking" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
+              <i class="fa-solid fa-car-side"></i>
+              <span>Paid Parking</span>
+          </label>
+      </div>
+
+      <div class="flex items-center space-x-2">
           <input type="checkbox" id="outdoor-seating" name="extras[]" value="outdoor-seating" class="peer hidden">
           <label for="outdoor-seating" class="flex items-center space-x-2 cursor-pointer text-gray-700 peer-checked:text-blue-600">
               <i class="fa-solid fa-chair"></i>

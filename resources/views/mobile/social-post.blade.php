@@ -20,7 +20,8 @@
                             <img class="h-auto max-w-full rounded-lg cursor-pointer" 
                                  src="{{ asset($image) }}" 
                                  alt="Post image"
-                                 loading="lazy">
+                                 loading="lazy"
+                                 onclick="toggleImageModal('{{ asset($image) }}')">
                         </figure>
                     @endforeach
                 </div>
@@ -35,13 +36,16 @@
         </div>
        
         <div class="flex justify-center my-2">
-            <p class="text-gray-700 rounded-full text-xs shadow-lg px-2 py-2 flex items-center space-x-2">
+            <p class="text-gray-700 rounded-full text-xs shadow-lg px-3 py-3 flex flex-wrap items-center gap-2">
                 @foreach($socialPost->extras as $extra)
-                    <i class="fa-solid {{ getSectorIcon($extra) }} text-gray-700 text-xs"></i>
-                    <span>{{ ucwords(str_replace('-', ' ', $extra)) }}</span>@if(!$loop->last), @endif
+                    <span class="flex items-center space-x-1">
+                        <i class="fa-solid {{ getSectorIcon($extra) }} text-gray-700 text-xs"></i>
+                        <span>{{ ucwords(str_replace('-', ' ', $extra)) }}</span>@if(!$loop->last), @endif
+                    </span>
                 @endforeach
             </p>
         </div>
+
 
         <div class="mt-4">
             <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>

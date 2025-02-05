@@ -32,7 +32,7 @@
                     @endif
                 </div>
      
-                {{-- Display post description and email --}}
+                {{-- Display post  --}}
                 <div class="mt-4">
                     <p class="text-sm text-gray-700">{{ $post->description }}</p>
                     <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
