@@ -19,7 +19,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $results = SocialPost::where('address', 'LIKE', '%' . $query . '%') // Adjust 'name' to your column
+        $results = SocialPost::where('place_name', 'LIKE', '%' . $query . '%') // Adjust 'name' to your column
             ->where('status', 'show') // Only fetch posts with status 'show'
             ->orderBy('created_at', 'desc')
             ->take(3) // Limit the results to 3
