@@ -2,8 +2,6 @@
 
 @section('content')
 
-<script defer src="{{ asset('js/jq_app.js') }}"></script>
-<script defer src="{{ asset('js/app.js') }}"></script>
 <!-- Blade Template Button -->
 
 <div class="max-w-3xl mx-auto p-6 bg-white  rounded-lg mt-10">
@@ -57,9 +55,8 @@
         </div>
     </form>
 
-    
-<script src="https://unpkg.com/browser-image-compression@latest/dist/browser-image-compression.js"></script>
-<script>
+    <script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
+    <script>
   // Function to compress and preview image before uploading
   async function handleImageUpload(imgId, inputId) {
     const imgElement = document.getElementById(imgId);
@@ -94,6 +91,8 @@
           const dataTransfer = new DataTransfer();
           dataTransfer.items.add(compressedFile);
           fileInput.files = dataTransfer.files;
+          console.log("Image compression successful");
+          
         } catch (error) {
           console.error("Image compression failed:", error);
         }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\SocialPost;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class CreateController extends Controller
@@ -222,21 +224,42 @@ class CreateController extends Controller
         ]);
 
         $imagePaths = [];
-    
-        // Handle each image
+            
         if ($request->hasFile('images')) {
+            $imagePaths = [];
+
             foreach ($request->file('images') as $file) {
                 if ($file) {
-                    $imageName = time() . '_'.rand().auth()->user()->email.'.'.$file->getClientOriginalExtension();
-                    // Save the image in storage/app/public/images/social/
-                    $file->storeAs('public/images/social/', $imageName);
-                    // Update image path to be stored in the database
-                    $imagePath = 'storage/images/social/' . $imageName; // Use 'storage' here for generating public-facing URL
-                    $imagePaths[] = $imagePath;
+                    try {
+                        $imageName = time() . '_'.rand().auth()->user()->email.'.'.$file->getClientOriginalExtension();
+                        
+                        // Save the image in storage/app/public/images/social/
+                        $path = $file->storeAs('public/images/social/', $imageName);
+
+                        if (!$path) {
+                            throw new \Exception('File storage failed');
+                        }
+
+                        // Update image path to be stored in the database
+                        $imagePath = 'storage/images/social/' . $imageName; // Use 'storage' here for generating public-facing URL
+                        $imagePaths[] = $imagePath;
+                    } catch (\Exception $e) {
+                        Log::error('Image upload failed: ' . $e->getMessage(), [
+                            'user' => auth()->user()->email ?? 'guest',
+                            'file_name' => $file->getClientOriginalName(),
+                            'file_size' => $file->getSize(),
+                            'mime_type' => $file->getMimeType(),
+                        ]);
+
+                        return response()->json([
+                            'error' => 'Failed to upload image',
+                            'message' => $e->getMessage()
+                        ], 500);
+                    }
                 }
             }
         }
-    
+
         // Save the description and image paths to the database
 
         $postData = [

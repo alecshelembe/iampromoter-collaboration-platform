@@ -3,7 +3,6 @@
 @section('content')
 
 
-<script defer src="{{ asset('js/jq_app.js') }}"></script>
 <script defer src="{{ asset('js/places-search.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
@@ -170,7 +169,7 @@
         </button>
     </div>
 
-    <div class="relative z-0 w-full mb-5 group">
+    <div class="relative z-0 w-full mb-5 text-center my-2 group">
       <label for="floating_address" class="peer-focus:font-medium text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Street name...</label>
       <input type="text" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="text-center block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
           <span class="text-sm" id="floating_sectors"></span>
@@ -214,6 +213,7 @@
     </div>
 </form>
 
+<script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
 <script>
   // Function to compress and preview image before uploading
   async function handleImageUpload(imgId, inputId) {
@@ -249,8 +249,9 @@
           const dataTransfer = new DataTransfer();
           dataTransfer.items.add(compressedFile);
           fileInput.files = dataTransfer.files;
+          console.log("Image compression successful");
         } catch (error) {
-          console.error("Image compression failed:", error);
+          console.log("Image compression failed:", error);
         }
       }
     });
@@ -262,7 +263,6 @@
   handleImageUpload('img-3', 'file-input-3');
   handleImageUpload('img-4', 'file-input-4');
 
-    
   
 </script>
 

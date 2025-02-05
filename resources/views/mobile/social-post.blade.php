@@ -35,9 +35,9 @@
         </div>
        
         <div class="flex justify-center my-2">
-            <p class="text-gray-700 rounded-full shadow-lg px-2 py-2 flex items-center space-x-2">
+            <p class="text-gray-700 rounded-full text-xs shadow-lg px-2 py-2 flex items-center space-x-2">
                 @foreach($socialPost->extras as $extra)
-                    <i class="fa-solid {{ getSectorIcon($extra) }} text-gray-700 text-sm"></i>
+                    <i class="fa-solid {{ getSectorIcon($extra) }} text-gray-700 text-xs"></i>
                     <span>{{ ucwords(str_replace('-', ' ', $extra)) }}</span>@if(!$loop->last), @endif
                 @endforeach
             </p>
