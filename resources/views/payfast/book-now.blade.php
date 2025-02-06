@@ -42,9 +42,6 @@
         <p>No User found.</p>
     @endif
 
-        <input type="hidden" name="fee" id="fee" value="{{ $socialPost->fee ?? 'N/A' }}" />
-        <input type="hidden" name="order_id" id="order_id" value="{{ uniqid() }}" /> <!-- Example of order ID generation -->
-        
         <button type="submit" id="old_button" class="mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm</button>
     </form>
 

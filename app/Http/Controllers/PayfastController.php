@@ -14,10 +14,10 @@ class PayfastController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
         // to specific methods 
         // $this->middleware('auth')->only(['create', 'store']);
-        $this->middleware('auth')->except(['create', 'store']);
+        // $this->middleware('auth')->except(['create', 'store']);
 
     }
 
@@ -148,7 +148,7 @@ class PayfastController extends Controller
     public function generateSignature($data, $passPhrase)
     {
          // Print the data for debugging
-        // print_r($data);
+        print_r($data);
         // Create parameter string
         $pfOutput = '';
         foreach( $data as $key => $val ) {
