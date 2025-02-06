@@ -148,7 +148,7 @@ class PayfastController extends Controller
     public function generateSignature($data, $passPhrase)
     {
          // Print the data for debugging
-        print_r($data);
+        // print_r($data);
         // Create parameter string
         $pfOutput = '';
         foreach( $data as $key => $val ) {
