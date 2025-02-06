@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-<div class="container mx-auto my-6 px-4">
+<div class="mx-auto my-6 px-2">
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-blue-600 text-white text-center py-4">
@@ -86,10 +86,6 @@
             @endif
         </div>
 
-        <!-- Footer -->
-        <div class="bg-gray-100 text-center py-4">
-            <p class="text-xs sm:text-sm text-gray-600">&copy; {{ now()->year }} Your Application</p>
-        </div>
     </div>
 </div>
 @endsection
