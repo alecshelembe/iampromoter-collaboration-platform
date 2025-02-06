@@ -163,26 +163,50 @@ class PayfastController extends Controller
         }
         return md5( $getString );
     }
-public function return_url_test() {
+
+    public function return_url_transactions() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
         $pfHost = 'www.payfast.co.za';
-        $email = auth()->user()->email;
-        $campaign_number = rand(100,9999);
     
-        $registration = DailyRegistration::where('email', $email)
-            ->where('login_time', '>=', Carbon::now()->subDay())
-            ->first();
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+    
+            if ($referrerHost === $pfHost) {
+                // Get the email of the currently logged-in user
+                $email = auth()->user()->email;
+    
+                // Fetch the transaction record
+                $transaction = PayfastTransaction::where('email', $data['email_address'])
+                ->where('created_at', '>=', Carbon::now()->subDay())
+                ->first();
 
-        // Update fields
-        $registration->payment_status = $campaign_number;
+                $campaign_number = rand(100,9999);
+    
+                if ($transaction) {
+                    // Update fields
+                    $transaction->payment_status = $campaign_number;
 
-        session(['payment_status' => $registration->payment_status]);
+                    session(['payment_status' => $transaction->payment_status]);
 
-        $registration->save();
+                    $transaction->save();
+    
+                    // return response()->json(['notify' => 'success'], 200);
+                    return redirect()->route('home'); 
 
-        // return response()->json(['notify' => 'success'], 200);
-        return redirect()->route('home');
+                } else {
+                    return response()->json(['error' => 'No transaction found'], 404);
+                }
+    
+            } else {
+                // Referrer does not match the expected host
+                return response()->json(['error' => 'Invalid referrer 0001 '], 403);
+            }
+        } else {
+            // No referrer set, redirect to cancel URL
+            return response()->json(['error' => 'Invalid referrer 0002 '], 403);
+            // return redirect()->route('cancel_url');
+        }
     }
 
     public function return_url() {
@@ -227,6 +251,26 @@ public function return_url_test() {
             return response()->json(['error' => 'Invalid referrer 0002 '], 403);
             // return redirect()->route('cancel_url');
         }
+    }
+
+    public function cancel_url_transactions() {
+        $email = auth()->user()->email;
+    
+        // Fetch the transaction record
+        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        ->where('created_at', '>=', Carbon::now()->subDay())
+        ->first();
+
+        if ($transaction) {
+            // Update fields
+            $transaction->payment_status = 'Cancelled';
+
+            session(['payment_status' => $transaction->payment_status]);
+
+            $transaction->save();
+        }
+    
+        return redirect()->route('home'); // Redirect to 'home' route with $exists
     }
     
     public function cancel_url() {

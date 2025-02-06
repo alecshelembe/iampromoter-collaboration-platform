@@ -105,5 +105,8 @@ php artisan config:clear
 php artisan view:clear
 php artisan cache:clear
 
+sudo systemctl restart ufw apache2 mysql ssh
+
+
  https://www.instagram.com/alec_shelembe/
  https://www.linkedin.com/in/alecshelembe/
