@@ -70,10 +70,10 @@ class TransactionPayfastController extends Controller
         // Collect all form data from the request
         $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
-        // Fetch the transaction record
         $transaction = PayfastTransaction::where('email', $data['email_address'])
-        ->where('created_at', '>=', Carbon::now()->subDay())
-        ->first();
+            ->where('created_at', '>=', Carbon::now()->subDay())
+            ->orderBy('created_at', 'desc') // Sort by newest first
+            ->first();
         
         // Update fields
         $transaction->amount = $data['amount']; // Set newAmount to the desired value
@@ -165,8 +165,8 @@ class TransactionPayfastController extends Controller
     public function cancel_url() {
         $email = auth()->user()->email;
     
-        // Fetch the transaction record
-        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        $transaction = DailyRegistration::where('email', $email)
+        ->orderBy('created_at', 'desc') // Sort by newest first
         ->where('created_at', '>=', Carbon::now()->subDay())
         ->first();
 
@@ -181,5 +181,25 @@ class TransactionPayfastController extends Controller
     
         return redirect()->route('home'); // Redirect to 'home' route with $exists
     }
-
+    
+    public function history()
+    {
+        // Get the authenticated user's email
+        $email = auth()->user()->email;
+    
+        // Fetch all posts from `PayfastTransaction` created in the last 24 hours for the authenticated user
+        $transactions = PayfastTransaction::where('email', $email)
+            ->where('created_at', '>=', now()->subDay()) // Using now() instead of Carbon::now()
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        // Check if there are transactions
+        if ($transactions->isEmpty()) {
+            return view('payfast.history', ['transactions' => [], 'message' => 'No posts found in the last 24 hours']);
+        }
+    
+        // Return the transactions to the view
+        return view('payfast.history', ['transactions' => $transactions]);
+    }
+    
 }
