@@ -4,12 +4,11 @@
 
 <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
     <h2 class="text-2xl font-bold text-center text-gray-800">
-         {{ $socialPost->place_name ?? 'N/A' }}
+        {{ $socialPost->place_name ?? 'N/A' }}
     </h2>
     <p class="text-center text-gray-600 mt-2">
-         {{ $socialPost->address ?? 'No address provided' }}
+        {{ $socialPost->address ?? 'No address provided' }}
     </p>
-
 
     <div class="mt-6 border rounded-lg p-4 bg-gray-100">
         <h3 class="text-lg font-semibold text-gray-700">Booking Summary</h3>
@@ -18,18 +17,66 @@
             <span>Host</span>
             <span>{{ $socialPost->email ?? 'N/A' }}</span>
         </div>
+        <div class="flex justify-between mt-2 text-gray-600">
+            <span>Total</span>
+            <span>R {{ $socialPost->fee ?? 'N/A' }}</span>
+        </div>
     </div>
+    
+    <form id="initialForm" action="{{ route('payment.process') }}" method="POST">
+    @csrf
+    @php
+        $transaction = json_decode($transaction);
 
-    <form action="{{ route('payment.process') }}" method="POST" class="mt-6">
-        @csrf
-        <input type="hidden" name="post_id" value="{{ $socialPost->id }}">
+    @endphp
 
-        <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow-md transition-all duration-300 flex items-center justify-center gap-2">
-            <i class="fa-solid fa-lock"></i> Pay Now
-        </button>
+    @if ($transaction)
+    <div class="hidden">
+
+            @foreach ($transaction as $key => $value)
+                <label for="{{ $key }}">{{ ucfirst($key) }}:</label>
+                <input type="text" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}" />
+                <br />
+            @endforeach
+        </div>
+    @else
+        <p>No User found.</p>
+    @endif
+
+        <input type="hidden" name="fee" id="fee" value="{{ $socialPost->fee ?? 'N/A' }}" />
+        <input type="hidden" name="order_id" id="order_id" value="{{ uniqid() }}" /> <!-- Example of order ID generation -->
+        
+        <button type="submit" id="old_button" class="mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm</button>
     </form>
 
-    <p class="text-center text-gray-500 mt-4 text-sm">Your payment is 100% secure with PayFast.</p>
+    <div id="paymentFormContainer"></div> <!-- This will hold the payment form -->
 </div>
+<p class="text-center text-gray-500 mt-4 text-sm">Your payment is 100% secure with PayFast.</p>
+
+<script>
+    $(document).ready(function() {
+        $('#initialForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+            // console.log($(this).serialize());
+
+            // Include CSRF token in the request headers
+            $.ajax({
+                url: '{{ route("payment.transaction.process") }}', // Your route for handling the form submission
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+               
+                success: function(response) {
+                    // Assuming response contains the PayFast payment form HTML or redirection info
+                    $('#paymentFormContainer').html(response).addClass('mt-2');
+                    $('#old_button').hide(); // Hide the button after form submission
+                },
+                error: function(xhr) {
+                    // Handle errors if necessary
+                    alert('There was an error processing your request.');
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

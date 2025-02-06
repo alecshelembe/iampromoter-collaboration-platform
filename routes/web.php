@@ -110,6 +110,7 @@ Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('c
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
 Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');
+Route::post('/payfast/transaction/process', [PayfastController::class, 'payfastPaymentTransations'])->name('payment.transaction.process');
 
 Route::post('/generate', [OpenAIController::class, 'generate'])->name('generate');
 

@@ -4,11 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DailyRegistration;
+use App\Models\PayfastTransaction;
 use Carbon\Carbon;
 use App\Models\SocialPost;
+use Illuminate\Support\Str;
+
 
 class PayfastController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        // to specific methods 
+        // $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->except(['create', 'store']);
+
+    }
+
     public function createPayfastPayment(){
         return view('payfast.here'); 
     }
@@ -16,12 +28,82 @@ class PayfastController extends Controller
     public function createPayfastPaymentforBookNow(Request $request, $id) {
         // Fetch the SocialPost object by ID
         $socialPost = SocialPost::findOrFail($id);
-    
-        // Pass the object to the view
-        return view('payfast.book-now', compact('socialPost'));
+
+        try {
+            PayfastTransaction::create([
+                'email' => auth()->user()->email,
+                'login_time' => now(),
+                'name_first' => auth()->user()->first_name,
+                'name_last' => auth()->user()->last_name,
+                'email_address' => auth()->user()->email,
+                'cell_number' => auth()->user()->phone,
+                'm_payment_id' => Str::uuid()->toString(),
+                'item_description' => $socialPost->place_name, // Use the PHP variable here
+                'item_name' => $socialPost->place_name, // Use the PHP variable here
+                'amount' => $socialPost->fee, // Use the PHP variable here
+                'custom_int1' => rand(),
+                'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
+                'payment_method' => '',
+            ]);
+
+            } catch (\Exception $e) {
+                \Log::error('Error inserting: ' . $e->getMessage());
+                // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
+            }
+
+            // Check if the email exists in the past 24 hours
+            $exists = PayfastTransaction::where('email', auth()->user()->email)
+            ->where('created_at', '>=', Carbon::now()->subDay()) // Past 24 hours
+            ->first();
+
+            $transaction = $exists ? $exists->toJson() : json_encode(null);
+
+            // Pass both $socialPost and $transaction to the view
+            return view('payfast.book-now', compact('socialPost', 'transaction'));
+            
     }
     
-    
+    public function payfastPaymentTransations(Request $request)
+    {
+        // Validate incoming request data
+        $request->validate([
+            'amount' => 'required|numeric',
+            'item_description' => 'required|string',
+            'email' => 'required|email',
+            // Add more validation rules as necessary
+        ]);
+
+        // Collect all form data from the request
+        $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
+        
+        // Fetch the transaction record
+        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        ->where('created_at', '>=', Carbon::now()->subDay())
+        ->first();
+        
+        // Update fields
+        $transaction->amount = $data['amount']; // Set newAmount to the desired value
+        $transaction->item_description = $data['item_description']; // Set newAmount to the desired value
+        $transaction->save(); // Save the changes to the database
+
+        // Passphrase and testing mode from environment variables
+        $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
+        $testingMode = env('PAYFAST_TESTING_MODE', true);
+        // Generate the signature
+        $signature = $this->generateSignature($data, $passPhrase);
+
+        // Add the signature to the data
+        $data['signature'] = $signature;
+
+        // Determine PayFast host
+        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+
+        // Return the payment form partial as HTML
+        return view('payfast.form', compact('data', 'pfHost'))->render();
+
+    }
+
+
     public function payfastPayment(Request $request)
     {
         // Validate incoming request data

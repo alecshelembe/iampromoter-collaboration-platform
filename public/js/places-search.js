@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if the Google Maps API and Places library are available
     if (typeof google !== 'undefined' && google.maps && google.maps.places) {
 
-        const types = [
+          const types = [
             "accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", 
             "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store", 
             "bowling_alley", "bus_station", "cafe", "campground", "car_dealer", "car_rental", 
@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
             "rural_area", "school", "shoe_store", "shopping_mall", "spa", "stadium", "storage", 
             "store", "subway_station", "supermarket", "synagogue", "taxi_stand", "train_station", 
             "travel_agency", "university", "veterinary_care", "zoo"
-          ];
-            
+        ];
+    
           const $container = $("#checkbox-container");
 
           // Populate the container with checkboxes
