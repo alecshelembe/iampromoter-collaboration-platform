@@ -12,8 +12,8 @@ class CreatePayfastTransactionsTable extends Migration
             $table->id();
             $table->string('email')->nullable(); $table->string('merchant_id')->nullable()->default(env('MERCHANT_ID', '')); // Default merchant_id
             $table->string('merchant_key')->nullable()->default(env('MERCHANT_KEY', '')); // Default merchant_key
-            $table->string('return_url_transactions')->nullable()->default(env('RETURN_URL_TRANSACTIONS', ''));
-            $table->string('cancel_url_transactions')->nullable()->default(env('CANCEL_URL_TRANSACTIONS', ''));
+            $table->string('return_url')->nullable()->default(env('RETURN_URL_TRANSACTION', ''));
+            $table->string('cancel_url')->nullable()->default(env('CANCEL_URL_TRANSACTION', ''));
             $table->string('notify_url')->nullable()->default(env('NOTIFY_URL', ''));
             $table->string('name_first')->nullable();// Default first name
             $table->string('name_last')->nullable(); // Default last name

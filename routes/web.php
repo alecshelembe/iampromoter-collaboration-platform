@@ -12,6 +12,7 @@ use App\Http\Controllers\SpeechController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\PayfastController;
+use App\Http\Controllers\TransactionPayfastController;
 use App\Http\Controllers\PayfastITNController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\SearchController;
@@ -104,16 +105,16 @@ Route::post('/social-posts/{id}/clear-comments', [CreateController::class, 'clea
 
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
 
-Route::post('/book-now/{id}', [PayfastController::class, 'createPayfastPaymentforBookNow'])->name('payfast.book-now');
+Route::post('/book-now/{id}', [TransactionPayfastController::class, 'createPayfastPaymentforBookNow'])->name('payfast.book-now');
 
-Route::get('/payfast-cancel-transaction', [PayfastController::class, 'cancel_url_transaction'])->name('cancel_url_transaction');
+Route::get('/payfast-cancel-transaction', [TransactionPayfastController::class, 'cancel_url'])->name('cancel_url_transaction');
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
-Route::get('/payfast-return-transaction', [PayfastController::class, 'return_url_transaction'])->name('return_url_transaction');
+Route::get('/payfast-return-transaction', [TransactionPayfastController::class, 'return_url'])->name('return_url_transaction');
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
 Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
 
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');
-Route::post('/payfast/transaction/process', [PayfastController::class, 'payfastPaymentTransations'])->name('payment.transaction.process');
+Route::post('/payfast/transaction/process', [TransactionPayfastController::class, 'payfastPaymentTransations'])->name('payment.transaction.process');
 
 Route::post('/generate', [OpenAIController::class, 'generate'])->name('generate');
 

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\DailyRegistration;
 use App\Models\PayfastTransaction;
@@ -9,8 +8,7 @@ use Carbon\Carbon;
 use App\Models\SocialPost;
 use Illuminate\Support\Str;
 
-
-class PayfastController extends Controller
+class TransactionPayfastController extends Controller
 {
     public function __construct()
     {
@@ -20,12 +18,46 @@ class PayfastController extends Controller
         // $this->middleware('auth')->except(['create', 'store']);
 
     }
+    
+    public function createPayfastPaymentforBookNow(Request $request, $id) {
+        // Fetch the SocialPost object by ID
+        $socialPost = SocialPost::findOrFail($id);
 
-    public function createPayfastPayment(){
-        return view('payfast.here'); 
+        try {
+            PayfastTransaction::create([
+                'email' => auth()->user()->email,
+                'login_time' => now(),
+                'name_first' => auth()->user()->first_name,
+                'name_last' => auth()->user()->last_name,
+                'email_address' => auth()->user()->email,
+                'cell_number' => auth()->user()->phone,
+                'm_payment_id' => Str::uuid()->toString(),
+                'item_description' => $socialPost->place_name, // Use the PHP variable here
+                'item_name' => $socialPost->place_name, // Use the PHP variable here
+                'amount' => $socialPost->fee, // Use the PHP variable here
+                'custom_int1' => rand(),
+                'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
+                'payment_method' => '',
+            ]);
+
+            } catch (\Exception $e) {
+                \Log::error('Error inserting: ' . $e->getMessage());
+                // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
+            }
+
+            // Check if the email exists in the past 24 hours
+            $exists = PayfastTransaction::where('email', auth()->user()->email)
+            ->where('created_at', '>=', Carbon::now()->subDay()) // Past 24 hours
+            ->first();
+
+            $transaction = $exists ? $exists->toJson() : json_encode(null);
+
+            // Pass both $socialPost and $transaction to the view
+            return view('payfast.book-now', compact('socialPost', 'transaction'));
+            
     }
-
-    public function payfastPayment(Request $request)
+    
+    public function payfastPaymentTransations(Request $request)
     {
         // Validate incoming request data
         $request->validate([
@@ -36,17 +68,17 @@ class PayfastController extends Controller
         ]);
 
         // Collect all form data from the request
-        $data = $request->except('_token','email','id','login_time','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
+        $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
-        // Fetch the registration record
-        $registration = DailyRegistration::where('email', $data['email_address'])
-        ->where('login_time', '>=', Carbon::now()->subDay())
+        // Fetch the transaction record
+        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        ->where('created_at', '>=', Carbon::now()->subDay())
         ->first();
         
         // Update fields
-        $registration->amount = $data['amount']; // Set newAmount to the desired value
-        $registration->item_description = $data['item_description']; // Set newAmount to the desired value
-        $registration->save(); // Save the changes to the database
+        $transaction->amount = $data['amount']; // Set newAmount to the desired value
+        $transaction->item_description = $data['item_description']; // Set newAmount to the desired value
+        $transaction->save(); // Save the changes to the database
 
         // Passphrase and testing mode from environment variables
         $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
@@ -97,25 +129,26 @@ class PayfastController extends Controller
                 // Get the email of the currently logged-in user
                 $email = auth()->user()->email;
     
-                $registration = DailyRegistration::where('email', $email)
-                    ->where('login_time', '>=', Carbon::now()->subDay())
-                    ->first();
+                // Fetch the transaction record
+                $transaction = PayfastTransaction::where('email', $data['email_address'])
+                ->where('created_at', '>=', Carbon::now()->subDay())
+                ->first();
 
                 $campaign_number = rand(100,9999);
     
-                if ($registration) {
+                if ($transaction) {
                     // Update fields
-                    $registration->payment_status = $campaign_number;
+                    $transaction->payment_status = $campaign_number;
 
-                    session(['payment_status' => $registration->payment_status]);
+                    session(['payment_status' => $transaction->payment_status]);
 
-                    $registration->save();
+                    $transaction->save();
     
                     // return response()->json(['notify' => 'success'], 200);
                     return redirect()->route('home'); 
 
                 } else {
-                    return response()->json(['error' => 'No registration found'], 404);
+                    return response()->json(['error' => 'No transaction found'], 404);
                 }
     
             } else {
@@ -128,37 +161,25 @@ class PayfastController extends Controller
             // return redirect()->route('cancel_url');
         }
     }
-    
+
     public function cancel_url() {
         $email = auth()->user()->email;
     
-        $registration = DailyRegistration::where('email', $email)
-            ->where('login_time', '>=', Carbon::now()->subDay())
-            ->first();
-    
-        if ($registration) {
+        // Fetch the transaction record
+        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        ->where('created_at', '>=', Carbon::now()->subDay())
+        ->first();
+
+        if ($transaction) {
             // Update fields
-            $registration->payment_status = 'Cancelled';
+            $transaction->payment_status = 'Cancelled';
 
-            session(['payment_status' => $registration->payment_status]);
+            session(['payment_status' => $transaction->payment_status]);
 
-            $registration->save();
+            $transaction->save();
         }
     
         return redirect()->route('home'); // Redirect to 'home' route with $exists
     }
 
-    function generateApiSignature($pfData, $passPhrase) {
-
-        if ($passPhrase !== null) {
-            $pfData['passphrase'] = $passPhrase;
-        }
-
-        // Sort the array by key, alphabetically
-        ksort($pfData);
-
-        //create parameter string
-        $pfParamString = http_build_query($pfData);
-        return md5($pfParamString);
-    }
 }
