@@ -27,7 +27,6 @@
     @csrf
     @php
         $transaction = json_decode($transaction);
-
     @endphp
 
     @if ($transaction)

@@ -96,7 +96,7 @@ class PayfastController extends Controller
         $data['signature'] = $signature;
 
         // Determine PayFast host
-        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        $pfHost = 'www.payfast.co.za';
 
         // Return the payment form partial as HTML
         return view('payfast.form', compact('data', 'pfHost'))->render();
@@ -137,7 +137,7 @@ class PayfastController extends Controller
         $data['signature'] = $signature;
 
         // Determine PayFast host
-        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        $pfHost = 'www.payfast.co.za';
 
         // Return the payment form partial as HTML
         return view('payfast.form', compact('data', 'pfHost'))->render();
@@ -149,7 +149,6 @@ class PayfastController extends Controller
     {
          // Print the data for debugging
         // print_r($data);
-
         // Create parameter string
         $pfOutput = '';
         foreach( $data as $key => $val ) {
@@ -167,7 +166,7 @@ class PayfastController extends Controller
 public function return_url_test() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
-        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        $pfHost = 'www.payfast.co.za';
         $email = auth()->user()->email;
         $campaign_number = rand(100,9999);
     
@@ -189,7 +188,7 @@ public function return_url_test() {
     public function return_url() {
         // Set PayFast host based on the environment
         $testingMode = env('PAYFAST_TESTING_MODE', true);
-        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+        $pfHost = 'www.payfast.co.za';
     
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
