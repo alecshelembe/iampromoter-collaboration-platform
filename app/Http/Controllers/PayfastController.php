@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DailyRegistration;
 use Carbon\Carbon;
+use App\Models\SocialPost;
 
 class PayfastController extends Controller
 {
     public function createPayfastPayment(){
         return view('payfast.here'); 
     }
+    
+    public function createPayfastPaymentforBookNow(Request $request, $id) {
+        // Fetch the SocialPost object by ID
+        $socialPost = SocialPost::findOrFail($id);
+    
+        // Pass the object to the view
+        return view('payfast.book-now', compact('socialPost'));
+    }
+    
+    
     public function payfastPayment(Request $request)
     {
         // Validate incoming request data

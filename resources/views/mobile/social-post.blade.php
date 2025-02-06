@@ -45,7 +45,15 @@
                 @endforeach
             </p>
         </div>
-
+        
+        <div class="flex justify-center my-4">
+            <form action="{{ route('payfast.book-now', $socialPost->id) }}" method="POST">
+                @csrf
+                <button class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                    <i class="fa-solid fa-fire-flame-curved"></i> Book Now!
+                </button>
+            </form>
+        </div>
 
         <div class="mt-4">
             <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>

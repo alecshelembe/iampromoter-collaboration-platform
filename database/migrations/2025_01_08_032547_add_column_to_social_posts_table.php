@@ -18,6 +18,7 @@ class AddColumnToSocialPostsTable extends Migration
             $table->string('place_name')->nullable(); 
             $table->string('floating_sectors_value')->nullable(); 
             $table->string('address')->nullable(); 
+            $table->decimal('fee', 10, 2)->nullable()->default(env('AMOUNT', ''));
             $table->json('extras')->nullable();
 
         });
@@ -35,6 +36,7 @@ class AddColumnToSocialPostsTable extends Migration
             $table->dropColumn('place_name');
             $table->dropColumn('floating_sectors_value');
             $table->dropColumn('address');
+            $table->dropColumn('fee');
             $table->dropColumn('extras');
 
         });

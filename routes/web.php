@@ -103,6 +103,9 @@ Route::post('/social-posts/{id}/comments', [CreateController::class, 'storeComme
 Route::post('/social-posts/{id}/clear-comments', [CreateController::class, 'clearComments'])->name('comments.clear');
 
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
+
+Route::post('/book-now/{id}', [PayfastController::class, 'createPayfastPaymentforBookNow'])->name('payfast.book-now');
+
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
 Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
