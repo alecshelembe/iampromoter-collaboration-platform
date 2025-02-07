@@ -20,6 +20,9 @@ class TransactionPayfastController extends Controller
     }
     
     public function createPayfastPaymentforBookNow(Request $request, $id) {
+
+        $email = auth()->user()->email;
+
         // Fetch the SocialPost object by ID
         $socialPost = SocialPost::findOrFail($id);
         
@@ -45,9 +48,9 @@ class TransactionPayfastController extends Controller
                 // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
             }
 
-            // Check if the email exists in the past 24 hours
-            $exists = PayfastTransaction::where('email', auth()->user()->email)
-            ->where('created_at', '>=', Carbon::now()->subDay()) // Past 24 hours
+            $exists = PayfastTransaction::where('email', $email)
+            ->where('created_at', '>=', Carbon::now()->subDay())
+            ->orderBy('created_at', 'desc') // Sort by newest first
             ->first();
 
             $transaction = $exists ? $exists->toJson() : json_encode(null);
@@ -59,6 +62,8 @@ class TransactionPayfastController extends Controller
     
     public function payfastPaymentTransations(Request $request)
     {
+        $email = auth()->user()->email;
+
         // Validate incoming request data
         $request->validate([
             'amount' => 'required|numeric',
@@ -70,15 +75,15 @@ class TransactionPayfastController extends Controller
         // Collect all form data from the request
         $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
-        $transaction = PayfastTransaction::where('email', $data['email_address'])
+        $transaction = PayfastTransaction::where('email', $email)
             ->where('created_at', '>=', Carbon::now()->subDay())
             ->orderBy('created_at', 'desc') // Sort by newest first
             ->first();
         
-        // Update fields
-        $transaction->amount = $data['amount']; // Set newAmount to the desired value
-        $transaction->item_description = $data['item_description']; // Set newAmount to the desired value
-        $transaction->save(); // Save the changes to the database
+        $transaction->update([
+            'amount' => $data['amount'],
+            'item_description' => $data['item_description'],
+        ]);
 
         // Passphrase and testing mode from environment variables
         $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
