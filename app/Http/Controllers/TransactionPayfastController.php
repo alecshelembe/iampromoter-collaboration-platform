@@ -22,7 +22,8 @@ class TransactionPayfastController extends Controller
     public function createPayfastPaymentforBookNow(Request $request, $id) {
         // Fetch the SocialPost object by ID
         $socialPost = SocialPost::findOrFail($id);
-
+        dd($socialPost);
+        exit();
         try {
             PayfastTransaction::create([
                 'email' => auth()->user()->email,
@@ -165,7 +166,7 @@ class TransactionPayfastController extends Controller
     public function cancel_url() {
         $email = auth()->user()->email;
     
-        $transaction = DailyRegistration::where('email', $email)
+        $transaction = PayfastTransaction::where('email', $email)
         ->orderBy('created_at', 'desc') // Sort by newest first
         ->where('created_at', '>=', Carbon::now()->subDay())
         ->first();

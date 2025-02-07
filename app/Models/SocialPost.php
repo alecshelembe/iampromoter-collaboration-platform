@@ -13,7 +13,7 @@ class SocialPost extends Model
     protected $table = 'social_posts';
 
     // Allow mass assignment for these fields
-    protected $fillable = ['description', 'images', 'email','status','comments','extras','place_name','floating_sectors_value','address'];
+    protected $fillable = ['fee','description', 'images', 'email','status','comments','extras','place_name','floating_sectors_value','address'];
 
     // Cast the 'images' field to an array
     protected $casts = [
