@@ -22,8 +22,7 @@ class TransactionPayfastController extends Controller
     public function createPayfastPaymentforBookNow(Request $request, $id) {
         // Fetch the SocialPost object by ID
         $socialPost = SocialPost::findOrFail($id);
-        dd($socialPost);
-        exit();
+        
         try {
             PayfastTransaction::create([
                 'email' => auth()->user()->email,

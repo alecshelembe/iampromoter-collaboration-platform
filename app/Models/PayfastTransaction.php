@@ -34,5 +34,6 @@ class PayfastTransaction extends Model
         'item_name',
         'item_description',
         'payment_status',
+        'created_at',
     ];
 }
