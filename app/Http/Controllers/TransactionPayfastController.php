@@ -163,7 +163,7 @@ class TransactionPayfastController extends Controller
             
         } else {
             // No referrer set, redirect to cancel URL
-            return response()->json(['error' => 'Invalid referrer 0002 '], 403);
+            return response()->json(['error' => 'Did you run email send? Invalid referrer 0002 '], 403);
             // return redirect()->route('cancel_url');
         }
     }
