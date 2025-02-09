@@ -132,7 +132,7 @@
                                 @endforeach
                             </div>
                         @else
-                            <p>No images found.</p>
+                            <!-- <p>No images found.</p> -->
                         @endif
 
                         {{-- Post Description and Info --}}

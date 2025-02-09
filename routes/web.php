@@ -127,6 +127,7 @@ Route::get('/search-for-posts', [SearchController::class, 'searchAddress'])->nam
 
 Route::get('/marketing', [DirectorController::class, 'viewInfluencers'])->name('view_influencers');
 
+Route::get('/send-transaction-email/{id}', [TransactionPayfastController::class, 'notifyTransaction'])->name('transaction_send_email');
 
 
 

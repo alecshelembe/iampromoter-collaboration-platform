@@ -5,7 +5,7 @@
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-blue-600 text-white text-center py-4">
-            <h1 class="text-xl sm:text-2xl font-bold">Transaction History (Last 24 Hours)</h1>
+            <h1 class="text-xl sm:text-2xl font-bold">Transactions (Last 24 Hours)</h1>
         </div>
 
         <!-- Content -->
@@ -22,19 +22,19 @@
                     @foreach ($transactions as $index => $transaction)
                         <div class="border rounded-lg p-4 bg-gray-50">
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">#:</span> {{ $index + 1 }}
+                                <span class="font-semibold">#</span> {{ $index + 1 }}
                             </p>
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">Email:</span> {{ $transaction->email }}
+                                <span class="font-semibold">Email</span> {{ $transaction->email }}
                             </p>
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">Amount:</span> R{{ number_format($transaction->amount, 2) }}
+                                <span class="font-semibold">Amount</span> R {{ number_format($transaction->amount, 2) }}
                             </p>
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">Item:</span> {{ $transaction->item_name ?? 'N/A' }}
+                                <span class="font-semibold">Place</span> {{ $transaction->item_name ?? 'N/A' }}
                             </p>
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">Status:</span> 
+                                <span class="font-semibold">Status</span> 
                                 <span class="px-2 py-1 rounded text-sm font-medium 
                                     {{ $transaction->payment_status === 'Completed' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600' }}">
                                     {{ ucfirst($transaction->payment_status) }}

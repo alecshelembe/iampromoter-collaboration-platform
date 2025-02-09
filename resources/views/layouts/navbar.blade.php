@@ -21,7 +21,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <!-- Payment Status Banner -->
             @if(session()->has('payment_status') && session('payment_status') )
                 <div class="bg-green-300 text-center p-1 mb-1">
-                    C # {{ session('payment_status') }} <a href='https://discord.gg/BRqsTrza' class="underline" target="_blank">Join our discord</a>
+                    C # {{ session('payment_status') }} 
                 </div>
                 
             @endif

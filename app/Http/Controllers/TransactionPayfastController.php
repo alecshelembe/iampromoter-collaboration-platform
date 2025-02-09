@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\DailyRegistration;
-use App\Models\PayfastTransaction;
 use Carbon\Carbon;
 use App\Models\SocialPost;
 use Illuminate\Support\Str;
+use App\Mail\PayfastTransactionNotification;
+use Illuminate\Support\Facades\Mail;
+use App\Models\PayfastTransaction;
 
 class TransactionPayfastController extends Controller
 {
@@ -135,8 +136,9 @@ class TransactionPayfastController extends Controller
                 $email = auth()->user()->email;
     
                 // Fetch the transaction record
-                $transaction = PayfastTransaction::where('email', $data['email_address'])
+                $transaction = PayfastTransaction::where('email', $email)
                 ->where('created_at', '>=', Carbon::now()->subDay())
+                ->orderBy('created_at', 'desc') // Sort by newest first
                 ->first();
 
                 $campaign_number = rand(100,9999);
@@ -148,6 +150,9 @@ class TransactionPayfastController extends Controller
                     session(['payment_status' => $transaction->payment_status]);
 
                     $transaction->save();
+
+                    // Manually call the notifyTransaction method to send emails
+                    app(\App\Http\Controllers\TransactionPayfastController::class)->notifyTransaction($transaction->id);
     
                     // return response()->json(['notify' => 'success'], 200);
                     return redirect()->route('home'); 
@@ -205,6 +210,34 @@ class TransactionPayfastController extends Controller
     
         // Return the transactions to the view
         return view('payfast.history', ['transactions' => $transactions]);
+    }
+
+    public function notifyTransaction($transactionId)
+    {
+        // Fetch the transaction details
+        $transaction = PayfastTransaction::findOrFail($transactionId);
+
+        // Prepare data for the email
+        $data = $transaction->toArray();
+
+        // Send email to the host
+        Mail::to($transaction->email)->send(new PayfastTransactionNotification($data));
+
+        // Send email to the recipient
+        Mail::to($transaction->email_address)->send(new PayfastTransactionNotification($data));
+
+        // Send email to the host
+        Mail::to($transaction->email)->send(new PayfastTransactionNotification($data));
+
+        // Send email to the recipient
+        Mail::to($transaction->email_address)->send(new PayfastTransactionNotification($data));
+
+        // Send email to the confirmation address
+        Mail::to(env('CONFIRMATION_ADDRESS'))->send(new PayfastTransactionNotification($data));
+
+        // return 'Emails sent successfully!';
+        return view('payfast.history', ['transactions' => $transactions]);
+        
     }
     
 }
