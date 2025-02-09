@@ -49,7 +49,7 @@ class TransactionPayfastController extends Controller
                 // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
             }
 
-            $exists = PayfastTransaction::where('email', $email)
+            $exists = PayfastTransaction::where('email_address', $email)
             ->where('created_at', '>=', Carbon::now()->subDay())
             ->orderBy('created_at', 'desc') // Sort by newest first
             ->first();
