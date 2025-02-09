@@ -41,7 +41,7 @@ class TransactionPayfastController extends Controller
                 'amount' => $socialPost->fee, // Use the PHP variable here
                 'custom_int1' => rand(),
                 'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
-                'payment_method' => '',
+                'payment_method' => env('PAYMENT_METHOD', true),
             ]);
 
             } catch (\Exception $e) {
