@@ -36,7 +36,7 @@ class TransactionPayfastController extends Controller
                 'email_address' => auth()->user()->email,
                 'cell_number' => auth()->user()->phone,
                 'm_payment_id' => Str::uuid()->toString(),
-                'item_description' => $socialPost->place_name, // Use the PHP variable here
+                'item_description' => $socialPost->address, // Use the PHP variable here
                 'item_name' => $socialPost->place_name, // Use the PHP variable here
                 'amount' => $socialPost->fee, // Use the PHP variable here
                 'custom_int1' => rand(),

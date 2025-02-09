@@ -22,7 +22,7 @@
                     @foreach ($transactions as $index => $transaction)
                         <div class="border rounded-lg p-4 bg-gray-50">
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">#</span> {{ $transaction->id }}
+                                <span class="font-semibold">#</span> {{ $transaction->id }}<?php echo''.rand(100,999); ?>
                             </p>
                             <p class="text-sm text-gray-600">
                                 <span class="font-semibold">Host</span> {{ $transaction->email }}
@@ -34,7 +34,10 @@
                                 <span class="font-semibold">Amount</span> R {{ number_format($transaction->amount, 2) }}
                             </p>
                             <p class="text-sm text-gray-600">
-                                <span class="font-semibold">Place</span> {{ $transaction->item_name ?? 'N/A' }}
+                                <span class="font-semibold">Name</span> {{ $transaction->item_name ?? 'N/A' }}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-semibold">Address</span> {{ $transaction->item_description ?? 'N/A' }}
                             </p>
                             <p class="text-sm text-gray-600">
                                 <span class="font-semibold">Status</span> 
