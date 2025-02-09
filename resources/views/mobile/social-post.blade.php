@@ -46,6 +46,7 @@
             </p>
         </div>
         
+        @if ($socialPost->status === 'show')
         <div class="flex justify-center my-4">
             <form action="{{ route('payfast.book-now', $socialPost->id) }}" method="POST">
                 @csrf
@@ -54,6 +55,7 @@
                 </button>
             </form>
         </div>
+        @endif
 
         <div class="mt-4">
             <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>
