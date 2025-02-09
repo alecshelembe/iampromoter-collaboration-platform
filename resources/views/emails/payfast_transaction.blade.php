@@ -8,7 +8,11 @@
 <p><strong>Description:</strong> {{ $data['item_description'] }}</p>
 <p><strong>Amount:</strong> {{ $data['amount'] }}</p>
 <p><strong>Payment Status:</strong> {{ $data['payment_status'] }}</p>
-<p><strong>Host:</strong> {{ $data['email'] }}</p>
+<p><strong>Contact:</strong> {{ $data['cell_number'] }}</p>
+<p><strong>Name:</strong> {{ $data['name_first'] }}</p>
+<p><strong>Lastname:</strong> {{ $data['name_last'] }}</p>
+
 <p><strong>Recipient:</strong> {{ $data['email_address'] }}</p>
+<p><strong>Host:</strong> {{ $data['email'] }}</p>
 
 @endsection
