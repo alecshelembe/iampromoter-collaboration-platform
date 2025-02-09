@@ -29,7 +29,7 @@ class TransactionPayfastController extends Controller
         
         try {
             PayfastTransaction::create([
-                'email' => auth()->user()->email,
+                'email' => $socialPost->email,
                 'login_time' => now(),
                 'name_first' => auth()->user()->first_name,
                 'name_last' => auth()->user()->last_name,
@@ -69,14 +69,14 @@ class TransactionPayfastController extends Controller
         $request->validate([
             'amount' => 'required|numeric',
             'item_description' => 'required|string',
-            'email' => 'required|email',
+            'email_address' => 'required|email',
             // Add more validation rules as necessary
         ]);
 
         // Collect all form data from the request
         $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
-        $transaction = PayfastTransaction::where('email', $email)
+        $transaction = PayfastTransaction::where('email_address', $data['email_address'])
             ->where('created_at', '>=', Carbon::now()->subDay())
             ->orderBy('created_at', 'desc') // Sort by newest first
             ->first();
@@ -131,12 +131,11 @@ class TransactionPayfastController extends Controller
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
     
-            if ($referrerHost === $pfHost) {
                 // Get the email of the currently logged-in user
                 $email = auth()->user()->email;
     
                 // Fetch the transaction record
-                $transaction = PayfastTransaction::where('email', $email)
+                $transaction = PayfastTransaction::where('email_address', $email)
                 ->where('created_at', '>=', Carbon::now()->subDay())
                 ->orderBy('created_at', 'desc') // Sort by newest first
                 ->first();
@@ -145,7 +144,7 @@ class TransactionPayfastController extends Controller
     
                 if ($transaction) {
                     // Update fields
-                    $transaction->payment_status = $campaign_number;
+                    $transaction->payment_status = $campaign_number.' '.$referrerHost;
 
                     session(['payment_status' => $transaction->payment_status]);
 
@@ -161,10 +160,7 @@ class TransactionPayfastController extends Controller
                     return response()->json(['error' => 'No transaction found'], 404);
                 }
     
-            } else {
-                // Referrer does not match the expected host
-                return response()->json(['error' => 'Invalid referrer 0001 '], 403);
-            }
+            
         } else {
             // No referrer set, redirect to cancel URL
             return response()->json(['error' => 'Invalid referrer 0002 '], 403);
@@ -198,7 +194,7 @@ class TransactionPayfastController extends Controller
         $email = auth()->user()->email;
     
         // Fetch all posts from `PayfastTransaction` created in the last 24 hours for the authenticated user
-        $transactions = PayfastTransaction::where('email', $email)
+        $transactions = PayfastTransaction::where('email_address', $email)
             ->where('created_at', '>=', now()->subDay()) // Using now() instead of Carbon::now()
             ->orderBy('created_at', 'desc')
             ->get();
@@ -220,23 +216,19 @@ class TransactionPayfastController extends Controller
         // Prepare data for the email
         $data = $transaction->toArray();
 
-        // Send email to the host
-        Mail::to($transaction->email)->send(new PayfastTransactionNotification($data));
-
         // Send email to the recipient
         Mail::to($transaction->email_address)->send(new PayfastTransactionNotification($data));
 
         // Send email to the host
         Mail::to($transaction->email)->send(new PayfastTransactionNotification($data));
-
-        // Send email to the recipient
-        Mail::to($transaction->email_address)->send(new PayfastTransactionNotification($data));
 
         // Send email to the confirmation address
         Mail::to(env('CONFIRMATION_ADDRESS'))->send(new PayfastTransactionNotification($data));
 
         // return 'Emails sent successfully!';
-        return view('payfast.history', ['transactions' => $transactions]);
+        // return view('payfast.history', ['transactions' => $transactions]);
+        return redirect()->route('return_url_transaction'); // Redirect to 'home' route with $exists
+
         
     }
     
