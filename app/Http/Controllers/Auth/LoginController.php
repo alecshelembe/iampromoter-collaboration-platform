@@ -156,7 +156,7 @@ class LoginController extends Controller
                                     <div class='max-w-3xl mx-auto p-4 bg-white'>
                                     <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
                                     <p class='text-gray-600'>
-                                        Streetking.co.za is an innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
+                                        A new innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
                                     </p>
                                 </div>
                                </div>";
