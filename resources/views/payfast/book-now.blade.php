@@ -14,7 +14,7 @@
         <h3 class="text-lg font-semibold text-gray-700">Booking Summary</h3>
       
         <div class="flex justify-between mt-2 text-gray-600">
-            <span>Host</span>
+            <span>Contact</span>
             <span>{{ $socialPost->email ?? 'N/A' }}</span>
         </div>
         <div class="flex justify-between mt-2 text-gray-600">

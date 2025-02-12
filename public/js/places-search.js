@@ -141,24 +141,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if the Google Maps API and Places library are available
     if (typeof google !== 'undefined' && google.maps && google.maps.places) {
 
-          const types = [
-            "accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", 
-            "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store", 
-            "bowling_alley", "bus_station", "cafe", "campground", "car_dealer", "car_rental", 
-            "cemetery", "church", "clothing_store", "convenience_store", "courthouse", "dentist", 
-            "department_store", "doctor", "drugstore", "electrician", "electronics_store", 
-            "embassy", "fire_station", "florist", "food", "funeral_home", "furniture_store", 
-            "gas_station", "gym", "hair_care", "hardware_store", "health", "hindu_temple", 
-            "home_goods_store", "hospital", "insurance_agency", "jewelry_store", "laundry", 
-            "lawyer", "library", "light_rail_station", "liquor_store", "local_government_office", 
-            "locksmith", "lodging", "meal_delivery", "meal_takeaway", "mosque", "movie_rental", 
-            "movie_theater", "moving_company", "museum", "night_club", "painter", "park", 
-            "parking", "pet_store", "pharmacy", "physiotherapist", "place_of_worship", "plumber", 
-            "police", "post_office", "real_estate_agency", "restaurant", "roofing_contractor", 
-            "rural_area", "school", "shoe_store", "shopping_mall", "spa", "stadium", "storage", 
-            "store", "subway_station", "supermarket", "synagogue", "taxi_stand", "train_station", 
-            "travel_agency", "university", "veterinary_care", "zoo"
-        ];
+        const types = [
+          "accounting", "advertising_agency", "airport", "amusement_park", "animal_shelter", 
+          "aquarium", "archery_range", "art_gallery", "atm", "auto_body_shop", 
+          "auto_parts_store", "auto_repair_shop", "baby_store", "bakery", "bank", 
+          "bar", "barber_shop", "bathroom_supplies_store", "beauty_salon", "bicycle_store", 
+          "bike_rental", "book_store", "bowling_alley", "brewery", "bus_station", 
+          "butcher_shop", "cafe", "campground", "candy_store", "car_dealer", 
+          "car_rental", "car_wash", "carpet_store", "casino", "catering_service", 
+          "cemetery", "child_care_center", "church", "cinema", "clothing_store", 
+          "comic_book_store", "computer_store", "construction_company", "convenience_store", 
+          "copy_shop", "courthouse", "coworking_space", "craft_store", "dance_school", 
+          "day_spa", "dentist", "department_store", "diner", "doctor", 
+          "dog_park", "dog_training_school", "dollar_store", "drugstore", 
+          "dry_cleaner", "electrician", "electronics_store", "embassy", "engineering_firm", 
+          "event_venue", "factory", "farming_supply_store", "fast_food", "feed_store", 
+          "fire_station", "fish_market", "florist", "food", "funeral_home", 
+          "furniture_store", "game_store", "garden_center", "gas_station", 
+          "gift_shop", "glass_repair_shop", "government_office", "grocery_store", 
+          "gym", "hair_care", "hardware_store", "health", "health_clinic", 
+          "hindu_temple", "home_goods_store", "home_remodeling_company", "hospital", 
+          "hotel", "insurance_agency", "interior_design_firm", "jewelry_store", 
+          "juice_bar", "karaoke_bar", "kindergarten", "kitchen_supply_store", 
+          "language_school", "laundry", "law_firm", "library", "light_rail_station", 
+          "liquor_store", "local_government_office", "locksmith", "lodging", 
+          "luggage_store", "lumber_store", "luxury_car_dealer", "machine_shop", 
+          "marina", "market", "martial_arts_school", "massage_therapist", 
+          "meal_delivery", "meal_takeaway", "medical_clinic", "mobile_phone_store", 
+          "mosque", "movie_rental", "movie_theater", "moving_company", "museum", 
+          "music_school", "music_store", "night_club", "notary_public", "nursing_home", 
+          "office_supplies_store", "optician", "organic_grocery_store", "paint_store", 
+          "painter", "park", "parking", "pawn_shop", "pet_grooming", 
+          "pet_store", "pharmacy", "physiotherapist", "place_of_worship", 
+          "plumber", "police_station", "post_office", "printing_shop", 
+          "real_estate_agency", "recreation_center", "recycling_center", "restaurant", 
+          "roofing_contractor", "rural_area", "school", "science_museum", "second_hand_store", 
+          "self_storage", "shoe_repair_shop", "shoe_store", "shopping_mall", 
+          "skate_park", "ski_resort", "snack_bar", "spa", "sporting_goods_store", 
+          "sports_complex", "stadium", "storage", "store", "subway_station", 
+          "supermarket", "surf_school", "synagogue", "tattoo_parlor", 
+          "taxi_stand", "tea_house", "technology_store", "tennis_court", 
+          "theater", "thrift_store", "tool_rental", "toy_store", 
+          "train_station", "travel_agency", "university", "used_car_dealer", 
+          "utility_company", "veterinary_care", "video_game_store", "wedding_venue", 
+          "winery", "yoga_studio", "zoo"
+      ];
+    
     
           const $container = $("#checkbox-container");
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\SocialPost;
 use App\Models\Post;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -51,8 +52,24 @@ class CreateController extends Controller
         // Get the comments (assuming 'comments' is a JSON field in the 'social_posts' table)
         $comments = $socialPost->comments ?? []; // If there are no comments, use an empty array
 
-        // Pass the post and comments to the view
-        return view('mobile.social-post', compact('socialPost', 'comments'));
+       // Fetch the user where the 'email' matches the social post email and 'influencer' is true
+        $influencer = User::where('email', $socialPost->email)
+        ->where('influencer', true)
+        ->first();
+
+        // Check if the influencer exists
+        if (!$influencer) {
+            $influencer = false;
+        // Handle the case where there is no influencer
+         // Pass the post, comments, and influencer data to the view
+         return view('mobile.social-post', compact('socialPost', 'comments', 'influencer'));
+
+        }
+
+        // Pass the post, comments, and influencer data to the view
+        return view('mobile.social-post', compact('socialPost', 'comments', 'influencer'));
+
+
     }
 
     public function viewSciencePost($id)
