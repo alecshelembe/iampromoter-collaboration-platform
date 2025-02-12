@@ -154,16 +154,32 @@ class LoginController extends Controller
 
             if (!$exists) {
                 $exists = '<a href="' . route('login.qrcode') . '" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded bg-gray-100 hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                                <!-- Plus icon -->
+                               <!-- Plus icon -->
                                Promotions
-                            </a>';
+                           </a>';
+            
+                $streetking_bio = "<div class='flex justify-center text-center'>
+                                        <div class='max-w-3xl mx-auto p-4 bg-white'>
+                                        <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
+                                        <p class='text-gray-600'>
+                                            Streetking.co.za is an innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
+                                        </p>
+                                    </div>
+                                   </div>";
             } else {
-                
                 $exists = "";
+                $streetking_bio = " <div class='flex justify-center text-center'>
+                                        <div class='max-w-3xl mx-auto p-4 bg-white'>
+                                        <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
+                                        <p class='text-gray-600'>
+                                            Streetking.co.za is an innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
+                                        </p>
+                                    </div>
+                                   </div>";
             }
             
-            return redirect()->route('home')->with('exists', $exists); // Redirect to 'home' route with $exists
-
+            return redirect()->route('home')->with(['exists' => $exists, 'streetking_bio' => $streetking_bio]);
+            
         } 
     
         // Authentication failed, redirect back with an error

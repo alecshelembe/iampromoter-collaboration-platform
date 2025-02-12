@@ -100,7 +100,7 @@
                         <i class="fa-brands fa-whatsapp"></i> Share
                     </a>
                 </div>
-            @if ($influencer && $influencer->influencer)
+            @if ($influencer && $influencer->influencer && $socialPost->status == 'show')
 
                 <div class="p-2 bg-white border border-gray-200 rounded-lg shadow mb-6 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-col items-center pb-10">
