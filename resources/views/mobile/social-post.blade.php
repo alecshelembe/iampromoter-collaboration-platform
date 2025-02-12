@@ -93,13 +93,41 @@
         {{-- Comments Section --}}
         
         <div class="mt-4">
-            <div class="text-right">
+            <div class="text-right my-4">
                     <a href="https://wa.me/?text={{ urlencode(route('social.view.post', ['id' => $socialPost->id])) }}" 
                         target="_blank" 
                         class="p-2 text-sm rounded-full shadow-lg">
                         <i class="fa-brands fa-whatsapp"></i> Share
                     </a>
                 </div>
+            @if ($influencer && $influencer->influencer)
+
+                <div class="p-2 bg-white border border-gray-200 rounded-lg shadow mb-6 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex flex-col items-center pb-10">
+                    
+                        <img style="width: 150px; height: 150px; border-radius: 50%;" class="mx-auto object-cover shadow-md m-2"  src="{{ Storage::url($influencer->profile_image_url) }}" alt="{{ $influencer->first_name }}'s image"/>
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $influencer->first_name }} {{ $influencer->last_name }}</h5>
+                        <h5 class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">{{ $influencer->email }}</h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">{{ $influencer->position ?? 'Influencer' }}</span>
+                        <p class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">
+                            {{ $influencer->google_location ?? 'No location available' }}
+                        </p>
+                        <div class="flex mt-4 md:mt-6">
+
+                            <a href="{{ $influencer->instagram_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                            <a href="{{ $influencer->linkedin_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        </div>
+                        <div class="flex mt-4 md:mt-6">
+                            <a href="{{ $influencer->tiktok_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-tiktok"></i> Tiktok</a>
+                            <a href="{{ $influencer->Youtube ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-youtube"></i> Youtube</a>
+                        </div>
+                        <div class="flex mt-4 md:mt-6">
+                            <a href="{{ $influencer->x_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-x-twitter"></i> x</a>
+                            <a href="{{ $influencer->other_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">other</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <h3 class=" text-sm ">Comments:</h3>
 
@@ -144,34 +172,6 @@
         </div> 
         <span  class=" text-sm ">*Note only the author of this post can manage the comment section<span>
     </div>
-    @if ($influencer && $influencer->influencer)
-
-    <div class="p-2 bg-white border border-gray-200 rounded-lg shadow mb-6 dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col items-center pb-10">
-            
-                <img style="width: 150px; height: 150px; border-radius: 50%;" class="mx-auto object-cover shadow-md m-2"  src="{{ Storage::url($influencer->profile_image_url) }}" alt="{{ $influencer->first_name }}'s image"/>
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $influencer->first_name }} {{ $influencer->last_name }}</h5>
-                <h5 class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">{{ $influencer->email }}</h5>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{ $influencer->position ?? 'Influencer' }}</span>
-                <p class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">
-                    {{ $influencer->google_location ?? 'No location available' }}
-                </p>
-                <div class="flex mt-4 md:mt-6">
-
-                    <a href="{{ $influencer->instagram_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                    <a href="{{ $influencer->linkedin_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                </div>
-                <div class="flex mt-4 md:mt-6">
-                    <a href="{{ $influencer->tiktok_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-tiktok"></i> Tiktok</a>
-                    <a href="{{ $influencer->Youtube ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-youtube"></i> Youtube</a>
-                </div>
-                <div class="flex mt-4 md:mt-6">
-                    <a href="{{ $influencer->x_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-brands fa-x-twitter"></i> x</a>
-                    <a href="{{ $influencer->other_handle ?? '#' }}" target="_blank" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">other</a>
-                </div>
-            </div>
-        </div>
-        @endif
 </div>
 
 
