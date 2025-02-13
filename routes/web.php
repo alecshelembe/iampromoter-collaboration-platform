@@ -133,6 +133,8 @@ Route::get('/support', [DirectorController::class, 'support'])->name('support');
 
 Route::get('/promotions', [DirectorController::class, 'promotions'])->name('promotions');
 
+Route::get('/terms-and-conditions', [DirectorController::class, 'termsandconditions'])->name('termsandconditions');
+
 Route::get('/send-transaction-email/{id}', [TransactionPayfastController::class, 'notifyTransaction'])->name('transaction_send_email');
 
 

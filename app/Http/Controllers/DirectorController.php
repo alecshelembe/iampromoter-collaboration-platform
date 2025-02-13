@@ -41,6 +41,11 @@ class DirectorController extends Controller
         return view('layouts.support');
     }
 
+    public function termsandconditions()
+    {
+        return view('layouts.termsandconditions');
+    }
+
     public function promotions()
     {
         return view('layouts.promotions');

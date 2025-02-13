@@ -62,6 +62,12 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                         <span class="">Support</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="{{ route('termsandconditions') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                        <span class="">Terms and Conditions</span>
+                      </a>
+                    </li>
                   </ul>
               </div>
           <li>
@@ -103,7 +109,13 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                       <a href="{{ route('create.mobile.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
                         <span class="">Create a post</span>
-                    </a>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('users.create.ref') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                          <!-- Plus icon -->
+                          Create acc ref
+                      </a>
                     </li>
                     {{--<li>
                       <a href="{{ route('login.qrcode') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
@@ -174,12 +186,6 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                      My uploads
                   </a>
               </li>
-                  <li>
-                      <a href="{{ route('users.create.ref') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                          <!-- Plus icon -->
-                          Create acc ref
-                      </a>
-                  </li>
                     <li>
                       <a href="{{ route('users.logout') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
