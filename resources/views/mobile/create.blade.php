@@ -18,7 +18,7 @@
     <!-- Name -->
     <div class="my-4">
       <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Place</label>
-      <input type="text" name="place_name" value="{{ old('place_name') }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of the place." />
+      <input type="text" name="place_name" value="{{ old('place_name') }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of the Venue." />
       @error('name')
       <p class="text-red-600 mt-1">{{ $message }}</p>
       @enderror
@@ -150,8 +150,9 @@
     <h1 class="text-xl font-bold mb-6">Step 3</h1>
 
     <div class="my-4">
-      <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-      <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion, review, description or other."></textarea>
+        <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+        <p class="my-3">Here you need to give a description of what people can expect at the venue and how you make the experiance memorable. </p>
+      <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion."></textarea>
       @error('description')
       <p class="text-red-600 mt-1">{{ $message }}</p>
       @enderror

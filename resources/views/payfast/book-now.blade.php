@@ -18,6 +18,10 @@
             <span>{{ $socialPost->email ?? 'N/A' }}</span>
         </div>
         <div class="flex justify-between mt-2 text-gray-600">
+            <span>Duration</span>
+            <span>One Hour</span>
+        </div>
+        <div class="flex justify-between mt-2 text-gray-600">
             <span>Total</span>
             <span>R {{ $socialPost->fee ?? 'N/A' }}</span>
         </div>

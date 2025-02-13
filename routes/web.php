@@ -127,6 +127,12 @@ Route::get('/search-for-posts', [SearchController::class, 'searchAddress'])->nam
 
 Route::get('/marketing', [DirectorController::class, 'viewInfluencers'])->name('view_influencers');
 
+Route::get('/refund-policy', [DirectorController::class, 'refunds'])->name('refund-policy');
+
+Route::get('/support', [DirectorController::class, 'support'])->name('support');
+
+Route::get('/promotions', [DirectorController::class, 'promotions'])->name('promotions');
+
 Route::get('/send-transaction-email/{id}', [TransactionPayfastController::class, 'notifyTransaction'])->name('transaction_send_email');
 
 

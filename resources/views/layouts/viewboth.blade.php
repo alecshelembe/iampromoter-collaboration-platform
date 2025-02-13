@@ -10,9 +10,6 @@
         </div>
     @else
         {{-- Combined Grid Layout for Posts --}}
-        @if(session('streetking_bio'))
-                    {!! session('streetking_bio') !!}
-        @endif
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {{-- Merge $posts and $socialPosts --}}

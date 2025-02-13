@@ -96,7 +96,7 @@ class CreateController extends Controller
             // Fetch all social posts with status 'show'
             $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('created_at', 'desc')
-            ->limit(10)
+            ->limit(8)
             ->get();
             
         // Convert the timestamps to a readable format

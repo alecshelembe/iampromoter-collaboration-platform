@@ -31,6 +31,21 @@ class DirectorController extends Controller
         return view('layouts.search');
     }
 
+    public function refunds()
+    {
+        return view('layouts.refund');
+    }
+    
+    public function support()
+    {
+        return view('layouts.support');
+    }
+
+    public function promotions()
+    {
+        return view('layouts.promotions');
+    }
+
     public function viewInfluencers()
     {
         // Fetch users where the 'influencer' column is true
