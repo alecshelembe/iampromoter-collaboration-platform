@@ -48,6 +48,7 @@
         @endif
         <div class="text-center mx-auto">
             @csrf
+
             @if(isset($code))
                 <input type="text" name="code" value="{{ $code }}" hidden/>
                 <p class="mx-auto" style="color: green;">{{$correct_qrcode}}</p>

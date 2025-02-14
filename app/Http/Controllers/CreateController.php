@@ -18,10 +18,28 @@ class CreateController extends Controller
     // Apply the auth middleware to all methods in this controller
     public function __construct()
     {
-         $this->middleware('auth');
+        //  $this->middleware('auth');
         // to specific methods 
-        // $this->middleware('auth')->only(['create', 'store']);
-         //$this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
+        // $this->middleware('auth')->only(['', '']);
+        //$this->middleware('auth')->except(['','']);
+
+        if (!auth()->check()) {
+            // Define default guest credentials
+            $guestEmail = 'guest@example.com';
+            $guestName = 'Guest';
+    
+            // Check if the guest user exists in the database
+            $guestUser = \App\Models\User::firstOrCreate(
+                ['email' => $guestEmail],
+                [
+                    'name' => $guestName,
+                    'password' => bcrypt('guest_password'), // Use a default password
+                ]
+            );
+    
+            // Log in the guest user
+            auth()->login($guestUser);
+        }
 
     }
 

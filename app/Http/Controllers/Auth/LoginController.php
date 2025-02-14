@@ -18,6 +18,9 @@ class LoginController extends Controller
     {
         // to specific methods 
         $this->middleware('auth')->only(['home']);
+        // to specific methods 
+        // $this->middleware('auth')->only(['create', 'store']);
+        //$this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
     }
 
     
@@ -37,11 +40,6 @@ class LoginController extends Controller
         return view('login');  // Assuming your blade is in the "auth" folder
     }
 
-    public function home()
-    {
-               
-    }
-    
     public function login(Request $request)
     {
 
