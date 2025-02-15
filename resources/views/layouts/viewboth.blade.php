@@ -29,7 +29,7 @@
                     $isSocialPost = isset($post->social_p); // Check if it's a social post
                 @endphp
 
-                <div class="bg-white p-2 rounded-lg shadow mb-4">
+                <div class="bg-white p-2 rounded-lg shadow">
                     {{-- Regular Post --}}
                     @if (!$isSocialPost)
                         <h3 class="font-bold text-2xl mb-2">{{ $post->title }}</h3>
@@ -137,7 +137,7 @@
                         <div class="mt-4 flex items-center space-x-3">
                             <!-- User Avatar -->
                             <img  
-                                src="{{ Storage::url(auth()->user()->profile_image_url) }}" 
+                                src="{{ Storage::url($post->profile_image_url) }}"  
                                 name="image" 
                                 loading="lazy"
                                 alt="Image Preview"  

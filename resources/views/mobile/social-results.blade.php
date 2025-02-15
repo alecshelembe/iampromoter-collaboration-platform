@@ -52,7 +52,7 @@
                             View
                         </a>
                     </div>
-</div>
+                    </div>
                 </div>
             </div>
         @endforeach

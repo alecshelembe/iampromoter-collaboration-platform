@@ -112,41 +112,41 @@ class CreateController extends Controller
         return view('mobile.home', compact('socialPosts'));
     }
 
-    public function viewboth(){
+    public function viewboth()
+    {
+        // Fetch social posts
+        $socialPosts = SocialPost::where('status', 'show')
+            ->orderBy('created_at', 'desc')
+            ->limit(8)
+            ->get();
 
-    // Fetch all social posts with status 'show'
-    $socialPosts = SocialPost::where('status', 'show')
-    ->orderBy('created_at', 'desc')
-    ->limit(10)
-    ->get();
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email); // Extract username from email
+            $post->author = $emailParts[0];
 
-    // Convert the timestamps to a readable format
-    foreach ($socialPosts as $post) {
-        $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
-        $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
-        $post->author = $emailParts[0]; // Get the part before the '@'
-        $post->email = $post->email;// Get the part before the '@'
-    }
+            // Fetch the user by email and get profile_image_url
+            $user = User::where('email', $post->email)->first();
+            $post->profile_image_url = $user->profile_image_url ?? asset('default-profile.png');
+        }
 
-    // Fetch data from the 'posts' table
-    $posts = Post::where('status', 'show')
-    ->limit(10)
-    ->get();
+        // Fetch normal posts
+        $posts = Post::where('status', 'show')
+            ->limit(10)
+            ->get();
 
-    foreach ($posts as $post) {
-        $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
-        // Extract the author's name from the email
-        $post->email = $post->author; // Get the part before the '@'
-        $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
-        $post->author = $emailParts[0]; // Get the part before the '@'
-    }
+        foreach ($posts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email); // Extract username from email
+            $post->author = $emailParts[0];
+        }
 
         return view('layouts.viewboth', [
             'posts' => $posts,
             'socialPosts' => $socialPosts
         ]);
-        
     }
+
 
     public function sciencePosts()
     {
