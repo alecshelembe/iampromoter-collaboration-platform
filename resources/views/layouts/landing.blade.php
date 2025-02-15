@@ -4,21 +4,20 @@
 <script defer src="{{ asset('js/search.js') }}"></script>
 
 <div class="max-w-3xl mx-auto">
-    @if(session('exists'))
-        <div class="text-center my-2">
-            <a href="{{ route('login') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                <!-- Plus icon -->
-                <i class="fa-solid fa-door-open"></i> Sign In
-            </a>
-        </div>
+    @if(session()->has('exists'))
+    <div class="text-center my-2">
+        <p class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            <i class="fa-solid fa-check"></i> You're signed in
+        </p>
+    </div>
     @else
     <div class="text-center my-2">
-            <p class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                <!-- Plus icon -->
-                <i class="fa-solid fa-check"></i> Your signed in
-            </p>
-        </div>
+        <a href="{{ route('login') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            <i class="fa-solid fa-door-open"></i> Sign In
+        </a>
+    </div>
     @endif
+
     <div class='flex justify-center text-center'>
       <div class='max-w-3xl mx-auto p-3 bg-white'>
           <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
