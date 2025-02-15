@@ -34,7 +34,7 @@
      
                 {{-- Display post description and email --}}
                 <div class="mt-4">
-                <img  
+                            <img  
                                 src="{{ Storage::url(auth()->user()->profile_image_url) }}" 
                                 name="image" 
                                 loading="lazy"
@@ -52,7 +52,7 @@
                             View
                         </a>
                     </div>
-
+</div>
                 </div>
             </div>
         @endforeach

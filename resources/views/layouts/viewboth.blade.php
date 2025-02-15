@@ -43,17 +43,17 @@
                             @endif
                         </p>
 
-                    {{-- Post Description --}}
+                        {{-- Post Description --}}
                         @if ($post->description)
                             {{-- Truncated Description --}}
-                            <div class="mt-2 text-gray-700 overflow-hidden" 
-                                style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;" 
+                            <div class="mt-2 text-gray-700 overflow-hidden"
+                                style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
                                 id="description-{{ $post->id }}">
                                 {!! $post->description !!}
                             </div>
 
                             {{-- "More"/"Less" Button --}}
-                            <button class="text-blue-500 text-sm mt-2" 
+                            <button class="text-blue-500 text-sm mt-2"
                                     onclick="toggleText('{{ $post->id }}', this)">
                                 More
                             </button>
@@ -104,18 +104,17 @@
                             <p>{{ $post->formatted_time }}</p>
                         </div>
                         <div class="text-right">
-                            <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $post->id])) }}" 
-                                target="_blank" 
+                            <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $post->id])) }}"
+                                target="_blank"
                                 class="p-2 text-sm rounded-full shadow-lg">
                                 <i class="fa-brands fa-whatsapp"></i> Share
                             </a>
                         </div>
 
-                        <a href="{{ route('science.view.post', ['id' => $post->id]) }}" 
-                        class="p-2 text-sm rounded-full shadow-lg">
+                        <a href="{{ route('science.view.post', ['id' => $post->id]) }}"
+                           class="p-2 text-sm rounded-full shadow-lg">
                             View
                         </a>
-                        
                     @endif
 
                     {{-- Social Post --}}
@@ -132,8 +131,6 @@
                                     </figure>
                                 @endforeach
                             </div>
-                        @else
-                            <!-- <p>No images found.</p> -->
                         @endif
 
                         {{-- Post Description and Info --}}
@@ -163,9 +160,6 @@
                                 </a>
                             </div>
                         </div>
-                      
-                        </div>
-
                     @endif
                 </div>
             @endforeach
