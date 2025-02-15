@@ -137,17 +137,33 @@
                         @endif
 
                         {{-- Post Description and Info --}}
-                        <div class="mt-4">
-                            <p class="text-sm my-2">{{ $post->place_name }}</p>
-                            <!-- <p class="text-sm text-gray-700">{{ $post->description }}</p> -->
-                            <p class="text-sm text-gray-700">{{ $post->address }}</p>
-                            <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
-                            <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
-                            <div class="text-right">
+                        <div class="mt-4 flex items-center space-x-3">
+                            <!-- User Avatar -->
+                            <img  
+                                src="{{ Storage::url(auth()->user()->profile_image_url) }}" 
+                                name="image" 
+                                loading="lazy"
+                                alt="Image Preview"  
+                                style="width: 50px; height: 50px; border-radius: 50%;" 
+                                class="object-cover shadow-md" 
+                            />
+
+                            <!-- Post Details -->
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold">{{ $post->place_name }}</p>
+                                <p class="text-sm text-gray-700">{{ $post->address }}</p>
+                                <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
+                                <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
+                            </div>
+
+                            <!-- View Button -->
+                            <div>
                                 <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg">
                                     View
                                 </a>
-                            </div>                        
+                            </div>
+                        </div>
+                      
                         </div>
 
                     @endif

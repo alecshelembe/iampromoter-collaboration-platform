@@ -12,6 +12,7 @@
     <img  
         src="{{ Storage::url($user->profile_image_url) }}"
         name="image" 
+        loading="lazy"
         alt="Image Preview"  
         style="width: 150px; height: 150px; border-radius: 50%;" 
         class="mx-auto object-cover shadow-md" />

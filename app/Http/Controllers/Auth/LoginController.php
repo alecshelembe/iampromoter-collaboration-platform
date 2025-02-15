@@ -65,6 +65,7 @@ class LoginController extends Controller
             // Retrieve the user's name
             $first_name = $user->first_name; // Adjust if your name field is different
             $email = $user->email; // Adjust if your name field is different
+            $profile_image_url = $user->profile_image_url; // Adjust if your name field is different
             $last_name = $user->last_name; // Adjust if your name field is different
             $phone = $user->phone; // Adjust if your name field is different
             $ref = $user->ref; // Adjust if your name field is different
