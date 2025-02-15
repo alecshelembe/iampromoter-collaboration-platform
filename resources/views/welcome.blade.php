@@ -58,8 +58,8 @@
         {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-        <footer>
-        </footer>
+        
+
     </body>
     <script>
     function toggleImageModal(src) {
@@ -95,5 +95,7 @@
         document.body.appendChild(modal);
     }
 </script>
-
+<footer class="sticky text-xs bottom-0 w-full text-center py-2 text-gray-600 dark:text-gray-400">
+            &copy;
+        </footer>
    </html>
