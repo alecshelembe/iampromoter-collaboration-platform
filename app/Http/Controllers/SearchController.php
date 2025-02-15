@@ -9,9 +9,9 @@ class SearchController extends Controller
 {
     public function __construct()
     {
-         $this->middleware('auth');
+        //  $this->middleware('auth');
         // to specific methods 
-        // $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->only(['searchAddress']);
          //$this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
 
     }

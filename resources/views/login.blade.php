@@ -27,7 +27,7 @@
                 @endif
                 <!-- Do something if the current URL matches -->
             @else
-                <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
+                <img class="rounded-full mx-auto w-40 h-40" src="{{ config('services.project.logo_image') }}" alt="image description">
             @endif
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-4 animate-fadeIn">
 
@@ -38,10 +38,10 @@
         </h5> -->
         @if (!Request::is('QrCodeLogin'))
             <div class="text-center my-4">
-                <a href="{{ route('layouts.search') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
                 <!-- Plus icon -->
-                Search with Text 
-                <i class="fa-solid fa-arrow-right-long"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search 
                 </a>
             </div>
 

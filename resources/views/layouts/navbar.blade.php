@@ -186,7 +186,8 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                      My uploads
                   </a>
               </li>
-                    <li>
+                  
+                  <li>
                       <a href="{{ route('users.logout') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
                           <i class="fa-solid fa-right-from-bracket"></i> Sign Out
@@ -206,8 +207,8 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
    
   </nav>
   @if(session('streetking_bio'))
-                    {!! session('streetking_bio') !!}
-        @endif
+          {!! session('streetking_bio') !!}
+  @endif
   <div class="max-w-3xl mx-auto">
     <form id="searchForm">
           <label for="default-search" class="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

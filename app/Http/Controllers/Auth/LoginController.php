@@ -40,6 +40,7 @@ class LoginController extends Controller
         return view('login');  // Assuming your blade is in the "auth" folder
     }
 
+    
     public function login(Request $request)
     {
 
@@ -57,7 +58,8 @@ class LoginController extends Controller
         ]);
         
         // Attempt to log the user in
-        if (Auth::attempt($request->only('email', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password'), true)) {
+            // Authentication successful
             // if (Auth::user()->role === 'admin') {
             $user = Auth::user();
             // Retrieve the user's name
@@ -152,12 +154,12 @@ class LoginController extends Controller
 
             $streetking_bio = "<div class='flex justify-center text-center'>
                                     <div class='max-w-3xl mx-auto p-4 bg-white'>
-                                    <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
-                                    <p class='text-gray-600'>
-                                        A new innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
-                                    </p>
-                                </div>
-                               </div>";
+                                        <p class='text-gray-600'>
+                                            Welcome back, " . auth()->user()->first_name . "
+                                        </p>
+                                    </div>
+                                </div>";
+
             if (!$exists) {
                 $exists = '<a href="' . route('login.qrcode') . '" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded bg-gray-100 hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                                <!-- Plus icon -->
