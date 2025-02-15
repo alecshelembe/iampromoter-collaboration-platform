@@ -68,7 +68,7 @@
             <button type="submit" class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                 Convert Image
             </button>
-            <a href="{{ route('create.raw.post') }}" class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+            <a href="{{ route('create.raw.post') }}" target="_blank" rel="noopener noreferrer"  class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                 <!-- Plus icon -->
                 Create Raw Post
             </a>
