@@ -34,14 +34,14 @@
      
                 {{-- Display post description and email --}}
                 <div class="mt-4">
-                            <img  
-                                src="{{ Storage::url(auth()->user()->profile_image_url) }}" 
-                                name="image" 
-                                loading="lazy"
-                                alt="Image Preview"  
-                                style="width: 50px; height: 50px; border-radius: 50%;" 
-                                class="object-cover shadow-md" 
-                            />
+                    <img  
+                        src="{{ Storage::url($post->profile_image_url) }}"  
+                        name="image" 
+                        loading="lazy"
+                        alt="Image Preview"  
+                        style="width: 50px; height: 50px; border-radius: 50%;" 
+                        class="object-cover shadow-md" 
+                    />
                     <p class="text-sm text-gray-700 font-bold">{{ $post->place_name }}</p>
                     <p class="text-sm text-gray-700">{{ $post->address }}</p>
                     {{-- <p class="text-xs text-gray-500">{{ $post->created_at }}</p> --}}

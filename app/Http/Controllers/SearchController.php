@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SocialPost;
+use App\Models\User;
 
 class SearchController extends Controller
 {
@@ -45,8 +46,15 @@ class SearchController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // Attach user profile image to each post
+        foreach ($results as $post) {
+            $user = User::where('email', $post->email)->first();
+            $post->profile_image_url = $user->profile_image_url ?? asset('default-profile.png');
+        }
+
         // Return the results to a view
         return view('mobile.social-results', ['results' => $results, 'query' => $query]);
     }
+
     
 }
