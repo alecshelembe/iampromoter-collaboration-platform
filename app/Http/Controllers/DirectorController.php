@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\SocialPost;
+use Carbon\Carbon;
+
+
 
 
 class DirectorController extends Controller
@@ -23,7 +27,25 @@ class DirectorController extends Controller
     
     public function landing()
     {
-        return view('layouts.landing');
+        // Fetch social posts
+        $socialPosts = SocialPost::where('status', 'show')
+            ->orderBy('created_at', 'desc')
+            ->limit(8)
+            ->get();
+
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email); // Extract username from email
+            $post->author = $emailParts[0];
+
+            // Fetch the user by email and get profile_image_url
+            $user = User::where('email', $post->email)->first();
+            $post->profile_image_url = $user->profile_image_url ?? asset('default-profile.png');
+        }
+
+        return view('layouts.landing', [
+            'socialPosts' => $socialPosts
+        ]);
     }
 
     public function searchPlaces()

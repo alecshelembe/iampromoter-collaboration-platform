@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="max-w-5xl mx-auto p-6 bg-white rounded-lg"> 
-    <h1 class="text-xl font-medium mb-4">Active Influencers</h1>
+    <h1 class="text-xl font-medium mb-4">Active </h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
         @if ($influencers->isEmpty())

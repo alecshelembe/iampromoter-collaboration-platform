@@ -61,7 +61,9 @@
                 </button>
             </form>
         </div>
-
+        <div class="flex justify-center">
+            <p class="text-sm font-bold rounded-full shadow-lg px-2 text-sm py-2">R {{ $socialPost->fee }}</p>
+        </div>
 
         @endif
 
