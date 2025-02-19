@@ -20,7 +20,7 @@ class CreateController extends Controller
     {
         //  $this->middleware('auth');
         // to specific methods 
-        $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->only(['viewSocialPost','create', 'store']);
         //  $this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
 
     }

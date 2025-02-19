@@ -20,9 +20,10 @@
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Streetking?</h2>
+            <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <p class='text-gray-600'>
-                Streetking is the innovative platform connecting influencers and businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
+                Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
+                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600">promotions@visitmyjoburg.co.za</a>.
             </p>
         </div>
     </div>

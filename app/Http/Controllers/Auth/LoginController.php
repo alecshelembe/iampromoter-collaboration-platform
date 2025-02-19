@@ -153,7 +153,7 @@ class LoginController extends Controller
             }
 
 
-            $streetking_bio = "<div class='flex justify-center text-center'>
+            $visit_my_joburg_bio = "<div class='flex justify-center text-center'>
                                     <div class='max-w-3xl mx-auto p-4 bg-white'>
                                         <p class='text-gray-600'>
                                             Welcome back, " . auth()->user()->first_name . "
@@ -167,13 +167,13 @@ class LoginController extends Controller
                                Promotions
                            </a>';
                            
-                           $streetking_bio;
+                           $visit_my_joburg_bio;
             } else {
                 $exists = "";
-                $streetking_bio;
+                $visit_my_joburg_bio;
             }
             
-            return redirect()->route('home')->with(['exists' => $exists, 'streetking_bio' => $streetking_bio]);
+            return redirect()->route('home')->with(['exists' => $exists, 'visit_my_joburg_bio' => $visit_my_joburg_bio]);
             
         } 
     
