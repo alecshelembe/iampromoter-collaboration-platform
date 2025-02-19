@@ -190,18 +190,18 @@ class TransactionPayfastController extends Controller
     
     public function history()
     {
-        // Get the authenticated user's email
+       // Get the authenticated user's email
         $email = auth()->user()->email;
-    
-        // Fetch all posts from `PayfastTransaction` created in the last 24 hours for the authenticated user
+
+        // Fetch all posts from `PayfastTransaction` created in the last month for the authenticated user
         $transactions = PayfastTransaction::where('email_address', $email)
-            ->where('created_at', '>=', now()->subDay()) // Using now() instead of Carbon::now()
+            ->where('created_at', '>=', now()->subMonth()) // Changed to 1 month
             ->orderBy('created_at', 'desc')
             ->get();
     
         // Check if there are transactions
         if ($transactions->isEmpty()) {
-            return view('payfast.history', ['transactions' => [], 'message' => 'No posts found in the last 24 hours']);
+            return view('payfast.history', ['transactions' => [], 'message' => 'No transactions found in the last 30 days']);
         }
     
         // Return the transactions to the view

@@ -52,7 +52,8 @@
                     $images = json_decode($post->images, true);
                 @endphp
                 <div class="p-4 bg-white shadow-md rounded-lg">
-                    @if (is_array($images) && count($images) > 0)
+
+                    {{--@if (is_array($images) && count($images) > 0)
                         <div class="grid grid-cols-2 gap-2">
                             @foreach ($images as $image)
                                 <figure class="relative">
@@ -60,7 +61,7 @@
                                 </figure>
                             @endforeach
                         </div>
-                    @endif
+                    @endif --}}
                     <div class="mt-4 flex items-center space-x-3">
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>

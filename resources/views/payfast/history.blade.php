@@ -5,7 +5,7 @@
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-blue-600 text-white text-center py-4">
-            <h1 class="text-xl sm:text-2xl font-bold">Transactions (Last 24 Hours)</h1>
+            <h1 class="text-xl sm:text-2xl font-bold">Transaction history (30 days) </h1>
         </div>
 
         <!-- Content -->
@@ -84,10 +84,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-            @else
-                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded">
-                    <p class="font-semibold text-sm sm:text-base">No transactions found in the last 24 hours.</p>
                 </div>
             @endif
         </div>
