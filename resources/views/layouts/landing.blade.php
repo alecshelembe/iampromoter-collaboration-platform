@@ -25,20 +25,19 @@
                 Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
                 <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600">promotions@visitmyjoburg.co.za</a>.
             </p>
+            <form id="searchForm">
+                <label for="searchQuery" class="sr-only">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3">
+                        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                    </div>
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? Name of place" required />
+                </div>
+            </form>
         </div>
     </div>
-
-    <form id="searchForm">
-        <label for="searchQuery" class="sr-only">Search</label>
-        <div class="relative">
-            <div class="absolute inset-y-0 start-0 flex items-center ps-3">
-                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-            </div>
-            <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? Name of place" required />
-        </div>
-    </form>
 
     <div id="searchResults"></div>
 
@@ -64,7 +63,7 @@
                     @endif
                     <div class="mt-4 flex items-center space-x-3">
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
-                             alt="Profile Image" class="w-12 h-12 rounded-full shadow-md" />
+                             alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
                         <div class="flex-1">
                             <p class="text-sm font-semibold">{{ $post->place_name }}</p>
                             <p class="text-sm text-gray-700">{{ $post->address }}</p>

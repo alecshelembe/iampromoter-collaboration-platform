@@ -9,8 +9,6 @@ use App\Models\SocialPost;
 use Carbon\Carbon;
 
 
-
-
 class DirectorController extends Controller
 {
     public function __construct()
