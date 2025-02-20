@@ -21,10 +21,10 @@
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
-            <p class='text-gray-600'>
+            <h1 class='text-gray-600'>
                 Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
-                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600">promotions@visitmyjoburg.co.za</a>.
-            </p>
+                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>.
+            </h1>
             <form id="searchForm">
                 <label for="searchQuery" class="sr-only">Search</label>
                 <div class="relative">
@@ -33,7 +33,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? Name of place" required />
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? name of place" required />
                 </div>
             </form>
         </div>
