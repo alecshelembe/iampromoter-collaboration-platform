@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\BusinessQuestionnaire;
+use App\Mail\BusinessQuestionnaireMail;
 
 class BusinessQuestionnaireController extends Controller
 {
@@ -85,8 +87,11 @@ class BusinessQuestionnaireController extends Controller
             Mail::to('promotions@visitmyjoburg.co.za')->send(new BusinessQuestionnaireMail($questionnaire));
 
             // Redirect with a success message and email
-            return redirect()->route('home')->with([
-            'success' => 'Questionnaire submitted successfully!',
-        ]);
+           // Redirect logic
+            if (!Auth::check()) {
+                return redirect()->back()->with('success', 'Questionnaire submitted successfully!');
+            }
+
+            return redirect()->route('home')->with('success', 'Questionnaire submitted successfully!');
     }
 }
