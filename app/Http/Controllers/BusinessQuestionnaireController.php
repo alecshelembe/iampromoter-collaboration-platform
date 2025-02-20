@@ -22,7 +22,7 @@ class BusinessQuestionnaireController extends Controller
         // $email = auth()->user()->email;
         $email = base64_encode(auth()->user()->email);
         // Redirect with email as a query parameter
-        return redirect()->route('layouts.businessQuestionnaire', ['email' => $email]);
+        return redirect()->route('business_questionnaire', ['email' => $email]);
     }
 
     public function businessQuestionnaire(Request $request)
