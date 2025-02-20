@@ -107,6 +107,11 @@ php artisan cache:clear
 
 sudo systemctl restart ufw apache2 mysql ssh
 
+php artisan clear-compiled
+composer dump-autoload
+php artisan config:clear
+php artisan cache:clear
+php artisan config:cache
 
- https://www.instagram.com/alec_shelembe/
- https://www.linkedin.com/in/alecshelembe/
+https://www.instagram.com/alec_shelembe/
+https://www.linkedin.com/in/alecshelembe/

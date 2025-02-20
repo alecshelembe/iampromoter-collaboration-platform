@@ -8,6 +8,8 @@
 @endif
 
 <div class="mx-auto max-w-sm p-4">
+<!-- <div class='max-w-3xl mx-auto p-3 bg-white'> -->
+
             @if (Request::is('QrCodeLogin'))
             
                 @if($qrCode)

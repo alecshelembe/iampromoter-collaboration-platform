@@ -16,6 +16,8 @@ use App\Http\Controllers\TransactionPayfastController;
 use App\Http\Controllers\PayfastITNController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\BusinessQuestionnaireController;
+
 
 
 /*
@@ -134,3 +136,9 @@ Route::get('/promotions', [DirectorController::class, 'promotions'])->name('prom
 Route::get('/terms-and-conditions', [DirectorController::class, 'termsandconditions'])->name('termsandconditions');
 
 Route::get('/send-transaction-email/{id}', [TransactionPayfastController::class, 'notifyTransaction'])->name('transaction_send_email');
+
+Route::post('/business/questionnaire/submit', [BusinessQuestionnaireController::class, 'store'])->name('business.questionnaire.submit');
+
+Route::get('/business-questionnaire', [BusinessQuestionnaireController::class, 'businessQuestionnaire'])->name('business_questionnaire');
+
+Route::get('/business-questionnaire-ref', [BusinessQuestionnaireController::class, 'createRef'])->name('business_questionnaire_ref');

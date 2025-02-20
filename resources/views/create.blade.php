@@ -22,7 +22,7 @@
 </script>
 
 
-<div class="mx-auto max-w-sm p-4">
+<div class='max-w-3xl mx-auto p-3 bg-white'>
 <form class="space-y-6 animate-fadeIn" action="{{ route('users.store') }}" enctype="multipart/form-data" method="post">
     @csrf
     @if($decoded_email)
@@ -172,5 +172,5 @@
         </div>
     </div>
     </form>
-    </div>
+</div>
 @endsection

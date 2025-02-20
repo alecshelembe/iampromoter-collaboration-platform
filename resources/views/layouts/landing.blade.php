@@ -23,7 +23,7 @@
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <h1 class='text-gray-600'>
                 Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
-                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>.
+                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
             <form id="searchForm">
                 <label for="searchQuery" class="sr-only">Search</label>

@@ -40,7 +40,6 @@ class UserController extends Controller
                 return response()->json(['error' => 'Invalid email encoding'], 400);
             }
       
-            
             // Validate the decoded email if necessary
             if ($decoded_email) {
                 $request->validate(['ref' => 'email|max:255']);
