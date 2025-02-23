@@ -14,7 +14,7 @@ class BusinessQuestionnaireController extends Controller
     {
         // $this->middleware('auth');
         // to specific methods 
-        $this->middleware('auth')->only(['createRef']);
+        // $this->middleware('auth')->only(['createRef']);
         // $this->middleware('auth')->except(['create', 'store']);
 
     }
@@ -88,7 +88,7 @@ class BusinessQuestionnaireController extends Controller
 
             // Redirect with a success message and email
            // Redirect logic
-            if (!Auth::check()) {
+            if (!auth()->user()->email) {
                 return redirect()->back()->with('success', 'Questionnaire submitted successfully!');
             }
 

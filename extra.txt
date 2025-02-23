@@ -115,3 +115,29 @@ php artisan config:cache
 
 https://www.instagram.com/alec_shelembe/
 https://www.linkedin.com/in/alecshelembe/
+
+send test email
+----------------
+
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
+
+Mail::to('alecs@visitmyjoburg.co.za')->send(new TestEmail());
+
+CREATE USER 'external'@'localhost' IDENTIFIED BY '1!External123';
+GRANT SELECT, INSERT, UPDATE, DELETE ON your_database.* TO 'external'@'localhost';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'external'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'external'@'localhost';
+sudo ufw allow 3306/tcp
+sudo ufw reload
+GRANT INSERT ON api.social_posts TO 'external'@'localhost';
+sudo apt update && sudo apt install net-tools -y
+mysqladmin -h 34.35.77.194 -u external -p ping
+
+
+curl -X GET "https://thevapeokes.com/wp-json/visitmyjoburg/v1/info?key=https://visitmyjoburg.co.za';
+    $secret_key = '1qazsw34edc" \
+     -H "Origin: https://visitmyjoburg.co.za"
+
+

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-    <h2 class="text-2xl font-bold mb-6">Business Promotion Questionnaire</h2>
+    <h2 class="text-2xl font-bold mb-6"> Promotion questionnaire</h2>
     @if (session('success'))
         <div class="text-center p-1 mb-1">
             <p class="mx-auto" style="background-color:#f5f5f5; color: green;"> {!! session('success') !!}</p>

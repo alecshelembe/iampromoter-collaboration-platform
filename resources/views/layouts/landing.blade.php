@@ -25,6 +25,12 @@
                 Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
                 <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
+            <div class="text-center my-4">
+                <a href="{{ route('business_questionnaire') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                    <!-- Plus icon -->
+                    Questionnaire
+                </a>
+            </div>
             <form id="searchForm">
                 <label for="searchQuery" class="sr-only">Search</label>
                 <div class="relative">
@@ -72,9 +78,15 @@
                             <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
                         </div>
                         <div>
+                            @if(Auth::check())
                             <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
-                                View
+                                Open
                             </a>
+                            @else
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
+                                login
+                            </a>
+                            @endif
                         </div>
                     </div>
                 </div>
