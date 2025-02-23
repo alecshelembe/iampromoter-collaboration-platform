@@ -22,8 +22,7 @@
         <div class='max-w-3xl mx-auto p-3 bg-white'>
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <h1 class='text-gray-600'>
-                Visitmyjoburg.co.za is a new platform to promote businesses for dynamic campaigns. It empowers influencers to grow their reach while helping businesses amplify their message through impactful collaborations.
-                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
+            Meet awesome business owners, creative promoters, and inspiring influencers while discovering hidden gems across the country. Whether you're traveling for fun or making connections, it's all about great people and unforgettable experiences!                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
             <div class="text-center my-4">
                 <a href="{{ route('business_questionnaire') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
