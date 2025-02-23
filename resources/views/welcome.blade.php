@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <script defer async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VZ02ZX88"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-Y5VZ02ZX88');
-        </script>
-        <!-- Pixel Code - https://social-proof.acalytica.com/ -->
-        <script defer src="https://social-proof.acalytica.com/pixel/DE30Dy8HM6mmSeYg91c8qWg9Kbjb9Iy8"></script>
-        <!-- END Pixel Code -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="title" content="Visit My Joburg | Your Platform for Connecting Businesses and Customers">
-        <meta name="description" content="Discover Visit My Joburg – the ultimate platform for promoting businesses and connecting with influencers. Explore, connect, and grow your business today!">
-        <meta name="keywords" content="Visit My Joburg, business promotion, influencer marketing, grow your business, connect with customers">
-        <meta name="author" content="Alec Visit My Joburg and check my github">
-        <meta name="robots" content="index, follow">
-        <title>Visit My Joburg, Promote Business and Influencers</title>        
-        <!-- Fonts -->
-        <!-- Google tag (gtag.js) -->
-        <!-- Meta Title: Keep it concise and keyword-rich -->
-        <link rel="canonical" href="https://visitmyjoburg.co.za" />
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="{{ asset('css/output.css') }}">
-        <link rel="icon" href="{{ config('services.project.logo_image') }}" type="image/x-icon">
-        <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-        <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
-        <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
-        <!-- Ensure the script loads properly -->
-        <script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
+<head>
+    <script defer async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VZ02ZX88"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Y5VZ02ZX88');
+    </script>
 
-    </head>
+    <!-- Pixel Code - https://social-proof.acalytica.com/ -->
+    <script defer src="https://social-proof.acalytica.com/pixel/DE30Dy8HM6mmSeYg91c8qWg9Kbjb9Iy8"></script>
+    <!-- END Pixel Code -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Explore South Africa with Visit My Joburg | Connect with Locals & Influencers">
+    <meta name="description" content="Discover South Africa through Visit My Joburg! Connect with business owners, promoters, and influencers while exploring hidden gems and vibrant communities.">
+    <meta name="keywords" content="Visit My Joburg, South Africa travel, local businesses, meet influencers, business networking, explore South Africa, connect with promoters, travel collaborations">
+    <meta name="author" content="Visit My Joburg Team">
+    <meta name="robots" content="index, follow">
+    
+    <title>Explore South Africa with Visit My Joburg | Meet Locals & Influencers</title>
+
+    <link rel="canonical" href="https://visitmyjoburg.co.za">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/output.css') }}">
+    <link rel="icon" href="{{ config('services.project.logo_image') }}" type="image/x-icon">
+
+    <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet">
+    <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
+    <script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
+</head>
+
     <style>
         @media (max-width: 700px) { /* Tailwind's sm breakpoint */
         .Scibono-background {
