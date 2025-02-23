@@ -24,7 +24,9 @@ class SearchController extends Controller
             ->where('status', 'show') // Only fetch posts with status 'show'
             ->orderBy('created_at', 'desc')
             ->take(5) // Limit the results to 3
-            ->get();
+            ->get()
+            ->unique('place_name'); // Filter duplicates using collection method
+
     
         return response()->json(['data' => $results]);
     }
