@@ -19,7 +19,7 @@
         </div>
         <div class="flex justify-between mt-2 text-gray-600">
             <span>Duration</span>
-            <span>One Hour</span>
+            <span>30 minutes</span>
         </div>
         <div class="flex justify-between mt-2 text-gray-600">
             <span>Total</span>
