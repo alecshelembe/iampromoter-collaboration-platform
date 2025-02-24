@@ -43,8 +43,8 @@
                         class="object-cover shadow-md" />
 
                     <p class="text-sm text-gray-700 font-bold">{{ $post->place_name }}</p>
+                    <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p>
                     <p class="text-sm text-gray-700">{{ $post->address }}</p>
-                    <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
 
                     <div>
                         <a href="{{ route('social.view.post', ['id' => $post->id]) }}"
