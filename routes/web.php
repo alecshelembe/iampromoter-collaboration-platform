@@ -59,6 +59,7 @@ Route::post('/login-user', [LoginController::class, 'login'])->name('users.the.l
 Route::get('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
 
 Route::post('/update-user', [UserController::class, 'profileStore'])->name('profile.store');
+
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 // Route::get('/create', [CreateController::class, 'create'])->name('create.post');
 
@@ -97,8 +98,11 @@ Route::post('/posts/{id}/show', [CreateController::class, 'show'])->name('posts.
 Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide'])->name('science.posts.hide');
 
 Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');
+
 Route::get('/my-social-posts', [CreateController::class, 'myposts'])->name('my.posts');
+
 Route::get('/public-user-posts/{email}', [CreateController::class, 'viewPublicUserPosts'])->name('public.user.posts');
+Route::get('/my-public-profile/{email}', [UserController::class, 'viewPublicprofile'])->name('my.public.profile');
 
 Route::post('/social-posts/{id}/comments', [CreateController::class, 'storeComment'])->name('comments.store');
 Route::post('/social-posts/{id}/clear-comments', [CreateController::class, 'clearComments'])->name('comments.clear');

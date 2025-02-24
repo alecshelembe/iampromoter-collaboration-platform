@@ -219,4 +219,13 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
+    public function viewPublicProfile($email)
+    {
+        // Retrieve user by email
+        $user = User::where('email', $email)->firstOrFail();
+
+        return view('public-profile', ['user' => $user]);
+    }
+
+
 }

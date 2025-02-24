@@ -11,8 +11,14 @@
 <p><strong>Phone:</strong> {{ $data['cell_number'] }}</p>
 <p><strong>Name:</strong> {{ $data['name_first'] }}</p>
 <p><strong>Lastname:</strong> {{ $data['name_last'] }}</p>
-
 <p><strong>Recipient:</strong> {{ $data['email_address'] }}</p>
+<p>
+    <strong>Profile:</strong> 
+    <a href="{{ url('/my-public-profile/' . $data['email_address']) }}" target="_blank">
+        View Public Profile
+    </a>
+</p>
 <p><strong>Contact:</strong> {{ $data['email'] }}</p>
+
 
 @endsection

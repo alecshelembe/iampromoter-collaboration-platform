@@ -27,7 +27,7 @@
             <div class="text-center my-4">
                 <a href="{{ route('business_questionnaire') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
                     <!-- Plus icon -->
-                    Questionnaire
+                    Promo my campaign
                 </a>
             </div>
             <form id="searchForm">
