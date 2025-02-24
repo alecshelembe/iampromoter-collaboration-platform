@@ -71,10 +71,11 @@
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
                         <div class="flex-1">
-                            <p class="text-sm font-semibold">{{ $post->place_name }}</p>
+                            <p class="text-sm font-bold">{{ $post->place_name }}</p>
+                            <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p>
                             <p class="text-sm text-gray-700">{{ $post->address }}</p>
                             <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
-                            <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
+                            <!-- <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p> -->
                         </div>
                         <div>
                             @if(Auth::check())
