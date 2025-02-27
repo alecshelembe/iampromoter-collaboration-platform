@@ -1,6 +1,7 @@
 @extends('welcome')
 
 @section('content')
+{{-- @include('layouts.navbar') --}} 
 
 <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
     <h2 class="text-2xl font-bold text-center text-gray-800">
@@ -13,17 +14,17 @@
     <div class="mt-6 border rounded-lg p-4 bg-gray-100">
         <h3 class="text-lg font-semibold text-gray-700">Booking Summary</h3>
       
-        <div class="flex justify-between mt-2 text-gray-600">
-            <span>Contact</span>
-            <span>{{ $socialPost->email ?? 'N/A' }}</span>
+        <div class="  mt-2 text-gray-600">
+            <p>Contact </p>
+            <p>{{ $socialPost->email ?? 'N/A' }}</p>
         </div>
-        <div class="flex justify-between mt-2 text-gray-600">
-            <span>Duration</span>
-            <span>30 minutes</span>
+        <div class="  mt-2 text-gray-600">
+            <p>Duration</p>
+            <p>30 minutes</p>
         </div>
-        <div class="flex justify-between mt-2 text-gray-600">
-            <span>Total</span>
-            <span>R {{ $socialPost->fee ?? 'N/A' }}</span>
+        <div class="  mt-2 text-gray-600">
+            <p>Total</p>
+            <p>R {{ $socialPost->fee ?? 'N/A' }}</p>
         </div>
     </div>
     
@@ -55,6 +56,7 @@
 <p class="text-center text-gray-500 mt-4 text-sm">* (Capitec users) Please use credit card payment</p>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
     $(document).ready(function() {
         $('#initialForm').on('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
@@ -70,14 +72,17 @@
                     // Assuming response contains the PayFast payment form HTML or redirection info
                     $('#paymentFormContainer').html(response).addClass('mt-2');
                     $('#old_button').hide(); // Hide the button after form submission
+                    $('#old_button').prop('disabled', true).text('Processing...');
+
                 },
                 error: function(xhr) {
-                    // Handle errors if necessary
-                    alert('There was an error processing your request.');
+                    console.error(xhr.responseText); // Log the response for debugging
+                    alert('There was an error processing your request. Please try again.');
                 }
             });
         });
     });
+});
 </script>
 
 @endsection

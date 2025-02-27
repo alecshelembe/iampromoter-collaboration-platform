@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-{{-- @include('layouts.navbar') --}}
+@include('layouts.navbar') 
 
 <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
 <form id="initialForm" action="{{ route('payment.process') }}" method="POST">

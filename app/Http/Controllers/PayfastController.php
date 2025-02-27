@@ -38,15 +38,15 @@ class PayfastController extends Controller
         // Collect all form data from the request
         $data = $request->except('_token','email','id','login_time','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
-        // Fetch the registration record
-        $registration = DailyRegistration::where('email', $data['email_address'])
-        ->where('login_time', '>=', Carbon::now()->subDay())
-        ->first();
+        // // Fetch the registration record
+        // $registration = DailyRegistration::where('email', $data['email_address'])
+        // ->where('login_time', '>=', Carbon::now()->subDay())
+        // ->first();
         
-        // Update fields
-        $registration->amount = $data['amount']; // Set newAmount to the desired value
-        $registration->item_description = $data['item_description']; // Set newAmount to the desired value
-        $registration->save(); // Save the changes to the database
+        // // Update fields
+        // $registration->amount = $data['amount']; // Set newAmount to the desired value
+        // $registration->item_description = $data['item_description']; // Set newAmount to the desired value
+        // $registration->save(); // Save the changes to the database
 
         // Passphrase and testing mode from environment variables
         $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
