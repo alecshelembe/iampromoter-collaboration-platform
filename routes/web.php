@@ -73,6 +73,10 @@ Route::get('/view-social-posts', [CreateController::class, 'viewSocialPosts'])->
 
 Route::get('/view-social-post/{id}', [CreateController::class, 'viewSocialPost'])->name('social.view.post');
 
+Route::post('/save-social-post-note/{id}', [CreateController::class, 'saveSocialPostNote'])->name('social.save.post.note');
+
+Route::post('/save-social-post-video-link/{id}', [CreateController::class, 'saveSocialPostVideoLink'])->name('social.save.post.link');
+
 Route::get('/view-science-post/{id}', [CreateController::class, 'viewSciencePost'])->name('science.view.post');
 
 Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'])->name('create.mobile.post');

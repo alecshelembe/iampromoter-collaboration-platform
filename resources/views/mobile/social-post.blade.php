@@ -68,11 +68,32 @@
         @endif
 
         <div class="mt-4">
+        @if (!empty($socialPost->note))
+            <div class="flex flex-col leading-1.5 p-2 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                <p class="text-sm font-normal text-gray-900 dark:text-white"> {{ $socialPost->note }}</p>
+            </div>
+        @endif
+
             <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
         </div>
+
+        <div class="flex justify-center p-2">
+        @if (!empty($socialPost->video_link))
+            <iframe class="video-stream html5-main-video border-4 border-gray-300 rounded-lg" 
+                src="{{ $socialPost->video_link }}" 
+                frameborder="0" 
+                style="width: 500px; height: 282px;" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        @else
+            <!-- <p>No video available</p> -->
+        @endif
+    </div>
+
 
         
         <div class="flex justify-center my-2 items-center space-x-2">
@@ -82,6 +103,7 @@
 
         <div>
             {{-- Toggle post visibility if user is the author --}}
+
             @if (auth()->user()->email === $socialPost->email)
                 @if ($socialPost->status === 'show')
                     <form action="{{ route('posts.hide', $socialPost->id) }}" method="POST">
@@ -94,6 +116,34 @@
                         <button class="rounded-full shadow-lg px-2 text-sm py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
                     </form>
                 @endif
+
+                <form id="upload-post-note" action="{{ route('social.save.post.note', $socialPost->id) }}" method="POST">
+                    @csrf
+                    <!-- Name -->
+                    <div class="my-4">
+                        <label for="Note" class="block text-sm font-medium text-gray-700 mb-2">Add a note (250)</label>
+                        <input type="text" maxlength="250" name="note" value="{{ old('note') }}" id="note" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="05 March 2025" />
+                        @error('note')
+                        <p class="text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                        <button class="text-right rounded-full text-right shadow-lg px-2 text-sm py-2"> Update</button>
+                    </div>
+
+                </form>
+
+                <form id="upload-post-video-link" action="{{ route('social.save.post.link', $socialPost->id) }}" method="POST">
+                    @csrf
+                    <!-- Name -->
+                    <div class="my-4">
+                        <label for="Video" class="block text-sm font-medium text-gray-700 mb-2">Link extranal video</label>
+                        <input type="text" maxlength="250" name="video-link" value="{{ old('video-link') }}" id="video-link" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Embed youtube video" />
+                        @error('video-link')
+                        <p class="text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                        <button class="text-right rounded-full text-right shadow-lg px-2 text-sm py-2"> Upload link</button>
+                    </div>
+
+                </form>
                
             @endif
         </div>

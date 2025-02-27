@@ -20,8 +20,40 @@ class CreateController extends Controller
     {
         //  $this->middleware('auth');
         // to specific methods 
-        $this->middleware('auth')->only(['viewSocialPost','create', 'store']);
-        //  $this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
+        // $this->middleware('auth')->only(['viewSocialPost','create', 'store']);
+         $this->middleware('auth')->except(['create','store']);
+
+    }
+
+    public function saveSocialPostNote(Request $request, $id){
+       
+        $validatedData = $request->validate([
+            'note' => 'required|string|max:250',
+        ]);
+        
+        // Fetch the social post by ID
+        $socialPost = SocialPost::where('id', $id)->firstOrFail();
+        
+        // Update the note field with the validated data
+        $socialPost->update(['note' => $validatedData['note']]);
+
+        return redirect()->back()->with('success', 'Post note added successfully.');
+
+    }
+
+    public function saveSocialPostVideoLink(Request $request, $id){
+       
+        $validatedData = $request->validate([
+            'video-link' => 'required|string',
+        ]);
+        
+        // Fetch the social post by ID
+        $socialPost = SocialPost::where('id', $id)->firstOrFail();
+        
+        // Update the note field with the validated data
+        $socialPost->update(['video_link' => $validatedData['video-link']]);
+
+        return redirect()->back()->with('success', 'Post video link added successfully.');
 
     }
 

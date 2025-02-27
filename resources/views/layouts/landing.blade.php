@@ -38,7 +38,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? name of place" required />
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? Search for a business name" required />
                 </div>
             </form>
         </div>
@@ -71,9 +71,15 @@
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
                         <div class="flex-1">
+                           
                             <p class="text-sm font-bold">{{ $post->place_name }}</p>
                             <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p>
                             <p class="text-sm text-gray-700">{{ $post->address }}</p>
+                            @if (!empty($post->note))
+                            <div class="flex flex-col leading-1.5 p-2 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                                <p class="text-sm font-normal text-gray-900 dark:text-white "  title="{{ $post->note }}">  {{ Str::limit($post->note, 25) }}</p>
+                            </div>
+                            @endif
                             <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
                             <!-- <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p> -->
                         </div>
