@@ -2,7 +2,19 @@
 
 @section('content')
 
-@include('layouts.navbar')
+@if(Auth::check() || Auth::guard('google_users')->check())
+    <!-- Content for authenticated users -->
+    @if(Auth::guard('google_users')->check())
+        @include('google.navbar')
+    @else
+        @include('layouts.navbar')
+    @endif
+@else
+    <!-- If not authenticated, redirect to login -->
+    <script>
+        window.location.href = "{{ route('login') }}";
+    </script>
+@endif
 
 <div class="max-w-3xl mx-auto bg-white rounded-lg">
     {{-- Post Container --}}
@@ -102,8 +114,9 @@
 
 
         <div>
-            {{-- Toggle post visibility if user is the author --}}
+        @if(Auth::check())
 
+            {{-- Toggle post visibility if user is the author --}}
             @if (auth()->user()->email === $socialPost->email)
                 @if ($socialPost->status === 'show')
                     <form action="{{ route('posts.hide', $socialPost->id) }}" method="POST">
@@ -146,6 +159,7 @@
                 </form>
                
             @endif
+        @endif
         </div>
 
         {{-- Comments Section --}}

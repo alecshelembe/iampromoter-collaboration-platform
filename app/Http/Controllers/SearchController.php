@@ -12,8 +12,8 @@ class SearchController extends Controller
     {
         //  $this->middleware('auth');
         // to specific methods 
-        $this->middleware('auth')->only(['searchAddress']);
-         //$this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
+        // $this->middleware('auth')->only(['searchAddress']);
+        //$this->middleware('auth')->except(['viewSocialPost','viewSciencePost']);
 
     }
 

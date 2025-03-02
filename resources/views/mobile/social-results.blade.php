@@ -2,7 +2,19 @@
 
 @section('content')
 
-    @include('layouts.navbar')
+@if(Auth::check() || Auth::guard('google_users')->check())
+    <!-- Content for authenticated users -->
+    @if(Auth::guard('google_users')->check())
+        @include('google.navbar')
+    @else
+        @include('layouts.navbar')
+    @endif
+@else
+    <!-- If not authenticated, redirect to login -->
+    <script>
+        window.location.href = "{{ route('login') }}";
+    </script>
+@endif
 
     <div class="flex justify-end">
         <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
@@ -47,10 +59,19 @@
                     <p class="text-sm text-gray-700">{{ $post->address }}</p>
 
                     <div>
+                    @if(Auth::check())
+
                         <a href="{{ route('social.view.post', ['id' => $post->id]) }}"
                             class="p-2 text-sm rounded-full shadow-lg">
                             View
                         </a>
+                    @elseif(Auth::guard('google_users')->check())
+
+                        <a href="{{ route('google.social.view.post', ['id' => $post->id]) }}"
+                            class="p-2 text-sm rounded-full shadow-lg">
+                            View
+                        </a>
+                    @endif
                     </div>
                 </div>
             </div> {{-- End of post card --}}

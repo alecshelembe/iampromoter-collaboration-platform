@@ -96,13 +96,23 @@ class LoginController extends Controller
         ]);
     }
     
-
-    public function logout(){
-        Auth::logout();
+    public function logout(Request $request)
+    {
+        // Check if the user is logged in using the Google guard
+        if (Auth::guard('google_users')->check()) {
+            Auth::guard('google_users')->logout();
+        } else {
+            Auth::logout();  // Logs out normal web users
+        }
+    
+        // Invalidate the session
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();  // Prevent CSRF attacks
+    
         // Redirect with a success message
         return redirect()->route('login')->with('success', 'User logged out successfully!');
-
     }
+    
 
 
     public function qrLogin(Request $request)

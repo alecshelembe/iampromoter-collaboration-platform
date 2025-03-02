@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+            'google_users' => [
+            'driver' => 'session',
+            'provider' => 'google_users',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+            'google_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\GoogleUser::class,
         ],
 
         // 'users' => [
@@ -97,7 +105,14 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'google_users' => [
+            'provider' => 'google_users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

@@ -71,7 +71,21 @@
                 <p class="mx-auto" style="color: red;">{{ $errors->first('failed') }}</p>
             @endif
         </div>
+        
+        <div class="text-center my-4">
+            @if (Auth::guard('google_users')->check())
+            <a href="{{ route('users.logout') }}" class="inline-flex items-center bg-white hover:bg-gray-100 border border-gray-300 rounded-md py-2 px-4 font-medium text-sm text-gray-700 shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <i class="fab fa-google mr-2"></i>   Log out
+            </a>
+            @else
+                <a href="{{ route('google.login') }}" class="inline-flex items-center bg-white hover:bg-gray-100 border border-gray-300 rounded-md py-2 px-4 font-medium text-sm text-gray-700 shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i class="fab fa-google mr-2"></i>   Sign in with Google
+                </a>
+            @endif
+        </div>     
+       
         <div>
+
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
             @if (session('success'))
                 <!-- Input pre-filled with the email from session -->

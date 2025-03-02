@@ -3,11 +3,17 @@
 @section('content')
 <script defer src="{{ asset('js/search.js') }}"></script>
 
-<div class="">
-    @if(Auth::check())
+    <div class="">
+    @if (Auth::check()) 
         <div class="text-center my-2">
             <a href="{{ route('home') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 dark:text-white">
                 <i class="fa-solid fa-check"></i> You're signed in
+            </a>
+        </div>
+    @elseif (Auth::guard('google_users')->check())
+        <div class="text-center my-2">
+            <a href="{{ route('users.logout') }}" class="inline-flex items-center bg-white hover:bg-gray-100 border border-gray-300 rounded-md py-2 px-4 font-medium text-sm text-gray-700 shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <i class="fab fa-google mr-2"></i> Log out (Google)
             </a>
         </div>
     @else
@@ -22,7 +28,7 @@
         <div class='max-w-3xl mx-auto p-3 bg-white'>
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <h1 class='text-gray-600'>
-            Meet awesome business owners, creative promoters, and inspiring influencers while discovering hidden gems across the country. Whether you're traveling for fun or making connections, it's all about great people and unforgettable experiences!                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
+            Meet awesome business owners, creative promoters, and inspiring influencers while discovering hidden gems across the country. Whether you're traveling for fun or making connections, it's all about great people and unforgettable experiences! Your payment goes towards booking an usher for your visit, ensuring a smooth and memorable experience with our partners. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
             {{--<div class="text-center my-4">
                 <a href="{{ route('business_questionnaire') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
@@ -84,15 +90,20 @@
                             <!-- <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p> -->
                         </div>
                         <div>
-                            @if(Auth::check())
+                        @if(Auth::check())
                             <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
                                 Open
                             </a>
-                            @else
-                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
-                                login
+                        @elseif(Auth::guard('google_users')->check())
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600">
+                                Pay
                             </a>
-                            @endif
+                        @else
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
+                                Login
+                            </a>
+                        @endif
+
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
+        "laravel/socialite": "^5.18",
         "laravel/tinker": "^2.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-google-calendar": "^3.8",

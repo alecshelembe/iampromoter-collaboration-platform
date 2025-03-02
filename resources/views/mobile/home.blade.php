@@ -2,7 +2,12 @@
 
 @section('content')
 
-@include('layouts.navbar')
+@if(Auth::guard('google_users')->check())
+    @include('google.layouts.navbar')
+@else
+    @include('layouts.navbar')
+@endif
+
 
 {{-- <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg "> --}}
     <div class="flex justify-end">

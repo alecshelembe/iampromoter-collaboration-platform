@@ -16,9 +16,14 @@ use App\Http\Controllers\TransactionPayfastController;
 use App\Http\Controllers\PayfastITNController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\BusinessQuestionnaireController;
 
 
+use Illuminate\Http\Request; 
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\GoogleUser;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +36,38 @@ use App\Http\Controllers\BusinessQuestionnaireController;
 |
 */
 
+
+// Google Callback
+// Redirect to Google Login
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')
+        ->with(['prompt' => 'select_account']) // Force account selection
+        ->redirect();
+})->name('google.login');
+
+// Google Callback
+Route::get('/auth/google/callback', function (Request $request) {
+    // Handle Google login callback
+    $googleUser = Socialite::driver('google')->stateless()->user();
+
+    // Check if the user already exists or create one
+    $user = GoogleUser::updateOrCreate([
+        'google_id' => $googleUser->getId(),
+    ], [
+        'name' => $googleUser->getName(),
+        'email' => $googleUser->getEmail(),
+        'avatar' => $googleUser->getAvatar(),
+    ]);
+
+    // Log the user in using the 'google_users' guard
+    Auth::guard('google_users')->login($user);
+
+    // Regenerate session
+    $request->session()->regenerate();
+
+    // Redirect to home
+    return redirect()->route('google-home');
+});
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -46,6 +83,9 @@ Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.c
 
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
 Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
+
+Route::get('/google-home', [GoogleController::class, 'googleviewboth'])->name('google-home');
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
@@ -71,7 +111,11 @@ Route::post('/create-social-post', [CreateController::class, 'saveSocialPost'])-
 
 Route::get('/view-social-posts', [CreateController::class, 'viewSocialPosts'])->name('social.view.posts');
 
+Route::get('/google-view-social-posts', [GoogleController::class, 'googleviewSocialPosts'])->name('google.social.view.posts');
+
 Route::get('/view-social-post/{id}', [CreateController::class, 'viewSocialPost'])->name('social.view.post');
+
+Route::get('/google-view-social-post/{id}', [GoogleController::class, 'googleviewSocialPost'])->name('google.social.view.post');
 
 Route::post('/save-social-post-note/{id}', [CreateController::class, 'saveSocialPostNote'])->name('social.save.post.note');
 
