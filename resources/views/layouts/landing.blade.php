@@ -91,15 +91,15 @@
                         </div>
                         <div>
                         @if(Auth::check())
-                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-green-500 text-white rounded-full shadow-lg hover:bg-blue-600">
                                 Open
                             </a>
                         @elseif(Auth::guard('google_users')->check())
-                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600">
-                                Pay
+                            <a href="{{ route('google.social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-green-500 text-white rounded-full shadow-lg hover:bg-blue-600">
+                                Open
                             </a>
                         @else
-                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600">
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-blue-500 text-white rounded-full shadow-lg hover:bg-green-600">
                                 Login
                             </a>
                         @endif

@@ -237,6 +237,8 @@
                     <p class="text-xs text-gray-500">
                         Posted {{ \Carbon\Carbon::parse($comment['created_at'])->diffForHumans() }}
                     </p>
+        @if(Auth::check())
+
                     @if (auth()->user()->email === $socialPost->email)
                         <form class="text-right mt-4" action="{{ route('comments.clear', [$socialPost->id]) }}" method="POST">
                             <input type="text" class="hidden" name="comment_id" value="{{ ($comment['id']) }}"/>
@@ -244,6 +246,7 @@
                             <button type="submit" class="p-2 text-sm rounded-full shadow-lg">  <i class="fa-solid fa-xmark"></i> Clear </button>
                         </form>
                     @endif
+        @endif
                 </div>
                 @endforeach
             @else

@@ -133,7 +133,7 @@ class LoginController extends Controller
         if ($qrCode) {
 
             $code = $qrCode->code;
-            $correct_qrcode = "Register log @ ".$currentDateTime. ' Please continue';
+            $correct_qrcode = "";
             return view('login')->with(compact('code', 'correct_qrcode'));
 
             // Record the login in the daily registration table

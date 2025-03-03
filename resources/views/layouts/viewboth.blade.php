@@ -175,11 +175,11 @@
                             <!-- View Button -->
                             <div>
                             @if(Auth::check())
-                                <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg">
+                                <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg bg-blue-600 text-white">
                                     View
                                 </a>
                             @elseif(Auth::guard('google_users')->check())
-                                <a href="{{ route('google.social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg">
+                                <a href="{{ route('google.social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg bg-blue-600 text-white">
                                     View
                                 </a>
                             @else
