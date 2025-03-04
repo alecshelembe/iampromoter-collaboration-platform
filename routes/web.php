@@ -86,6 +86,8 @@ Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
 
 Route::get('/google-home', [GoogleController::class, 'googleviewboth'])->name('google-home');
 
+Route::get('/map', [CreateController::class, 'showMap'])->name('show-map');
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');

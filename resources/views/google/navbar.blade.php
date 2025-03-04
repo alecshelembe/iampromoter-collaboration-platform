@@ -17,7 +17,8 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
         <ul class="Scibono-background flex flex-col font-medium p-2 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
+         
+        <li>
             <!-- Payment Status Banner -->
             @if(session()->has('payment_status') && session('payment_status') )
                 <div class="bg-green-300 text-center p-1 mb-1">
@@ -32,6 +33,13 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 </div>
             @endif
           </li> 
+          <li>
+          <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <!-- Plus icon -->
+              <i class="fa-solid fa-map-location-dot"></i>
+              Go to map 
+            </a>
+        </li> 
           <li>
               <button id="dropdownNavbarLink_legal" data-dropdown-toggle="dropdownNavbar_legal" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Legal  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
@@ -124,6 +132,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                           Send promo ref
                       </a>
                     </li>
+                   
                     {{--<li>
                       <a href="{{ route('login.qrcode') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
@@ -208,5 +217,6 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         </form>
         <div id="searchResults"></div>
     </div>
+    
   
   

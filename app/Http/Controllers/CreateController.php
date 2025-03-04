@@ -21,7 +21,7 @@ class CreateController extends Controller
         //  $this->middleware('auth');
         // to specific methods 
         // $this->middleware('auth')->only(['viewSocialPost','create', 'store']);
-         $this->middleware('auth')->except(['create','store']);
+         $this->middleware('auth')->except(['create','store','showMap']);
 
     }
 
@@ -123,6 +123,29 @@ class CreateController extends Controller
     }
 
     
+    public function showMap(){
+  // Fetch social posts
+        $socialPosts = SocialPost::where('status', 'show')
+            ->orderBy('created_at', 'desc')
+            ->limit(8)
+            ->get();
+
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email); // Extract username from email
+            $post->author = $emailParts[0];
+
+            // Fetch the user by email and get profile_image_url
+            $user = User::where('email', $post->email)->first();
+            $post->profile_image_url = $user->profile_image_url ?? asset('default-profile.png');
+        }
+
+        return view('layouts.map', [
+            'socialPosts' => $socialPosts
+        ]);
+
+    }
+
     public function viewSocialPosts()
     {
             // Fetch all social posts with status 'show'

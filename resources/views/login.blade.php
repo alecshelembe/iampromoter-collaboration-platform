@@ -40,10 +40,16 @@
         </h5> -->
         @if (!Request::is('QrCodeLogin'))
             <div class="text-center my-4">
-                <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm mx-1 py-2 px-2 rounded-full hover:bg-blue-600">
                 <!-- Plus icon -->
                 <i class="fa-solid fa-magnifying-glass"></i>
-                Search 
+                Find 
+                </a>
+
+                <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm mx-1 py-2 px-2 rounded-full hover:bg-blue-600">
+                <!-- Plus icon -->
+                <i class="fa-solid fa-map-location-dot"></i>
+                Go to map 
                 </a>
             </div>
 
