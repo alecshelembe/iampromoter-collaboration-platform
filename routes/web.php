@@ -86,7 +86,9 @@ Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
 
 Route::get('/google-home', [GoogleController::class, 'googleviewboth'])->name('google-home');
 
-Route::get('/map', [CreateController::class, 'showMap'])->name('show-map');
+Route::get('/', [CreateController::class, 'showMap'])->name('show-map');
+
+Route::get('/landing-page', [DirectorController::class, 'landing'])->name('landing');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
@@ -136,8 +138,6 @@ Route::get('/events/create', [EventController::class, 'create'])->name('events.c
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
-
-Route::get('/', [DirectorController::class, 'landing'])->name('landing');
 
 Route::get('/search-with-text', [DirectorController::class, 'searchPlaces'])->name('layouts.search');
 Route::get('/science-posts', [CreateController::class, 'sciencePosts'])->name('science.posts');
