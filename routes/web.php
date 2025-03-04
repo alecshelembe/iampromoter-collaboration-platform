@@ -86,9 +86,9 @@ Route::get('/home', [CreateController::class, 'viewboth'])->name('home');
 
 Route::get('/google-home', [GoogleController::class, 'googleviewboth'])->name('google-home');
 
-Route::get('/', [CreateController::class, 'showMap'])->name('show-map');
+Route::get('/map', [CreateController::class, 'showMap'])->name('show-map');
 
-Route::get('/landing-page', [DirectorController::class, 'landing'])->name('landing');
+Route::get('/', [DirectorController::class, 'landing'])->name('landing');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
