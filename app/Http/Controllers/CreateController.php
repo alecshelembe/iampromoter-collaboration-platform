@@ -127,7 +127,7 @@ class CreateController extends Controller
   // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('created_at', 'desc')
-            ->limit(8)
+           // ->limit(8)
             ->get();
 
         foreach ($socialPosts as $post) {

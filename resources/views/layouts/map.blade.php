@@ -12,7 +12,7 @@
         padding: 15px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 300px;
+        max-width: 500px;
         width: 90vw;
     }
 
@@ -24,7 +24,7 @@
 
     @media (min-width: 640px) {
         .card-overlay {
-            width: 500px;
+            width: 400px;
         }
     }
 </style>
