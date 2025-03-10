@@ -17,13 +17,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Explore South Africa with Visit My Joburg | Connect with Locals & Influencers">
-    <meta name="description" content="Discover South Africa through Visit My Joburg! Connect with business owners, promoters, and influencers while exploring hidden gems and vibrant communities.">
-    <meta name="keywords" content="Visit My Joburg, South Africa travel, local businesses, meet influencers, business networking, explore South Africa, connect with promoters, travel collaborations">
+    <meta name="title" content="Promote Your Events in South Africa with Visit My Joburg | Connect with Locals & Influencers">
+    <meta name="description" content="Promote your events across South Africa with Visit My Joburg! Connect with business owners, promoters, and influencers to increase your event’s reach and success.">
+    <meta name="keywords" content="Visit My Joburg, South Africa events, event promotions, local businesses, meet influencers, event marketing, promote your event, event collaborations, South Africa promoters">
     <meta name="author" content="Visit My Joburg Team">
     <meta name="robots" content="index, follow">
-    
-    <title>Explore South Africa with Visit My Joburg | Meet Locals & Influencers</title>
+
+    <title>Promote Your Events in South Africa with Visit My Joburg | Connect with Influencers & Locals</title>
+
 
     <link rel="canonical" href="https://visitmyjoburg.co.za">
     <link rel="preconnect" href="https://fonts.bunny.net">
