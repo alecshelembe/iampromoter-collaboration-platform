@@ -1,4 +1,3 @@
-https://chatgpt.com/share/59d7c8ea-c92a-49a1-a4ac-4cd42aa2da31
 npx tailwindcss -o public/css/output.css
 php artisan qrcode:generate-daily
 php artisan schedule:list
@@ -36,15 +35,7 @@ GRANT ALL PRIVILEGES ON api.* TO 'alec'@'localhost';
 sudo apt install mysql-server -y
 sudo mysql_secure_installation
 sudo systemctl start mysql
-sudo systemctl enable mysql
-
-sudo apt remove nodejs npm
-sudo apt clean
-sudo apt autoremove
-sudo apt purge nodejs
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo apt install npm
+sudo systemctl enable MySQL
 
 sudo apt install gh -y
 sudo apt install -y software-properties-common
@@ -55,6 +46,14 @@ sudo apt install php8.2-curl php8.2-dom php8.2-mbstring php8.2-xml php8.2-mysql 
 sudo apt install phpmyadmin -y
 sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
 sudo a2enconf phpmyadmin
+
+sudo apt remove nodejs npm
+sudo apt clean
+sudo apt autoremove
+sudo apt purge nodejs
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt install npm
 
 mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
 sudo a2enmod rewrite
@@ -68,7 +67,6 @@ sudo chown -R www-data:www-data /var/www/html/wordpress
 
 ssh-keygen -t ed25519 -C "alecshelembe@gmail.com"
 sudo apt install espeak
-
 
 php -m
 sudo a2enmod rewrite
@@ -86,13 +84,24 @@ chown -R www-data storage
 chown -R www-data bootstrap/cache
 composer install --optimize-autoloader --no-dev
 
+cp .env.example .env
+php artisan key:generate
+
+php artisan storage:link
+
+<Directory /var/www/thestreetking/public>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+sudo apt install certbot python3-certbot-apache -y
+sudo certbot --apache
+
 sudo nano /etc/apache2/ports.conf
 sudo ufw status verbose
 Listen 8081
 sudo a2ensite demo.conf
-
-cp .env.example .env
-php artisan key:generate
 
 innodb_log_file_size = 256M
 sudo find /etc -name "my.cnf"

@@ -53,7 +53,6 @@
     <div id="paymentFormContainer"></div> <!-- This will hold the payment form -->
 </div>
 <p class="text-center text-gray-500 mt-4 text-sm">Your payment is 100% secure with PayFast.</p>
-<p class="text-center text-gray-500 mt-4 text-sm">* (Capitec users) Please use credit card payment</p>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
