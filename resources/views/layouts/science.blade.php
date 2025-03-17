@@ -16,7 +16,7 @@
     <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4 lg:grid-cols-4">
         @foreach($posts as $post)
             <div class="p-2  bg-white">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-2">
                     {{-- Parse and display images --}}
                     @php
                         $images = json_decode($post->image_url, true); // Decode JSON for a single post
