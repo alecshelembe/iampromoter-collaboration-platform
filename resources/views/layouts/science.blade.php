@@ -19,7 +19,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     {{-- Parse and display images --}}
                     @php
-                        $images = json_decode($post->images, true); // Decode JSON
+                        $images = json_decode($post->image_url, true); // Decode JSON for a single post
                     @endphp
     
                     @if (is_array($images) && count($images) > 0)
@@ -28,7 +28,8 @@
                                 <img class="h-auto max-w-full rounded-lg cursor-pointer" 
                                      src="{{ asset($image) }}" 
                                      alt="Post image"
-                                     loading="lazy">
+                                     loading="lazy"
+                                     onclick="toggleImageModal('{{ asset($image) }}')">
                             </figure>
                         @endforeach
                     @else
@@ -37,11 +38,11 @@
                 </div>
      
                 {{-- Display post description and email --}}
-                <div class="mt-4">
-                    <p class="text-lg font-bold">{{ $post->title }}</p>
+                <div class="mt-2">
+                    <p class="text-lg">{{ $post->title }}</p>
                     @if ($post->description)
                             {{-- Truncated Description --}}
-                            <div class="mt-2 text-gray-700 overflow-hidden" 
+                            <div class=" text-gray-700 overflow-hidden" 
                                 style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;" 
                                 id="description-{{ $post->id }}">
                                 {!! $post->description !!}

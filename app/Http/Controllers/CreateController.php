@@ -208,7 +208,7 @@ class CreateController extends Controller
         // Fetch data from the 'posts' table
         $posts = Post::where('status', 'show')
         ->orderBy('created_at', 'desc')
-        ->limit(10)
+        ->limit(8)
         ->get();
 
         foreach ($posts as $post) {
