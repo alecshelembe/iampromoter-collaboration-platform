@@ -32,13 +32,13 @@
                 <!-- <p>No images found.</p> -->
             @endif
         </div>
-            <p class="text-2xl font-bold">{{ $Post->title }}</p>
+            <p class="text-2xl font-bold my-2">{{ $Post->title }}</p>
             <p class="text-gray-700 my-2">{!! $Post->description !!}</p>
             <form action={{ route('returnSpeech') }} target="_blank" method="POST">
                 @csrf
                 <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$Post->description}}</textarea>
                 <input type="text" name="audio_id" value="<?php echo(rand());?>" hidden>
-                <button class=" my-4 p-2 text-sm rounded-full shadow-lg" type="submit">Generate Speech <i class=" fa-solid fa-volume-high"></i></button>
+                <button class=" my-4 p-2 text-sm rounded-full shadow-lg" type="submit">Speech (develpment) <i class=" fa-solid fa-volume-high"></i></button>
             </form>
             <p class="text-xs text-gray-500">Posted by {{ $Post->author }}</p>
             <p class="text-xs text-gray-500">{{ $Post->formatted_time }}</p>

@@ -24,7 +24,7 @@
     @else
         {{-- Combined Grid Layout for Posts --}}
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {{-- Merge $posts and $socialPosts --}}
             @php
                 $combinedPosts = collect();
