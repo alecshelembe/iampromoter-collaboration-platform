@@ -4,6 +4,7 @@
 
 
 <script defer src="{{ asset('js/app.js') }}"></script>
+<script defer src="{{ asset('js/get-user-location.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&libraries=places" defer></script>
 
 
