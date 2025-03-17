@@ -53,7 +53,7 @@
                             @endphp
 
                             @if (is_array($images) && count($images) > 0)
-                                <div class="grid grid-cols-2 gap-4">
+                                <div class="grid grid-cols-2 gap-2">
                                     @foreach ($images as $image)
                                         <figure class="max-w-lg relative">
                                             <img class="h-auto max-w-full rounded-lg cursor-pointer" 
