@@ -272,17 +272,7 @@
 
 <script>
     const phrases = [
-        "Unlock the Magic!", "Step Inside the Action!", "Let’s Go!", "Enter the Spotlight!", 
-        "Claim Your Moment!", "Make it Yours!", "Seize the Fun!", "Dive Into the Experience!", 
-        "Level Up Now!", "Take the Leap!", "All In – Click Here!", "Start Your Journey!", 
-        "Ignite the Adventure!", "Join the Excitement!", "Get Started!", "Be Part of the Action!", 
-        "Your Time Is Now!", "Launch Into Fun!", "Fuel the Fire!", "Step Into Greatness!", 
-        "Join the Vibe!", "Light It Up!", "Adventure Awaits!", "Hit the Button!", 
-        "Go Boldly!", "Be the Star!", "Step Up Now!", "Experience the Thrill!", 
-        "Own the Moment!", "Heat Things Up!", "Take Center Stage!", "Break Through Now!", 
-        "Explore the Unforgettable!", "Fuel the Excitement!", "Join the Fire!", 
-        "Ignite Your Path!", "Enter the Arena!", "Live the Moment!", "Step Into the Fun!", 
-        "Say Yes to the Thrill!"
+        "Book Now"
     ];
 
     // Function to update the button text randomly

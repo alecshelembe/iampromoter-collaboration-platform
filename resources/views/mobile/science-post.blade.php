@@ -4,7 +4,7 @@
 
 @include('layouts.navbar')
 
-<div class="max-w-3xl mx-auto p-2 bg-white rounded-lg">
+<div class="max-w-3xl mx-auto bg-white rounded-lg">
     {{-- Post Container --}}
     <div class="p-2 bg-white">
 
