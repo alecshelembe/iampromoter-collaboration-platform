@@ -23,6 +23,7 @@
                             <img class="h-auto max-w-full rounded-lg cursor-pointer" 
                                  src="{{ asset($image) }}" 
                                  alt="Post image"
+                                 onclick="toggleImageModal('{{ asset($image) }}')"
                                  loading="lazy">
                         </figure>
                     @endforeach

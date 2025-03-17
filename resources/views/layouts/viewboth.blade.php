@@ -59,7 +59,8 @@
                                             <img class="h-auto max-w-full rounded-lg cursor-pointer" 
                                                 src="{{ asset($image) }}" 
                                                 alt="Post image"
-                                                loading="lazy">
+                                                loading="lazy"
+                                                onclick="toggleImageModal('{{ asset($image) }}')">
                                         </figure>
                                     @endforeach
                                 </div>
@@ -145,7 +146,7 @@
                             <div class="grid grid-cols-2 gap-2">
                                 @foreach ($images as $image)
                                     <figure class="relative">
-                                        <img class="h-auto max-w-full rounded-lg cursor-pointer" src="{{ asset($image) }}" alt="Post image" loading="lazy">
+                                        <img class="h-auto max-w-full rounded-lg cursor-pointer" src="{{ asset($image) }}" alt="Post image" loading="lazy" onclick="toggleImageModal('{{ asset($image) }}')">
                                     </figure>
                                 @endforeach
                             </div>
@@ -157,6 +158,7 @@
                             <img  
                                 src="{{ Storage::url($post->profile_image_url) }}"  
                                 name="image" 
+                                onclick="toggleImageModal('{{ Storage::url($post->profile_image_url) }}')"
                                 loading="lazy"
                                 alt="Image Preview"  
                                 style="width: 50px; height: 50px; border-radius: 50%;" 
