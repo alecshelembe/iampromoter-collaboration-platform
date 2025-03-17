@@ -45,6 +45,29 @@
                 <div class="bg-white p-2 rounded-lg shadow">
                     {{-- Regular Post --}}
                     @if (!$isSocialPost)
+
+                        <div>
+                            {{-- Parse and display images --}}
+                            @php
+                                $images = json_decode($post->image_url, true); // Decode JSON for a single post
+                            @endphp
+
+                            @if (is_array($images) && count($images) > 0)
+                                <div class="grid grid-cols-2 gap-4">
+                                    @foreach ($images as $image)
+                                        <figure class="max-w-lg relative">
+                                            <img class="h-auto max-w-full rounded-lg cursor-pointer" 
+                                                src="{{ asset($image) }}" 
+                                                alt="Post image"
+                                                loading="lazy">
+                                        </figure>
+                                    @endforeach
+                                </div>
+                            @else
+                                <!-- <p>No images found.</p> -->
+                            @endif
+                        </div>
+                        
                         <h3 class="font-bold text-2xl mb-2">{{ $post->title }}</h3>
 
                         {{-- Verification Status --}}
@@ -99,35 +122,17 @@
                             </div>
                         @endif
 
-                        {{-- Generate Speech Form --}}
-                        <div class="mt-4">
-                            <form action="{{ route('returnSpeech') }}" target="_blank" method="POST">
-                                @csrf
-                                <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{ $post->description }}</textarea>
-                                <input type="hidden" name="audio_id" value="{{ rand() }}">
-                                <button type="submit" class="text-sm">
-                                    Generate Speech <i class="fa-solid fa-volume-high"></i>
-                                </button>
-                            </form>
-                        </div>
-
                         {{-- Post Author and Time --}}
                         <div class="mt-2 text-sm text-gray-400">
-                            <p>By {{ $post->author }}</p>
                             <p>{{ $post->formatted_time }}</p>
                         </div>
+
                         <div class="text-right">
-                            <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $post->id])) }}"
-                                target="_blank"
-                                class="p-2 text-sm rounded-full shadow-lg">
-                                <i class="fa-brands fa-whatsapp"></i> Share
+                            <a href="{{ route('science.view.post', ['id' => $post->id]) }}"
+                            class="p-2 text-sm rounded-full shadow-lg">
+                                View
                             </a>
                         </div>
-
-                        <a href="{{ route('science.view.post', ['id' => $post->id]) }}"
-                           class="p-2 text-sm rounded-full shadow-lg">
-                            View
-                        </a>
                     @endif
 
                     {{-- Social Post --}}

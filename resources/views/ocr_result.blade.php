@@ -30,10 +30,11 @@
       </div>
 
 
-        <!-- <script>
-            CKEDITOR.replace('description');
-            set the id of description to use the editor
-        </script> -->
+         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              CKEDITOR.replace('description');
+          });
+        </script> 
 
          <!-- Image Upload -->
          <p>Upload Images</p>

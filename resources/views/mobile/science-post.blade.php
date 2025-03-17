@@ -9,9 +9,7 @@
     <div class="p-2 bg-white">
 
         {{-- Display post description and email --}}
-        <p class="text-2xl font-bold">{{ $Post->title }}</p>
         <div class="mt-4">
-            <p class="text-gray-700 my-2">{!! $Post->description !!}</p>
             <div>
             {{-- Parse and display images --}}
             @php
@@ -33,6 +31,8 @@
                 <!-- <p>No images found.</p> -->
             @endif
         </div>
+            <p class="text-2xl font-bold">{{ $Post->title }}</p>
+            <p class="text-gray-700 my-2">{!! $Post->description !!}</p>
             <form action={{ route('returnSpeech') }} target="_blank" method="POST">
                 @csrf
                 <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$Post->description}}</textarea>

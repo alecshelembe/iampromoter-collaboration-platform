@@ -187,7 +187,7 @@ class CreateController extends Controller
 
         // Fetch normal posts
         $posts = Post::where('status', 'show')
-            ->limit(10)
+            ->limit(8)
             ->get();
 
         foreach ($posts as $post) {
@@ -504,28 +504,31 @@ class CreateController extends Controller
         return back()->with('success', 'Comment added successfully!');
     }
 
-   
     public function processImage(Request $request)
     {
         $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png|max:10240',
         ]);
-
-        $imagePath = $request->file('image')->store('public/images/demo-images');
-
-        // Run OCR
+    
+        // Store image
+        $path = $request->file('image')->store('demo-images', 'public');
+    
+        // Get full path for Tesseract (in storage/app/public/demo-images/...)
+        $fullImagePath = storage_path('app/public/' . $path);
+    
         try {
-            $text = (new TesseractOCR(storage_path('app/' . $imagePath)))
+            $text = (new TesseractOCR($fullImagePath))
                 ->lang('eng')
                 ->run();
             
-                return redirect()->route('create.raw.post', ['text' => $text]);
-
+            return redirect()->route('create.raw.post', ['text' => $text]);
+    
         } catch (\Exception $e) {
             Log::error('OCR processing failed: ' . $e->getMessage());
             return redirect()->route('create.post')->with([
-                'failed' => 'An error occurred while processing the image.!'
+                'failed' => 'An error occurred while processing the image!'
             ]);
         }
     }
+    
 }

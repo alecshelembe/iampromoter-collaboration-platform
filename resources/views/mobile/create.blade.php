@@ -4,7 +4,7 @@
 
 
 <script defer src="{{ asset('js/places-search.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&libraries=places" defer></script>
 
 
 <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">

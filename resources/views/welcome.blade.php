@@ -38,6 +38,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet">
     <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
     <script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
+    <!-- <script defer src="{{ asset('js/ckeditor.js') }}"></script> -->
 </head>
 
     <style>

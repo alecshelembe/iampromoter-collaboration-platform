@@ -3,21 +3,31 @@
 
 @section('content')
 
-<script defer src="{{ asset('js/jq_app.js') }}"></script>
 <script defer src="{{ asset('js/app.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&libraries=places" defer></script>
 
 <script>
-     // For first name
-     document.getElementById('floating_first_name').addEventListener('input', function() {
-        var inputVal = this.value; // Get the value from input field
-        document.getElementById('output-card-person-firstname').textContent = inputVal; // Set the value of output field
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // For first name
+        var firstNameInput = document.getElementById('floating_first_name');
+        var firstNameOutput = document.getElementById('output-card-person-firstname');
 
-    // For last name
-    document.getElementById('floating_last_name').addEventListener('input', function() {
-        var inputVal = this.value; // Get the value from input field
-        document.getElementById('output-card-person-lastname').textContent = ' ' + inputVal; // Set the value of output field with space
+        if (firstNameInput && firstNameOutput) {
+            firstNameInput.addEventListener('input', function() {
+                firstNameOutput.textContent = this.value;
+            });
+        }
+
+        // For last name
+        var lastNameInput = document.getElementById('floating_last_name');
+        var lastNameOutput = document.getElementById('output-card-person-lastname');
+
+        if (lastNameInput && lastNameOutput) {
+            lastNameInput.addEventListener('input', function() {
+                lastNameOutput.textContent = ' ' + this.value;
+            });
+        }
     });
 </script>
 
