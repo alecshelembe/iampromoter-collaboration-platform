@@ -91,11 +91,19 @@ class ApiController extends Controller
             // Log the success message
             Log::info('Location data saved successfully for user: ' . auth()->id());
 
+            unset($nearest['lat'], $nearest['lng']);
+
+            $post = SocialPost::where('status', 'show')
+                ->where('address', 'like', $nearest['address'])
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+            Log::info($post);
+
             return response()->json([
-                'message' => 'Location saved successfully',
-                'near_address' => $nearest,
-                'data' => $location,
+                'near_address' => $post
             ], 201);
+
 
         } catch (\Exception $e) {
             // Log the error
