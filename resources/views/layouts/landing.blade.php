@@ -28,7 +28,7 @@
         <div class='max-w-3xl mx-auto p-3 bg-white'>
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <h1 class='text-gray-600'>
-            Meet awesome business owners, creative promoters, and inspiring influencers while discovering hidden gems across the country. Whether you're traveling for fun or making connections, it's all about great people and unforgettable experiences! Your payment goes towards booking an usher for your visit, ensuring a smooth and memorable experience with our partners. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
+            Welcome to visitmyjoburg an open source project promoting tourism and businesses. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
             <div class="text-center my-4">
                 <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">

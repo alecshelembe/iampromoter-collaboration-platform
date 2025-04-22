@@ -12,15 +12,11 @@
     </p>
 
     <div class="mt-6 border rounded-lg p-4 bg-gray-100">
-        <h3 class="text-lg font-semibold text-gray-700">Booking Summary</h3>
+        <h3 class="text-lg font-semibold text-gray-700">Booking Fee</h3>
       
         <div class="  mt-2 text-gray-600">
             <p>Contact </p>
             <p>{{ $socialPost->email ?? 'N/A' }}</p>
-        </div>
-        <div class="  mt-2 text-gray-600">
-            <p>Duration</p>
-            <p>30 minutes</p>
         </div>
         <div class="  mt-2 text-gray-600">
             <p>Total</p>

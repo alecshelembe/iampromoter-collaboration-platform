@@ -12,6 +12,9 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/payfast-notify',  // Exclude this route from CSRF protection
+        
+        '/payfast-notify',
+        '/location',  // Exclude this route from CSRF protection
+        '/getData'  // Exclude this route from CSRF protection
     ];
 }

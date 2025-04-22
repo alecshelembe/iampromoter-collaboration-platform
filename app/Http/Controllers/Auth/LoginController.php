@@ -95,6 +95,34 @@ class LoginController extends Controller
             'failed' => 'The provided credentials do not match our records.',
         ]);
     }
+
+    public function reactNativeLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => [
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'profile_image_url' => $user->profile_image_url,
+                'ref' => $user->ref,
+            ]
+        ]);
+    }
     
     public function logout(Request $request)
     {

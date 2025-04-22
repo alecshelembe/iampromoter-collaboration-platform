@@ -69,7 +69,7 @@
                             @endif
                         </div>
                         
-                        <h3 class="font-bold text-2xl mb-2">{{ $post->title }}</h3>
+                        <h3 class="mb-2">{{ $post->title }}</h3>
 
                         {{-- Verification Status --}}
                         <p class="text-sm mt-2">
@@ -167,8 +167,8 @@
 
                             <!-- Post Details -->
                             <div class="flex-1">
-                                <p class="text-sm font-bold">{{ $post->place_name }}</p>
-                                <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p>
+                                <p class="text-sm">{{ $post->place_name }}</p>
+                                <p class="text-sm text-grey-500">R {{ $post->fee }}</p>
                                 <p class="text-sm text-gray-700">{{ $post->address }}</p>
                                 <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
                                 @if (!empty($post->note))
