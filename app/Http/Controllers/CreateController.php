@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 use Illuminate\Support\Facades\Log;

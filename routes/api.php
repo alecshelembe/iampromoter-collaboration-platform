@@ -33,6 +33,7 @@ Route::get('/images', function () {
 
 Route::get('/users', [ApiController::class, 'getusers']);
 Route::get('/get-social-posts', [ApiController::class, 'getSocialPosts']);
-Route::get('/getData', [ApiController::class, 'getData']);
+Route::get('/getData', [ApiController::class, 'mobileAppTransaction']);
 Route::get('/get-science-posts', [ApiController::class, 'getSciencePosts']);
 Route::post('/location', [ApiController::class, 'store']);
+Route::post('/transaction', [ApiController::class, 'mobileAppTransaction']);

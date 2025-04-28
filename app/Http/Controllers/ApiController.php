@@ -9,9 +9,12 @@ use App\Models\Post;
 use App\Models\UserLocation;
 use Illuminate\Http\JsonResponse; //import JsonResponse
 use Illuminate\Support\Facades\Log; //import Log
+use Illuminate\Support\Facades\Validator;
+
 
 class ApiController extends Controller
 {
+    
     public function store(Request $request)
     {
                     function getNearestAddress($lat, $lng, $addresses)
@@ -89,7 +92,7 @@ class ApiController extends Controller
             $nearest = getNearestAddress($latitude, $longitude, $addresses);
 
             // Log the success message
-            Log::info('Location data saved successfully for user: ' . auth()->id());
+            // Log::info('Location data saved successfully for user: ' . auth()->id());
 
             unset($nearest['lat'], $nearest['lng']);
 
@@ -98,7 +101,17 @@ class ApiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            Log::info($post);
+            
+            Log::info('Location data saved successfully for user: ' . auth()->id(), [
+                'user_id' => auth()->id(), // Include user ID for context
+                'latitude' => $validated['latitude'],
+                'longitude' => $validated['longitude'],
+                'device_id' => $validated['device_id'],
+                'device_name' => $validated['device_name'],
+                'platform' => $validated['platform'],
+                'app_version' => $validated['app_version'],
+                'expo_push_token' => $validated['expo_push_token'],
+            ]);
 
             return response()->json([
                 'near_address' => $post
@@ -121,17 +134,55 @@ class ApiController extends Controller
 
     public function getData(Request $request): JsonResponse
     {
-        // Your logic here. For example, let's return some simple data.
-        $data = [
+         $data = [
             'message' => 'API response successful!',
             'data' => [
-                'name' => 'Kiwith the G',
+                'name' => 'hello world',
                 'value' => 123,
             ],
         ];
 
         return response()->json($data);
     }
+
+    
+    public function mobileAppTransaction(Request $request): JsonResponse
+    {
+        try {
+            \Log::info('Request Data:', $request->all());
+
+            $validator = Validator::make($request->all(), [
+                'floating_email' => 'required|string',
+                'floating_first_name' => 'required|string',
+                'floating_last_name' => 'required|string',
+                'floating_phone' => 'required|string'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'Validation failed.',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $validated = $validator->validated();
+
+            return response()->json([
+                'email' => $validated,
+                'message' => 'Transaction data saved successfully!',
+            ], 200);
+
+        } catch (\Exception $e) {
+            Log::error('Error: ' . $e->getMessage(), [
+                'error' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'message' => 'Failed try again later.',
+            ], 500);
+        }
+    }
+
 
     public function getusers()
     {
