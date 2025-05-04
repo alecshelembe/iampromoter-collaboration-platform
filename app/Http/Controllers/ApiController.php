@@ -11,6 +11,8 @@ use Illuminate\Http\JsonResponse; //import JsonResponse
 use Illuminate\Support\Facades\Log; //import Log
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+
 // use Illuminate\Support\Facades\Mail;
 // use App\Mail\SignUpMail; // Correctly import the SignUpMail class
 
@@ -161,10 +163,24 @@ class ApiController extends Controller
     {
         try {
             \Log::info('Request Data:', $request->all());
+            $emailExists = User::where('email', $request->email)->exists();
 
+            if (!$emailExists) {
+                // Perform actions if the email already exists
+                // For example, you might want to return a specific error message
+                return response()->json([
+                    'status' => 'error',
+                    'error' => 'Please create your account first.',
+                    'message' => 'Email does not exsist.',
+                    'help' => 'Visit us online at visitmyjoburg.co.za',
+                ], 500);            }
+
+            // If the email doesn't exist (or after your custom logic), then run the standard validation
             $validator = Validator::make($request->all(), [
-                'floating_email' => 'required|email|unique:users,email',
-                'floating_first_name' => 'required|string|max:255'
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|max:255',
+                'notes' => 'required|string|max:255',
+                'datetime' => 'required|date',
             ]);
             
             if ($validator->fails()) {
@@ -172,11 +188,23 @@ class ApiController extends Controller
             }
 
             $validated = $validator->validated();
+            $bookingTime = Carbon::parse($validated['datetime']);
+            $now = Carbon::now();
+
+            // Check if date is in the past
+            
 
             return response()->json([
-                'email' => $validated,
-                'message' => 'successful!',
+                'status' => 'success',
+                'message' => 'Demo Booking successful!',
+                'Your booking details ' => [
+                    'name' => $validated['name'],
+                    'email' => $validated['email'],
+                    'notes' => $validated['notes'],
+                    'datetime' => Carbon::parse($validated['datetime'])->format('l, j F Y \a\t g:i A'), // readable format
+                ],
             ], 200);
+            
 
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getMessage(), [
@@ -219,6 +247,9 @@ class ApiController extends Controller
                 'ref' => $validated['ref'] ?? null,
                 'profile_image_url' => 'images/default-profile.png',
             ]);
+
+            // remove the password from the response
+            unset($validated['password']);
 
             return response()->json([
                 'email' => $validated,
