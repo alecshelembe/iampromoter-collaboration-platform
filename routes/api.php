@@ -33,7 +33,9 @@ Route::get('/images', function () {
 
 Route::get('/users', [ApiController::class, 'getusers']);
 Route::get('/get-social-posts', [ApiController::class, 'getSocialPosts']);
-Route::get('/getData', [ApiController::class, 'mobileAppTransaction']);
+Route::get('/getData', [ApiController::class, 'getData']);
+Route::get('/main-notification', [ApiController::class, 'main_notification']);
 Route::get('/get-science-posts', [ApiController::class, 'getSciencePosts']);
 Route::post('/location', [ApiController::class, 'store']);
-Route::post('/transaction', [ApiController::class, 'mobileAppTransaction']);
+Route::post('/create-account', [ApiController::class, 'mobileAppCreateAccount']);
+Route::post('/bookings', [ApiController::class, 'mobileAppbookings']);

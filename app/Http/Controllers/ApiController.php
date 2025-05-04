@@ -10,6 +10,9 @@ use App\Models\UserLocation;
 use Illuminate\Http\JsonResponse; //import JsonResponse
 use Illuminate\Support\Facades\Log; //import Log
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Mail;
+// use App\Mail\SignUpMail; // Correctly import the SignUpMail class
 
 
 class ApiController extends Controller
@@ -58,7 +61,6 @@ class ApiController extends Controller
                 'latitude' => 'required|numeric|between:-90,90',
                 'longitude' => 'required|numeric|between:-180,180',
                 'timestamp' => 'nullable|date',
-
                 'device_id' => 'nullable|string|max:255',
                 'device_name' => 'nullable|string|max:255',
                 'platform' => 'nullable|string|max:255',
@@ -145,31 +147,82 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    
-    public function mobileAppTransaction(Request $request): JsonResponse
+    public function main_notification(){
+        return response()->json([
+            'status' => 'main-notification',
+            'data' => [
+                'title' => 'We are excited to have you on board!',
+                'message' => "Visit us online at visitmyjoburg.co.za"
+            ]
+        ]);
+    }
+
+    public function mobileAppbookings(Request $request): JsonResponse
     {
         try {
             \Log::info('Request Data:', $request->all());
 
             $validator = Validator::make($request->all(), [
-                'floating_email' => 'required|string',
-                'floating_first_name' => 'required|string',
-                'floating_last_name' => 'required|string',
-                'floating_phone' => 'required|string'
+                'floating_email' => 'required|email|unique:users,email',
+                'floating_first_name' => 'required|string|max:255'
             ]);
-
+            
             if ($validator->fails()) {
-                return response()->json([
-                    'message' => 'Validation failed.',
-                    'errors' => $validator->errors(),
-                ], 422);
+                return response()->json(['errors' => $validator->errors()], 422);
             }
 
             $validated = $validator->validated();
 
             return response()->json([
                 'email' => $validated,
-                'message' => 'Transaction data saved successfully!',
+                'message' => 'successful!',
+            ], 200);
+
+        } catch (\Exception $e) {
+            Log::error('Error: ' . $e->getMessage(), [
+                'error' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'message' => 'Failed try again later.',
+            ], 500);
+        }
+    }
+    public function mobileAppCreateAccount(Request $request): JsonResponse
+    {
+        try {
+            \Log::info('Request Data:', $request->all());
+
+            $validator = Validator::make($request->all(), [
+                'floating_email' => 'required|email|unique:users,email',
+                'floating_first_name' => 'required|string|max:255',
+                'floating_last_name' => 'required|string|max:255',
+                'floating_phone' => 'required|digits:10',
+                'password' => 'required|string|min:8|confirmed',
+                'ref' => 'sometimes|email|max:255' // Optional ref field
+            ]);
+            
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            $validated = $validator->validated();
+            
+            $user = User::create([
+                'email' => $validated['floating_email'],
+                'password' => Hash::make($validated['password']),
+                'google_location' => $validated['google_location'] ?? '',
+                'phone' => $validated['floating_phone'],
+                'last_name' => $validated['floating_last_name'],
+                'first_name' => $validated['floating_first_name'],
+                'position' => $validated['position'] ?? 'mobile-app-user', // add fallback if not always present
+                'ref' => $validated['ref'] ?? null,
+                'profile_image_url' => 'images/default-profile.png',
+            ]);
+
+            return response()->json([
+                'email' => $validated,
+                'message' => 'Data saved successfully!',
             ], 200);
 
         } catch (\Exception $e) {
@@ -187,8 +240,8 @@ class ApiController extends Controller
     public function getusers()
     {
         try {
-            // Fetch all users from the User model
-            $users = User::all(); // You can use paginate() if needed for large datasets
+            // Fetch all users ordered by creation date (latest first)
+            $users = User::orderBy('created_at', 'desc')->get();
 
             // Return the user data as JSON
             return response()->json([
@@ -209,7 +262,6 @@ class ApiController extends Controller
            // Fetch data from the 'posts' table
             $posts = Post::where('status', 'show')
             ->orderBy('created_at', 'desc')
-            ->limit(8)
             ->get();
         
             // Return the user data as JSON
@@ -233,7 +285,6 @@ class ApiController extends Controller
             // Fetch all social posts with status 'show'
             $socialPosts = SocialPost::where('status', 'show')
                 ->orderBy('created_at', 'desc')
-                ->limit(8)
                 ->get();
         
             // Collect all emails from the posts

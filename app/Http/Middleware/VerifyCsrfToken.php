@@ -16,6 +16,7 @@ class VerifyCsrfToken extends Middleware
         '/payfast-notify',
         '/location',  // Exclude this route from CSRF protection
         '/getData',  // Exclude this route from CSRF protection
-        '/transaction'  // Exclude this route from CSRF protection
+        '/create-account',  // Exclude this route from CSRF protection
+        '/bookings'  // Exclude this route from CSRF protection
     ];
 }
