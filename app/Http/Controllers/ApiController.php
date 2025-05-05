@@ -153,8 +153,8 @@ class ApiController extends Controller
         return response()->json([
             'status' => 'main-notification',
             'data' => [
-                'title' => 'We are excited to have you on board!',
-                'message' => "Visit us online at visitmyjoburg.co.za"
+                'title' => 'We hope you enjoy our app!',
+                'message' => "View the full web app at visitmyjoburg.co.za Explore, create and update the app in real time. Suitable for businesses, individuals and tourists and cross platform android and iOS. We are constantly updating the app with new features and improvements.", 
             ]
         ]);
     }
@@ -179,7 +179,7 @@ class ApiController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|max:255',
-                'notes' => 'required|string|max:255',
+                'notes' => 'sometimes|max:255',
                 'datetime' => 'required|date',
             ]);
             
@@ -201,7 +201,7 @@ class ApiController extends Controller
                     'name' => $validated['name'],
                     'email' => $validated['email'],
                     'notes' => $validated['notes'],
-                    'datetime' => Carbon::parse($validated['datetime'])->format('l, j F Y \a\t g:i A'), // readable format
+                    'Date and Time' => Carbon::parse($validated['datetime'])->format('l, j F Y \a\t g:i A'), // readable format
                 ],
             ], 200);
             
