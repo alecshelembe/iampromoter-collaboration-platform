@@ -198,7 +198,7 @@ class ApiController extends Controller
     
             return response()->json([
                 'status' => 'success',
-                'message' => 'Demo Booking successful!',
+                'message' => 'Booking successful!',
                 'booking' => [
                     'name' => $booking->name,
                     'email' => $booking->email,

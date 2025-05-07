@@ -21,11 +21,11 @@ class NotifyLatestBookings extends Command
     $expoToken = $this->argument('expo_token') ?? env('EXPO_TOKEN');
 
     // Your existing logic continues here
-    $since = Carbon::now()->subMinutes(30);
+    $since = Carbon::now()->subMinutes(10);
     $bookings = MobileAppBooking::where('created_at', '>=', $since)->get();
 
     if ($bookings->isEmpty()) {
-        $this->info('No new bookings in the last 30 minutes.');
+        $this->info('No new bookings');
         return 0;
     }
 
