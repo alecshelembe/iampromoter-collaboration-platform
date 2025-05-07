@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\SocialPost;
 use App\Models\Post;
 use App\Models\UserLocation;
+use App\Models\MobileAppBooking;
 use Illuminate\Http\JsonResponse; //import JsonResponse
 use Illuminate\Support\Facades\Log; //import Log
 use Illuminate\Support\Facades\Validator;
@@ -163,59 +164,60 @@ class ApiController extends Controller
     {
         try {
             \Log::info('Request Data:', $request->all());
+    
             $emailExists = User::where('email', $request->email)->exists();
-
+    
             if (!$emailExists) {
-                // Perform actions if the email already exists
-                // For example, you might want to return a specific error message
                 return response()->json([
                     'status' => 'error',
                     'error' => 'Please create your account first.',
-                    'message' => 'Email does not exsist.',
-                    'help' => 'Visit us online at visitmyjoburg.co.za',
-                ], 500);            }
-
-            // If the email doesn't exist (or after your custom logic), then run the standard validation
+                    'message' => 'Email does not exist.',
+                    'help' => 'Send an email to alec@visitmyjoburg.co.za',
+                ], 500);
+            }
+    
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|max:255',
                 'notes' => 'sometimes|max:255',
                 'datetime' => 'required|date',
             ]);
-            
+    
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors()], 422);
             }
-
+    
             $validated = $validator->validated();
-            $bookingTime = Carbon::parse($validated['datetime']);
-            $now = Carbon::now();
-
-            // Check if date is in the past
-            
-
+    
+            $booking = MobileAppBooking::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'notes' => $validated['notes'] ?? null,
+                'datetime' => Carbon::parse($validated['datetime']),
+            ]);
+    
             return response()->json([
                 'status' => 'success',
                 'message' => 'Demo Booking successful!',
-                'Your booking details ' => [
-                    'name' => $validated['name'],
-                    'email' => $validated['email'],
-                    'notes' => $validated['notes'],
-                    'Date and Time' => Carbon::parse($validated['datetime'])->format('l, j F Y \a\t g:i A'), // readable format
+                'booking' => [
+                    'name' => $booking->name,
+                    'email' => $booking->email,
+                    'notes' => $booking->notes,
+                    'Date and Time' => $booking->datetime->format('l, j F Y \a\t g:i A'),
                 ],
             ], 200);
-            
-
+    
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getMessage(), [
                 'error' => $e->getTraceAsString()
             ]);
-
+    
             return response()->json([
-                'message' => 'Failed try again later.',
+                'message' => 'Failed, try again later.',
             ], 500);
         }
     }
+    
     public function mobileAppCreateAccount(Request $request): JsonResponse
     {
         try {
