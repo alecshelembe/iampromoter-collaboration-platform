@@ -29,7 +29,7 @@
                 @endif
                 <!-- Do something if the current URL matches -->
             @else
-                <img class="rounded-full mx-auto w-40 h-40" src="{{ config('services.project.logo_image') }}" alt="image description">
+                <img class=" mx-auto w-40 h-40" src="{{ config('services.project.logo_image') }}" alt="image description">
             @endif
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-4 animate-fadeIn">
 
