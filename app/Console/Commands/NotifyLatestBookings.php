@@ -18,7 +18,7 @@ class NotifyLatestBookings extends Command
     public function handle()
 {
     // Use the argument if provided, otherwise fallback to the .env value
-    $expoToken = $this->argument('expo_token') ?? env('EXPO_TOKEN');
+    $expoToken =  env('EXPO_TOKEN');
 
     // Your existing logic continues here
     $since = Carbon::now()->subMinutes(10);

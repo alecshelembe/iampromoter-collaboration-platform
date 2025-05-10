@@ -154,8 +154,8 @@ class ApiController extends Controller
         return response()->json([
             'status' => 'main-notification',
             'data' => [
-                'title' => 'We hope you enjoy our app!',
-                'message' => "View the full web app at visitmyjoburg.co.za Explore, create and update the app in real time. Suitable for businesses, individuals and tourists and cross platform android and iOS. We are constantly updating the app with new features and improvements.", 
+                'title' => 'What is the call about?',
+                'message' => "Our Staff will reserve your booking and provide you with all relevent information. We will ensure your visit is memorable." 
             ]
         ]);
     }
@@ -222,15 +222,26 @@ class ApiController extends Controller
     {
         try {
             \Log::info('Request Data:', $request->all());
-
+            
             $validator = Validator::make($request->all(), [
                 'floating_email' => 'required|email|unique:users,email',
                 'floating_first_name' => 'required|string|max:255',
                 'floating_last_name' => 'required|string|max:255',
                 'floating_phone' => 'required|digits:10',
                 'password' => 'required|string|min:8|confirmed',
-                'ref' => 'sometimes|email|max:255' // Optional ref field
+                'ref' => 'nullable|email|max:255', // Optional ref field
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // ✅ image validation
+
             ]);
+            
+            // Handle image upload if provided
+            $imagePath = 'images/default-profile.png'; // Default image path
+            if ($request->hasFile('profile_picture')) {
+                $image = $request->file('profile_picture');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images', $imageName);
+                $imagePath = 'images/' . $imageName;
+            }
             
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors()], 422);
@@ -245,10 +256,11 @@ class ApiController extends Controller
                 'phone' => $validated['floating_phone'],
                 'last_name' => $validated['floating_last_name'],
                 'first_name' => $validated['floating_first_name'],
-                'position' => $validated['position'] ?? 'mobile-app-user', // add fallback if not always present
+                'position' => $validated['position'] ?? 'mobile-app-user',
                 'ref' => $validated['ref'] ?? null,
-                'profile_image_url' => 'images/default-profile.png',
+                'profile_image_url' => $imagePath, // ✅ Use uploaded path
             ]);
+            
 
             // remove the password from the response
             unset($validated['password']);

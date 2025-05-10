@@ -9,7 +9,7 @@
 
 
 <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
-<h1 class="text-3xl font-bold mb-6">Create a mobile Post</h1>
+<h1 class="text-3xl font-bold mb-6">Create a location post</h1>
 
 <h1 class="text-xl font-bold mb-6">Step 1</h1>
 
