@@ -182,7 +182,7 @@
                 alt="{{ $influencer->first_name }}'s image"/>
 
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                {{ $influencer->first_name }} {{ $influencer->last_name }}
+                {{ $influencer->first_name }} 
             </h5>
             <h5 class="text-gray-600 text-center dark:text-gray-400 mt-2 text-sm">
                 {{ $influencer->email }}

@@ -71,9 +71,11 @@ class ApiController extends Controller
                 'expo_push_token' => 'nullable|string|max:255',
             ]);
 
+            // \Log::info('Request Data:', $request->all());
+
+
             // Store the location data
             $location = UserLocation::create([
-                'user_id' => auth()->id(), // Optional: only if user is authenticated
                 'latitude' => $validated['latitude'],
                 'longitude' => $validated['longitude'],
                 'location_recorded_at' => $validated['timestamp'] ?? now(),
@@ -107,8 +109,7 @@ class ApiController extends Controller
                 ->first();
 
             
-            Log::info('Location data saved successfully for user: ' . auth()->id(), [
-                'user_id' => auth()->id(), // Include user ID for context
+            Log::info('Location data saved successfully for user: ', [
                 'latitude' => $validated['latitude'],
                 'longitude' => $validated['longitude'],
                 'device_id' => $validated['device_id'],
@@ -230,7 +231,7 @@ class ApiController extends Controller
                 'floating_phone' => 'required|digits:10',
                 'password' => 'required|string|min:8|confirmed',
                 'ref' => 'nullable|email|max:255', // Optional ref field
-                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // ✅ image validation
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096', // ✅ image validation
 
             ]);
             

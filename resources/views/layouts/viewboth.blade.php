@@ -168,7 +168,7 @@
                             <!-- Post Details -->
                             <div class="flex-1">
                                 <p class="text-sm">{{ $post->place_name }}</p>
-                                <p class="text-sm text-grey-500">R {{ $post->fee }}</p>
+                                <!-- <p class="text-sm text-grey-500">R {{ $post->fee }}</p> -->
                                 <p class="text-sm text-gray-700">{{ $post->address }}</p>
                                 <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
                                 @if (!empty($post->note))

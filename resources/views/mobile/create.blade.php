@@ -273,6 +273,27 @@
   handleImageUpload('img-3', 'file-input-3');
   handleImageUpload('img-4', 'file-input-4');
 
+  if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+    initializeAutocomplete();
+    const types = ["accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store", "bowling_alley", "bus_station", "cafe", "campground", "car_dealer", "car_rental", "cemetery", "church", "clothing_store", "convenience_store", "courthouse", "dentist", "department_store", "doctor", "drugstore", "electrician", "electronics_store", "embassy", "fire_station", "florist", "food", "funeral_home", "furniture_store", "gas_station", "gym", "hair_care", "hardware_store", "health", "hindu_temple", "home_goods_store", "hospital", "insurance_agency", "jewelry_store", "laundry", "lawyer", "library", "light_rail_station", "liquor_store", "local_government_office", "locksmith", "lodging", "meal_delivery", "meal_takeaway", "mosque", "movie_rental", "movie_theater", "moving_company", "museum", "night_club", "painter", "park", "parking", "pet_store", "pharmacy", "physiotherapist", "place_of_worship", "plumber", "police", "post_office", "real_estate_agency", "restaurant", "roofing_contractor", "rural_area", "school", "shoe_store", "shopping_mall", "spa", "stadium", "storage", "store", "subway_station", "supermarket", "synagogue", "taxi_stand", "train_station", "travel_agency", "university", "veterinary_care", "zoo"];
+
+    types.forEach(type => {
+      const formattedType = type.replace(/_/g, ' ');
+      $("#checkbox-container").append(`
+        <div class="flex items-center">
+          <input type="checkbox" id="${type}" name="place-types" value="${type}" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+          <label for="${type}" class="ml-2 text-sm text-gray-700 capitalize">${formattedType}</label>
+        </div>
+      `);
+    });
+  } else {
+    console.error('Google Maps API or Places library is not available.');
+  }
+
+  
+//   const selectedTypes = $('input[name="place-types"]:checked').map((_, el) => el.value).get() || ['restaurant'];
+//   document.getElementById('floating_sectors').innerHTML = selectedTypes.join(', ');
+
   
 </script>
 
