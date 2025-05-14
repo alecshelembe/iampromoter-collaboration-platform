@@ -17,6 +17,7 @@ class VerifyCsrfToken extends Middleware
         '/location',  // Exclude this route from CSRF protection
         '/getData',  // Exclude this route from CSRF protection
         '/create-account',  // Exclude this route from CSRF protection
-        '/bookings'  // Exclude this route from CSRF protection
+        '/bookings',  // Exclude this route from CSRF protection
+        '/save-preferences'  // Exclude this route from CSRF protection
     ];
 }

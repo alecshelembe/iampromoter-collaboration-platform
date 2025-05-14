@@ -39,3 +39,4 @@ Route::get('/get-science-posts', [ApiController::class, 'getSciencePosts']);
 Route::post('/location', [ApiController::class, 'store']);
 Route::post('/create-account', [ApiController::class, 'mobileAppCreateAccount']);
 Route::post('/bookings', [ApiController::class, 'mobileAppbookings']);
+Route::post('/save-preferences', [ApiController::class, 'storeNotificationsP']);

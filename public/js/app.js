@@ -50,6 +50,7 @@ function initializeAutocomplete() {
       document.getElementById('web_source').value = "web_source_value";
 
       console.log('Place selected:', place);
+      
   });
 
   console.log('Autocomplete initialized');

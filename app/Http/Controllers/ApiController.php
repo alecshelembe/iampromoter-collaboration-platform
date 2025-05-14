@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Log; //import Log
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Models\NotificationPreference;
+
 
 // use Illuminate\Support\Facades\Mail;
 // use App\Mail\SignUpMail; // Correctly import the SignUpMail class
@@ -20,7 +22,28 @@ use Carbon\Carbon;
 
 class ApiController extends Controller
 {
-    
+    public function storeNotificationsP(Request $request)
+    {
+        $request->validate([
+            'deviceId' => 'required|string',
+            'expoPushToken' => 'required|string',
+            'notificationPreferences' => 'required|array',
+        ]);
+
+        $preference = NotificationPreference::updateOrCreate(
+            ['device_id' => $request->deviceId],
+            [
+                'expo_push_token' => $request->expoPushToken,
+                'preferences' => $request->notificationPreferences,
+            ]
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Preferences saved successfully.',
+        ]);
+    }
+
     public function store(Request $request)
     {
                     function getNearestAddress($lat, $lng, $addresses)
