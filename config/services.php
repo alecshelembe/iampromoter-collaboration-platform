@@ -38,6 +38,7 @@ return [
     'project' => [
         'logo_image' => env('LOGO_IMAGE'),
     ],
+    'expo_push_token' => env('expo_push_token'),
 
     'google' => [
     'client_id' => env('GOOGLE_CLIENT_ID'),

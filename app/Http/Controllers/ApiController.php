@@ -22,6 +22,23 @@ use App\Models\NotificationPreference;
 
 class ApiController extends Controller
 {
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $results = SocialPost::where('place_name', 'LIKE', '%' . $query . '%') // Adjust 'name' to your column
+            ->where('status', 'show') // Only fetch posts with status 'show'
+            ->orderBy('created_at', 'desc')
+            ->take(5) // Limit the results to 3
+            ->get()
+            ->unique('place_name'); // Filter duplicates using collection method
+            
+            // log::info('Search results:', [
+            //     'query' => $query,
+            //     'results' => $results,
+            // ]);
+        return response()->json($results);
+    }
+    
     public function storeNotificationsP(Request $request)
     {
         $request->validate([
@@ -122,7 +139,7 @@ class ApiController extends Controller
             $nearest = getNearestAddress($latitude, $longitude, $addresses);
 
             // Log the success message
-            // Log::info('Location data saved successfully for user: ' . auth()->id());
+            // Log::info('Location data saved: ' . auth()->id());
 
             unset($nearest['lat'], $nearest['lng']);
 

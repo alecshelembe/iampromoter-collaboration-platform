@@ -40,3 +40,4 @@ Route::post('/location', [ApiController::class, 'store']);
 Route::post('/create-account', [ApiController::class, 'mobileAppCreateAccount']);
 Route::post('/bookings', [ApiController::class, 'mobileAppbookings']);
 Route::post('/save-preferences', [ApiController::class, 'storeNotificationsP']);
+Route::post('/search', [ApiController::class, 'search']);
