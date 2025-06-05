@@ -272,7 +272,7 @@
 
 <script>
     const phrases = [
-        "Book Now"
+        "Entrance to the Extraordinary!",
     ];
 
     // Function to update the button text randomly

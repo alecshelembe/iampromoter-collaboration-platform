@@ -27,7 +27,7 @@ class NotifyLatestBookings extends Command
             return 1;
         }
 
-        $since = Carbon::now()->subMinutes(1); // or 1 minute if testing
+        $since = Carbon::now()->subMinutes(15); // or 1 minute if testing
         $bookings = MobileAppBooking::where('created_at', '>=', $since)->get();
 
         if ($bookings->isEmpty()) {

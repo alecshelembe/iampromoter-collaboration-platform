@@ -134,7 +134,6 @@
                 <select id="options" name="position" class=" focus:ring-blue-300 font-medium rounded-lg  w-full px-5 py-2.5 text-left dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 block border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:">
                     <option value="Visitor" {{ old('position') == 'Visitor' ? 'selected' : '' }}>Visitor</option>
                     <option value="Student" {{ old('position') == 'Student' ? 'selected' : '' }}>Student</option>
-                    <option value="Business-owner" {{ old('position') == 'Business-owner' ? 'selected' : '' }}>Business-owner</option>
                     <option value="Promoter" {{ old('position') == 'Promoter' ? 'selected' : '' }}>Promoter</option>
                     <!-- <option value="content-moderator" {{ old('position') == 'content-moderator' ? 'selected' : '' }}>Content moderator</option> -->
                     </select>

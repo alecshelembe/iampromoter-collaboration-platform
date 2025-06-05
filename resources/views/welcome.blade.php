@@ -17,13 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Promote Your Events in South Africa with Visit My Joburg | Connect with Locals & Influencers">
-    <meta name="description" content="Promote your events across South Africa with Visit My Joburg! Connect with business owners, promoters, and influencers to increase your event’s reach and success.">
-    <meta name="keywords" content="Visit My Joburg, South Africa events, event promotions, local businesses, meet influencers, event marketing, promote your event, event collaborations, South Africa promoters">
+    <meta name="title" content="Scibotics Competition 2025">
+    <meta name="description" content="Join the Scibotics Competition 2025, a premier event in South Africa that showcases innovation in robotics and technology. Participate in exciting challenges, learn from experts, and connect with like-minded individuals passionate about STEM education.">
+    <meta name="keywords" content="scibotics, competition, 2025, robotics, technology, innovation, education, STEM, South Africa">
     <meta name="author" content="Visit My Joburg Team">
     <meta name="robots" content="index, follow">
 
-    <title>Promote Your Events in South Africa with Visit My Joburg | Connect with Influencers & Locals</title>
+    <title>Scibotics Competition 2025</title>
 
 
     <link rel="canonical" href="https://visitmyjoburg.co.za">

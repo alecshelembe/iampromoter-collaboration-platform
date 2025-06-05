@@ -196,7 +196,7 @@ class ApiController extends Controller
             'status' => 'main-notification',
             'data' => [
                 'title' => 'What is the call about?',
-                'message' => "Our Staff will reserve your booking and provide you with all relevent information. We will ensure your visit is memorable." 
+                'message' => "Sci-bono is Open Monday - Saturday 09:00 - 16:00. Our Staff will reserve your booking and provide you with all relevent information. We will ensure your visit is memorable. Please note there is an entrance fee of R 60 per person. With Group discounts available for groups of 10 or more. We look forward to welcoming you to Sci-bono.",  
             ]
         ]);
     }
@@ -212,10 +212,10 @@ class ApiController extends Controller
                 return response()->json([
                     'status' => 'error',
                     'error' => 'Please create your account first.',
-                    'message' => 'Email does not exist.',
-                    'help' => 'Send an email to alec@visitmyjoburg.co.za',
+                    'message' => 'To make a booking, you need to create an account first. Click the "Account" button on the menu below.',
                 ], 500);
             }
+            
     
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
@@ -262,62 +262,79 @@ class ApiController extends Controller
     public function mobileAppCreateAccount(Request $request): JsonResponse
     {
         try {
-            \Log::info('Request Data:', $request->all());
-            
+            // Log all incoming request data for debugging purposes.
+            Log::info('Request Data:', $request->all());
+
+            // Define validation rules for the incoming request data.
             $validator = Validator::make($request->all(), [
-                'floating_email' => 'required|email|unique:users,email',
+                'floating_email' => 'required|email|unique:users,email', // Email must be unique in the 'users' table.
                 'floating_first_name' => 'required|string|max:255',
                 'floating_last_name' => 'required|string|max:255',
-                'floating_phone' => 'required|digits:10',
-                'password' => 'required|string|min:8|confirmed',
-                'ref' => 'nullable|email|max:255', // Optional ref field
-                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096', // ✅ image validation
-
+                'floating_phone' => 'required|digits:10', // Phone number must be exactly 10 digits.
+                'password' => 'required|string|min:8|confirmed', // Password must be at least 8 characters and confirmed.
+                'ref' => 'nullable|email|max:255', // Optional referrer email.
+                // Profile picture validation: nullable, image, specific mimes, and max 2048 KB (2MB).
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // Changed to 2048 KB (2MB)
             ]);
-            
-            // Handle image upload if provided
-            $imagePath = 'images/default-profile.png'; // Default image path
+
+            // Handle image upload if provided.
+            // Initialize with a default image path.
+            $imagePath = 'images/default-profile.png';
             if ($request->hasFile('profile_picture')) {
                 $image = $request->file('profile_picture');
+                // Generate a unique name for the image based on current timestamp and original extension.
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
+                // Store the image in the 'public/images' directory.
                 $image->storeAs('public/images', $imageName);
+                // Update the image path to the stored location.
                 $imagePath = 'images/' . $imageName;
             }
-            
+
+            // Check if validation fails.
             if ($validator->fails()) {
+                // If validation fails, return a JSON response with validation errors
+                // and a 422 (Unprocessable Entity) status code.
                 return response()->json(['errors' => $validator->errors()], 422);
             }
 
+            // Retrieve the validated data.
             $validated = $validator->validated();
-            
+
+            // Create a new User record in the database using the validated data.
             $user = User::create([
                 'email' => $validated['floating_email'],
-                'password' => Hash::make($validated['password']),
+                'password' => Hash::make($validated['password']), // Hash the password before storing.
+                // Use empty string if 'google_location' is not provided.
                 'google_location' => $validated['google_location'] ?? '',
                 'phone' => $validated['floating_phone'],
                 'last_name' => $validated['floating_last_name'],
                 'first_name' => $validated['floating_first_name'],
+                // Default position to 'mobile-app-user' if not provided.
                 'position' => $validated['position'] ?? 'mobile-app-user',
-                'ref' => $validated['ref'] ?? null,
-                'profile_image_url' => $imagePath, // ✅ Use uploaded path
+                'ref' => $validated['ref'] ?? null, // Use null if 'ref' is not provided.
+                'profile_image_url' => $imagePath, // Store the path to the uploaded image or default.
             ]);
-            
 
-            // remove the password from the response
+            // Remove the password from the validated data before returning it in the response
+            // for security reasons.
             unset($validated['password']);
 
+            // Return a success JSON response.
             return response()->json([
-                'email' => $validated,
+                'email' => $validated, // Returning validated data (excluding password)
                 'message' => 'Data saved successfully!',
             ], 200);
 
         } catch (\Exception $e) {
+            // Catch any unexpected exceptions that occur during the process.
+            // Log the error message and stack trace for debugging.
             Log::error('Error: ' . $e->getMessage(), [
                 'error' => $e->getTraceAsString()
             ]);
 
+            // Return a generic error response to the client with a 500 (Internal Server Error) status code.
             return response()->json([
-                'message' => 'Failed try again later.',
+                'message' => 'Failed, try again later.',
             ], 500);
         }
     }

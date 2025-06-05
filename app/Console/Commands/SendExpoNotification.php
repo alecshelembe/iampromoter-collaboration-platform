@@ -14,7 +14,7 @@ class SendExpoNotification extends Command
                             {--body=This is a test notification. : Notification body}';
 
     protected $description = 'Send an Expo push notification';
-    // php artisan expo:send ExponentPushToken[xxxxxxxxxxxxxx] --title="📢 New Alert" --body="You’ve got updates!"
+    //  php artisan expo:send ExponentPushToken[b3hxNKFVM8aF9QAv8n62yA] --title="📢 New Alert" --body="You’ve got updates!"
     // ExponentPushToken[Hq2nxzC-A88-H7wd4VlIl7]
 
     public function handle()

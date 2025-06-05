@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         
         // Schedule the command to run daily at midnight
-        $schedule->command('bookings:notify-latest ExponentPushToken[ZSREVIM6C7ZLhJIbgosJXJ]')->everyTenMinutes();
-        $schedule->command('qrcode:generate-daily')->dailyAt('05:00'); // This will run daily at 8 AM
+        $schedule->command('bookings:notify-latest')->everyTenMinutes()->timezone('Africa/Johannesburg');
+        $schedule->command('qrcode:generate-daily')->dailyAt('05:00')->timezone('Africa/Johannesburg'); // This will run daily at 8 AM
         // $schedule->command('qrcode:generate-daily')->everyTwoMinutes();
         
     }

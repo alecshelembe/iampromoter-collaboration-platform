@@ -9,10 +9,10 @@ class GeocodeSocialPosts extends Command
 {
     protected $signature = 'socialposts:geocode';
     protected $description = 'Geocode addresses in social_posts where lat/lng is missing';
-
+    // test directly in browser https://maps.googleapis.com/maps/api/geocode/json?address=29+Miriam+Makeba+St+Johannesburg+2001&key=AIzaSyCAeg9kyCLifXnx6kQVA0vwyeZAdK76E3A
     public function handle()
     {
-        $apiKey = env('GOOGLE_MAPS_API_KEY');
+        $apiKey = config('services.google_maps.api_key_commands');
 
         $posts = SocialPost::whereNull('lat')
             ->orWhereNull('lng')
@@ -25,7 +25,7 @@ class GeocodeSocialPosts extends Command
 
             $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json', [
                 'address' => $post->address,
-                'key' => env('GOOGLE_MAPS_API_KEY'),
+                'key' => $apiKey, 
             ]);
             
 

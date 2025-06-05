@@ -28,7 +28,7 @@
         <div class='max-w-3xl mx-auto p-3 bg-white'>
             <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
             <h1 class='text-gray-600'>
-            Welcome to visitmyjoburg an open source project promoting tourism and businesses. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
+            Welcome to the Scibotics competition 2025. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>
             <div class="text-center my-4">
                 <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
@@ -51,7 +51,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to? Search for a business name" required />
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to?" required />
                 </div>
             </form>
         </div>

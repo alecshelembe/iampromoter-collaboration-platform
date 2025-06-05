@@ -33,17 +33,19 @@ return [
     
     'google_maps' => [
         'api_key' => env('GOOGLE_MAPS_API_KEY'),
+        'api_key_commands' => env('API_KEY_COMMANDS'),
     ],
+    
 
     'project' => [
         'logo_image' => env('LOGO_IMAGE'),
     ],
-    'expo_push_token' => env('expo_push_token'),
+        'expo_push_token' => env('expo_push_token'),
 
-    'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => env('GOOGLE_REDIRECT_URI'),
+        'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
 

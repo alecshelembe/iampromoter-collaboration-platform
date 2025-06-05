@@ -27,6 +27,7 @@ class add_address_to_user_locations extends Command
      */
     public function handle()
     {
+        $apiKey = config('services.google_maps.api_key_commands');   
         $posts = UserLocation::whereNull('address')
             ->whereNotNull('latitude')
             ->whereNotNull('longitude')
@@ -39,7 +40,7 @@ class add_address_to_user_locations extends Command
 
             $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json', [
                 'latlng' => "{$post->latitude},{$post->longitude}",
-                'key' => env('GOOGLE_MAPS_API_KEY'),
+                'key' => $apiKey,
             ]);
 
             if ($response->successful() && $response['status'] === 'OK') {
