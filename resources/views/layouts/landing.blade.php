@@ -26,7 +26,7 @@
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>What is Visitmyjoburg?</h2>
+            <h2 class='text-xl font-bold mb-2 text-gray-800'>Visitmyjoburg</h2>
             <h1 class='text-gray-600'>
             Welcome to the Scibotics competition 2025. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
             </h1>

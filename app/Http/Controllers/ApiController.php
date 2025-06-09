@@ -365,6 +365,31 @@ class ApiController extends Controller
            // Fetch data from the 'posts' table
             $posts = Post::where('status', 'show')
             ->orderBy('created_at', 'desc')
+            ->where('verified', 1)
+            ->get();
+        
+            // Return the user data as JSON
+            return response()->json([
+                'status' => 'success',
+                'data' => $posts
+            ]);
+        
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+        
+    }
+
+    public function getSciencePostsRules()
+    {
+        try {
+           // Fetch data from the 'posts' table
+            $posts = Post::where('status', 'show')
+            ->where('plate', 1)
+            ->orderBy('created_at', 'desc')
             ->get();
         
             // Return the user data as JSON
