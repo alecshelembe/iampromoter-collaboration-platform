@@ -26,10 +26,16 @@
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>Visitmyjoburg</h2>
-            <h1 class='text-gray-600'>
-            Welcome to the Scibotics competition 2025. <br>  <a href="mailto:promotions@visitmyjoburg.co.za" class="text-grey-600"> <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za</a>
+            <h2 class='text-xl font-bold mb-2 text-gray-800'>Cash Crusaders</h2>
+            <h1 class="text-gray-600">
+            <h1 class="text-gray-600">
+                <br>
+                <a href="https://play.google.com/store/apps/details?id=com.visitmyjoburg.app" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-android text-2xl mr-2"></i>
+                    Download our Android app
+                </a>
             </h1>
+
             <div class="text-center my-4">
                 <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
                 <!-- Plus icon -->

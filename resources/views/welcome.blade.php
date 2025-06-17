@@ -17,14 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Scibotics Competition 2025">
-    <meta name="description" content="Join the Scibotics Competition 2025, a premier event in South Africa that showcases innovation in robotics and technology. Participate in exciting challenges, learn from experts, and connect with like-minded individuals passionate about STEM education.">
-    <meta name="keywords" content="scibotics, competition, 2025, robotics, technology, innovation, education, STEM, South Africa">
+    <meta name="title" content="Cash crusaders">
+    <meta name="description" content="Cash crusaders">
+    <meta name="keywords" content="Cash crusaders">
     <meta name="author" content="Visit My Joburg Team">
     <meta name="robots" content="index, follow">
 
-    <title>Scibotics Competition 2025</title>
-
+    <title>Cash Crusaders</title>
 
     <link rel="canonical" href="https://visitmyjoburg.co.za">
     <link rel="preconnect" href="https://fonts.bunny.net">

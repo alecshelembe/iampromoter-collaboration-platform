@@ -7,7 +7,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
     <div class="w-full flex flex-wrap items-center justify-between mx-auto p-2">
       <a  href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={{ config('services.project.logo_image') }} class="h-14" alt="Flowbite Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Scibotics Comp 25</span>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Cash Crusaders</span>
       </a>
       <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -213,7 +213,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" Where to? Search for a business name" required />
+                <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="find" required />
                 <!-- <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> -->
             </div>
         </form>
