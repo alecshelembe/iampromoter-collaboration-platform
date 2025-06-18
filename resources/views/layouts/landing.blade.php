@@ -29,8 +29,11 @@
             <h2 class='text-xl font-bold mb-2 text-gray-800'>Cash Crusaders</h2>
             <h1 class="text-gray-600">
             <h1 class="text-gray-600">
-                <br>
-                <a href="https://play.google.com/store/apps/details?id=com.visitmyjoburg.app" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
+                <!-- Welcome <br>
+                <a href="mailto:promotions@visitmyjoburg.co.za" class="text-gray-600">
+                    <i class="fa-solid fa-envelope"></i> promotions@visitmyjoburg.co.za
+                </a> -->
+                <a href="https://github.com/alecshelembe/collaborations/releases/tag/android" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-android text-2xl mr-2"></i>
                     Download our Android app
                 </a>
@@ -57,7 +60,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Where to?" required />
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="find" required />
                 </div>
             </form>
         </div>
