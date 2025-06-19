@@ -410,8 +410,9 @@ class ApiController extends Controller
     public function getSocialPosts()
     {
         try {
-            // Fetch all social posts with status 'show'
+            // Fetch all social posts with status 'show' and 'social_p' greater than 1
             $socialPosts = SocialPost::where('status', 'show')
+                ->where('social_p', '>', 1) // Add this line
                 ->orderBy('created_at', 'desc')
                 ->get();
         
