@@ -17,13 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Cash crusaders">
-    <meta name="description" content="Cash crusaders">
-    <meta name="keywords" content="Cash crusaders">
+    <meta name="title" content="aya.sye,tladi_4de_nanaz">
+    <meta name="description" content="aya.sye,tladi_4de_nanaz">
+    <meta name="keywords" content="aya.sye,tladi_4de_nanaz">
     <meta name="author" content="Visit My Joburg Team">
     <meta name="robots" content="index, follow">
 
-    <title>Cash Crusaders</title>
+    <title>Collabz</title>
 
     <link rel="canonical" href="https://visitmyjoburg.co.za">
     <link rel="preconnect" href="https://fonts.bunny.net">

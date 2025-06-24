@@ -26,7 +26,7 @@
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>Cash Crusaders</h2>
+            <h2 class='text-xl font-bold mb-2 text-gray-800'>Collabz</h2>
             <h1 class="text-gray-600">
             <h1 class="text-gray-600">
                 <!-- Welcome <br>
@@ -94,7 +94,8 @@
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
                         <div class="flex-1">
                            
-                            <p class="text-sm font-bold">{{ $post->place_name }}</p>
+                            <p class="text-sm">{{ $post->place_name }}</p>
+                            <p class="text-sm">R {{ $post->fee }}</p>
                             <!-- <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p> -->
                             <p class="text-sm text-gray-700">{{ $post->address }}</p>
                             @if (!empty($post->note))

@@ -272,7 +272,13 @@
 
 <script>
     const phrases = [
-        "Entrance to the Extraordinary!",
+        "Buy Now!",
+        "Shop Now!",
+        "Get Yours!",
+        "Grab It!",
+        "Claim Yours!",
+        "Limited Time Offer!",
+        "Act Fast!",
     ];
 
     // Function to update the button text randomly
