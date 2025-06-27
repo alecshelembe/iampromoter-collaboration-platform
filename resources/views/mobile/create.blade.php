@@ -2,11 +2,9 @@
 
 @section('content')
 
-
 <script defer src="{{ asset('js/app.js') }}"></script>
 <script defer src="{{ asset('js/get-user-location.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&libraries=places" defer></script>
-
 
 <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
 <h1 class="text-3xl font-bold mb-6">Create a post</h1>
@@ -421,54 +419,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 const types = [
-  "accounting", "airport", "amusement_park", "aquarium", "art_gallery",
-  "atm", "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store",
-  "bowling_alley", "bus_station", "cafe", "campground", "car_dealer", "car_rental",
-  "cemetery", "church", "clothing_store", "convenience_store", "courthouse",
-  "dentist", "department_store", "doctor", "drugstore", "electrician", "electronics_store",
-  "embassy", "fire_station", "florist", "food", "funeral_home", "furniture_store",
-  "gas_station", "gym", "hair_care", "hardware_store", "health", "hindu_temple",
-  "home_goods_store", "hospital", "insurance_agency", "jewelry_store", "laundry",
-  "lawyer", "library", "light_rail_station", "liquor_store", "local_government_office",
-  "locksmith", "lodging", "meal_delivery", "meal_takeaway", "mosque", "movie_rental",
-  "movie_theater", "moving_company", "museum", "night_club", "painter", "park",
-  "parking", "pet_store", "pharmacy", "physiotherapist", "place_of_worship", "plumber",
-  "police", "post_office", "real_estate_agency", "restaurant", "roofing_contractor",
-  "rural_area", "school", "shoe_store", "shopping_mall", "spa", "stadium", "storage",
-  "store", "subway_station", "supermarket", "synagogue", "taxi_stand", "train_station",
-  "travel_agency", "university", "veterinary_care", "zoo",
-
-  // Extended categories
-  "tattoo_parlor", "coffee_shop", "fast_food", "bbq_restaurant", "steakhouse",
-  "bakery_dessert", "donut_shop", "ice_cream_shop", "italian_restaurant", "chinese_restaurant",
-  "indian_restaurant", "japanese_restaurant", "mexican_restaurant", "greek_restaurant",
-  "korean_restaurant", "french_restaurant", "vegan_restaurant", "vegetarian_restaurant",
-  "burger_restaurant", "pizza_place", "seafood_restaurant", "sushi_bar", "buffet",
-  "hookah_lounge", "brewery", "wine_bar", "cannabis_dispensary", "comedy_club",
-  "music_venue", "karaoke_bar", "escape_room", "arcade", "laser_tag_center",
-  "trampoline_park", "climbing_gym", "skate_park", "yoga_studio", "pilates_studio",
-  "martial_arts_school", "boxing_gym", "crossfit_gym", "dance_studio", "photography_studio",
-  "printing_shop", "coworking_space", "web_design_agency", "marketing_agency",
-  "consulting_firm", "interior_design_studio", "architecture_firm", "construction_company",
-  "solar_energy_company", "wind_energy_company", "landscaping_service", "gardening_store",
-  "paint_store", "tile_store", "bathroom_showroom", "kitchen_showroom", "baby_store",
-  "toy_store", "gift_shop", "party_store", "stationery_store", "mobile_store",
-  "tech_repair", "phone_store", "computer_store", "pawn_shop", "antique_store",
-  "thrift_store", "vintage_store", "outdoor_gear_store", "hiking_store", "camping_store",
-  "bike_repair", "auto_parts_store", "motorcycle_shop", "car_wash", "auto_repair_shop",
-  "oil_change_station", "tire_shop", "notary_service", "translation_service",
-  "immigration_lawyer", "family_lawyer", "tax_consultant", "real_estate_lawyer",
-  "childcare_center", "preschool", "elementary_school", "high_school", "language_school",
-  "driving_school", "test_center", "unemployment_office", "visa_center", "passport_office",
-  "municipal_building", "city_hall", "community_center", "food_bank", "homeless_shelter",
-  "recycling_center", "waste_management", "animal_shelter", "wildlife_rescue",
-  "eco_tourism_center", "heritage_site", "botanical_garden", "nature_reserve",
-  "scuba_shop", "surf_shop", "ski_resort", "snowboard_rental", "ice_skating_rink",
-  "boat_rental", "marina", "fishing_store", "hunting_store", "gun_shop", "archery_range",
-  "paintball_park", "drone_shop", "3d_printing_lab", "makerspace", "tech_startup_office",
-  "coding_school", "e_learning_center", "podcasting_studio", "film_studio", "music_school",
-  "recording_studio", "tattoo_removal", "med_spa", "dermatology_clinic", "eye_clinic",
-  "urgent_care", "nursing_home", "rehabilitation_center", "blood_donation_center"
+  "accounting",  "airport",  "amusement_park",  "animal_shelter",  "antique_store",  "aquarium",  "arcade",  "archery_range",  "architecture_firm",  "art_gallery",  "atm",  "auto_parts_store",  "auto_repair_shop",  "baby_store",  "bakery",  "bakery_dessert",  "bank",  "bar",  "bathroom_showroom",  "bbq_restaurant",  "beauty_salon",  "bicycle_store",  "bike_repair",  "blood_donation_center",  "boat_rental",  "book_store",  "botanical_garden",  "bowling_alley",  "boxing_gym",  "brewery",  "buffet",  "burger_restaurant",  "bus_station",  "cafe",  "campground",
+  "cannabis_dispensary",  "car_dealer",  "car_rental",  "car_wash",  "cemetery",  "childcare_center",  "chinese_restaurant",  "church",  "city_hall",  "climbing_gym",  "clothing_store",  "coding_school",  "coffee_shop",  "comedy_club",  "community_center",  "computer_store",  "construction_company",  "consulting_firm",  "convenience_store",  "coworking_space",  "courthouse",  "crossfit_gym",  "dance_studio",  "dentist",  "department_store",  "dermatology_clinic",  "doctor",  "donut_shop",  "drone_shop",  "driving_school",  "drugstore",  "e_learning_center",
+  "eco_tourism_center",  "electrician",  "electronics_store",  "elementary_school",  "embassy",  "escape_room",  "eye_clinic",  "family_lawyer",  "fast_food",  "film_studio",  "fire_station",  "fishing_store",  "florist",  "food",  "food_bank",  "french_restaurant",  "funeral_home",  "furniture_store",  "gardening_store",  "gas_station",  "gift_shop",  "greek_restaurant",  "gun_shop",  "gym",  "hair_care",  "hardware_store",  "health",  "heritage_site",
+  "high_school",  "hiking_store",  "hindu_temple",  "home_goods_store",  "homeless_shelter",  "hookah_lounge",  "hospital",  "hunting_store",  "ice_cream_shop",  "ice_skating_rink",  "immigration_lawyer",  "indian_restaurant",  "insurance_agency",  "interior_design_studio",  "italian_restaurant",  "japanese_restaurant",  "jewelry_store",  "karaoke_bar",  "kitchen_showroom",  "korean_restaurant",  "landscaping_service",  "language_school",  "laser_tag_center",  "laundry",  "lawyer",  "library",  "light_rail_station",  "liquor_store",  "local_government_office",  "locksmith",  "lodging",  "makerspace",  "marina",  "marketing_agency",  "martial_arts_school",
+  "meal_delivery",  "meal_takeaway",  "med_spa",  "mexican_restaurant",  "mobile_store",  "mosque",  "motorcycle_shop",  "movie_rental",  "movie_theater",  "moving_company",  "municipal_building",  "museum",  "music_school",  "music_venue",  "nature_reserve",  "night_club",  "notary_service",  "nursing_home",  "oil_change_station",  "outdoor_gear_store",  "painter",  "paint_store",  "paintball_park",  "park",  "parking",  "party_store",  "passport_office",  "pawn_shop",  "pet_store",  "pharmacy",  "phone_store",  "photography_studio",  "physiotherapist",  "pilates_studio",  "pizza_place",  "place_of_worship",
+  "plumber",  "podcasting_studio",  "police",  "post_office",  "preschool",  "printing_shop",  "real_estate_agency",  "real_estate_lawyer",  "recycling_center",  "recording_studio",  "rehabilitation_center",  "restaurant",  "roofing_contractor",  "rural_area",  "school",  "scuba_shop",  "seafood_restaurant",  "shoe_store",  "shopping_mall",  "ski_resort",  "skate_park",  "snowboard_rental",  "solar_energy_company",  "spa",  "stadium",  "stationery_store",  "steakhouse",  "storage",  "store",  "subway_station",  "supermarket",  "surf_shop",  "sushi_bar",  "synagogue",  "tattoo_parlor",
+  "tattoo_removal",  "tax_consultant",  "taxi_stand",  "tech_repair",  "tech_startup_office",  "test_center",  "3d_printing_lab",  "thrift_store",  "tile_store",  "tire_shop",  "toy_store",  "train_station",  "trampoline_park",  "translation_service",  "travel_agency",  "unemployment_office",  "university",  "urgent_care",  "vegan_restaurant",  "vegetarian_restaurant",  "veterinary_care",  "vintage_store",  "visa_center",  "waste_management",
+  "web_design_agency",  "wildlife_rescue","wind_energy_company","wine_bar","yoga_studio","zoo"
 ];
 
     types.forEach(type => {
@@ -480,7 +438,6 @@ const types = [
         </div>
       `);
     });
-
 
 });
 

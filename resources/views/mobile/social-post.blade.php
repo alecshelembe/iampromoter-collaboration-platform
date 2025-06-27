@@ -52,7 +52,6 @@
             </a>
         </div>
 
-       
         <div class="flex justify-center my-2">
             <p class="text-gray-700 rounded-full text-xs shadow-lg px-3 py-3 flex flex-wrap items-center gap-2">
                 @foreach($socialPost->extras as $extra)
@@ -72,7 +71,11 @@
                     <i class="fa-solid fa-fire-flame-curved"></i> Unlock the Magic!
                 </button>
             </form>
+            <button class="py-2 mx-4 px-4 rounded-full bg-blue-100 shadow-lg hover:scale-105 flex items-center gap-2">
+                   <i class="fa-solid fa-cart-plus"></i></i>Add to cart
+               </button>
         </div>
+            
         <div class="flex justify-center">
             <p class="text-sm font-bold rounded-full shadow-lg px-2 text-sm py-2">R {{ $socialPost->fee }}</p>
         </div>
@@ -106,12 +109,9 @@
         @endif
     </div>
 
-
-        
         <div class="flex justify-center my-2 items-center space-x-2">
             <p class="text-gray-700 rounded shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
         </div>
-
 
         <div>
         @if(Auth::check())
@@ -219,9 +219,7 @@
         </div>
     </div>
 @endif
-
-
-            <h3 class=" text-sm ">Comments:</h3>
+        <h3 class=" text-sm ">Comments:</h3>
 
             {{-- Check if comments are not null and not empty --}}
             @if ($socialPost->comments && count($socialPost->comments) > 0)

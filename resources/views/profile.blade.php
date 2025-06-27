@@ -8,7 +8,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
 
-<div class="mx-auto max-w-sm p-4">
+<div class='max-w-3xl mx-auto p-3 bg-white'>
     <img  
         src="{{ Storage::url($user->profile_image_url) }}"
         name="image" 
@@ -90,7 +90,8 @@
         </div>
 
 
-        <div class="max-w-sm rounded overflow-hidden">
+        <div class="max-w-3xl rounded overflow-hidden">
+
             <!-- Image Preview -->
                 <div>
                 <!-- <img id="image-preview" src="" name="image" alt="Image Preview"  style="width: 50%; height: 50%;" class="mx-auto hidden rounded-full object-cover rounded-md shadow-md" /> -->
