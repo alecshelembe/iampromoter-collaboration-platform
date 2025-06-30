@@ -71,11 +71,17 @@
                     <i class="fa-solid fa-fire-flame-curved"></i> Unlock the Magic!
                 </button>
             </form>
-            <button class="py-2 mx-4 px-4 rounded-full bg-blue-100 shadow-lg hover:scale-105 flex items-center gap-2">
-                   <i class="fa-solid fa-cart-plus"></i></i>Add to cart
-               </button>
+            <button id="add-to-cart" value="{{($socialPost->id)}}" class="py-2 mx-4 px-4 rounded-full bg-blue-100 shadow-lg hover:scale-105 flex items-center gap-2">
+                <i class="fa-solid fa-cart-plus"></i>
+            </button>
+
+             <!-- Message box for displaying success or error messages -->
+             
+            </div>
+        <div class="flex justify-center my-4">
+            <div id="message-box" class="rounded-full shadow-lg px-2 text-sm py-2 message-box"></div>
         </div>
-            
+        
         <div class="flex justify-center">
             <p class="text-sm font-bold rounded-full shadow-lg px-2 text-sm py-2">R {{ $socialPost->fee }}</p>
         </div>
@@ -284,8 +290,70 @@
         const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
         document.getElementById("dynamicButton").innerHTML = `<i class="fa-solid fa-fire-flame-curved"></i> ${randomPhrase}`;
     }
-
+    
     // Call the function to set a random phrase on load
     window.onload = updateButtonText;
+</script>
+<script>
+    $(document).ready(function() {
+            // Get a reference to the message box element
+            const messageBox = $('#message-box');
+
+            // Function to display messages
+            function showMessage(message, type) {
+                messageBox.text(message);
+                messageBox.removeClass('success error').addClass(type);
+                messageBox.fadeIn(400).delay(2000).fadeOut(400); // Fade in, show for 2s, then fade out
+            }
+
+            // Attach a click event listener to the button with the ID 'add-to-cart'
+            $('#add-to-cart').on('click', function() {
+                // Get the 'value' attribute of the clicked button
+                const postId = $(this).val();
+
+                // Retrieve the CSRF token from the meta tag
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Log the value to the console to verify it's captured correctly
+                console.log('Button clicked! Post ID:', postId);
+
+                // Perform an AJAX POST request
+                $.ajax({
+                    // The URL where you want to send the data.
+                    // Replace 'your-backend-endpoint.php' with the actual path to your server-side script.
+                    url: '{{ route('add_to_cart', ['id' => ':postId']) }}'.replace(':postId', postId),
+
+                    // The HTTP method to use (POST is common for sending data)
+                    method: 'POST',
+                    // The data to be sent to the server, now including the CSRF token.
+                    data: {
+                        postId: postId,
+                        _token: csrfToken // Include the CSRF token here
+                    },
+                    // Set dataType to 'json' if your backend is expected to return JSON.
+                    // If your backend returns plain text or HTML, adjust this accordingly or omit it.
+                    dataType: 'json',
+                    // Function to be called if the AJAX request is successful
+                    success: function(response) {
+                        console.log('AJAX request successful:', response);
+                        // You can handle the response from the server here.
+                        // For example, display a success message to the user.
+                        if (response.status === 'success') {
+                            showMessage('Item added to cart successfully!', 'success');
+                            // Optionally, update UI here, like disabling the button or changing its text
+                        } else {
+                            showMessage('' + (response.message || 'Unknown error'), 'error');
+                        }
+                    },
+                    // Function to be called if the AJAX request fails (e.g., network error, server error)
+                    error: function(xhr, status, error) {
+                        console.error('AJAX request failed:', status, error);
+                        console.error('Response Text:', xhr.responseText);
+                        // Display an error message to the user
+                        showMessage('Error adding item to cart. Please try again23.', 'error');
+                    }
+                });
+            });
+        });
 </script>
 @endsection

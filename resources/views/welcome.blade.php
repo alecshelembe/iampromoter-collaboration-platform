@@ -17,11 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="aya.sye,tladi_4de_nanaz">
-    <meta name="description" content="aya.sye,tladi_4de_nanaz">
-    <meta name="keywords" content="aya.sye,tladi_4de_nanaz">
+    <meta name="title" content="Collabz">
+    <meta name="description" content="Collabz">
+    <meta name="keywords" content="Collabz">
     <meta name="author" content="Visit My Joburg Team">
     <meta name="robots" content="index, follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Collabz</title>
 
@@ -31,13 +32,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/output.css') }}">
     <link rel="icon" href="{{ config('services.project.logo_image') }}" type="image/x-icon">
-
-    <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet">
+    <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+    <!-- --------- Does not work with defer -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+     <!-- ---------------- -->
+
     <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
     <script defer src="{{ asset('js/browser-image-compression.js') }}"></script>
     <!-- <script defer src="{{ asset('js/ckeditor.js') }}"></script> -->
+    <script src="{{ asset('js/jQuery.js') }}"></script>
 </head>
 
     <style>
@@ -58,12 +64,10 @@
 
     </style>
     <body class="m-4">
-        
 
         {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-        
 
     </body>
     <script>

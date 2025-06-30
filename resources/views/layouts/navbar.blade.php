@@ -32,13 +32,12 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 </div>
             @endif
           </li> 
-          <li>
-          <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
-            <!-- Plus icon -->
-              <i class="fa-solid fa-map-location-dot"></i>
-              Go to map 
-            </a>
-        </li> 
+          
+        <li>
+          <a href="{{ route('checkout') }}" class="bg-blue-700 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+                <i class="fa-solid fa-cart-shopping"></i> Checkout
+          </a>
+        </li>
           <li>
               <button id="dropdownNavbarLink_legal" data-dropdown-toggle="dropdownNavbar_legal" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Legal  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
@@ -209,7 +208,13 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             </div>
             
           </li>
-          
+          <li>
+          <a href="{{ route('show-map') }}" class="bg-blue-400 text-white btn-sm py-2 px-2 rounded-full hover:bg-blue-600">
+            <!-- Plus icon -->
+              <i class="fa-solid fa-map-location-dot"></i>
+              Go to map 
+            </a>
+        </li> 
         </ul>
       </div>
     </div>

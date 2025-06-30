@@ -58,7 +58,7 @@ if (!function_exists('getSectorIcon')) {
             // 'networking' => 'fa-network-wired',
             // 'cloud computing' => 'fa-cloud',
             // 'ai & machine learning' => 'fa-robot',
-            // 'wifi' => 'fa-wifi',
+            'wifi' => 'fa-wifi',
 
             // // Finance & Business
             // 'finance' => 'fa-dollar-sign',
@@ -73,7 +73,7 @@ if (!function_exists('getSectorIcon')) {
             // 'medical devices' => 'fa-stethoscope',
             // 'dentistry' => 'fa-tooth',
             // 'mental health' => 'fa-brain',
-            // 'wheelchair access' => 'fa-wheelchair',
+            'wheelchair access' => 'fa-wheelchair',
 
             // // Education & Training
             // 'education' => 'fa-book',
@@ -83,7 +83,7 @@ if (!function_exists('getSectorIcon')) {
 
             // // Entertainment & Media
             // 'entertainment' => 'fa-film',
-            // 'gaming' => 'fa-gamepad',
+            'gaming' => 'fa-gamepad',
             // 'music' => 'fa-music',
             // 'theater' => 'fa-masks-theater',
             // 'streaming' => 'fa-tv',
@@ -174,10 +174,10 @@ if (!function_exists('getSectorIcon')) {
 
             // // Family & Pets
             // 'child friendly' => 'fa-child',
-            // 'pets allowed' => 'fa-dog',
+            'pets allowed' => 'fa-dog',
 
             // // Hospitality & Amenities
-            // 'parking' => 'fa-square-parking',
+            'parking' => 'fa-square-parking',
             // 'seating' => 'fa-chair',
             // 'smoking area' => 'fa-smoking',
             // 'wine & drinks' => 'fa-wine-glass',
