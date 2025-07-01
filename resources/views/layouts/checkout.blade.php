@@ -3,16 +3,27 @@
 @include('layouts.navbar')  
 
 @section('content')
-
+    
     <div class="flex justify-end">
         <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
             <i class="fa-regular fa-eye"></i> 
         </button>
     </div>
+    {{-- Total Fee and Checkout Button --}}
+    @if (count($results) > 0)
+        <div class="flex justify-center">
+            <button class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white py-2 px-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                <h2>
+                    R <span id="totalFee">{{ number_format($totalFee, 2) }}</span>
+                </h2>
+                <i class="fa-solid fa-fire-flame-curved"></i> Proceed to Checkout!
+            </button>
+        </div>
+    @endif
 
     <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4 lg:grid-cols-4">
         @foreach ($results as $post)
-            <div class="p-2 bg-white">
+            <div class="p-2 bg-white" data-fee="{{ $post->fee }}">
                 <div class="grid grid-cols-2 gap-2">
                     {{-- Parse and display images --}}
                     @php
@@ -38,7 +49,7 @@
 
                     <p class="text-sm text-gray-700 ">{{ $post->place_name }}</p>
                     <p class="text-sm text-grey-500">R {{ $post->fee }}</p>
-                    <p class="text-sm text-gray-700">{{ $post->address }}</p>
+                    <!-- <p class="text-sm text-gray-700">{{ $post->address }}</p> -->
 
                     <div>
                         <button type="button"
@@ -52,62 +63,64 @@
         @endforeach
     </div> {{-- End of post container --}}
 
-    <script>
-        const toggleButton = document.getElementById('toggleView');
-        const postContainer = document.getElementById('postContainer');
-        let isGrid = true;
+   <script>
+    const toggleButton = document.getElementById('toggleView');
+    const postContainer = document.getElementById('postContainer');
+    let isGrid = true;
 
-        toggleButton.addEventListener('click', function() {
-            if (isGrid) {
-                postContainer.classList.remove('grid', 'grid-cols-2', 'lg:grid-cols-4');
-                postContainer.classList.add('flex', 'flex-col');
-            } else {
-                postContainer.classList.remove('flex', 'flex-col');
-                postContainer.classList.add('grid', 'grid-cols-2', 'lg:grid-cols-4');
-            }
-            isGrid = !isGrid;
-        });
+    toggleButton.addEventListener('click', function() {
+        if (isGrid) {
+            postContainer.classList.remove('grid', 'grid-cols-2', 'lg:grid-cols-4');
+            postContainer.classList.add('flex', 'flex-col');
+        } else {
+            postContainer.classList.remove('flex', 'flex-col');
+            postContainer.classList.add('grid', 'grid-cols-2', 'lg:grid-cols-4');
+        }
+        isGrid = !isGrid;
+    });
 
-        // JavaScript for handling the remove button
-        document.addEventListener('DOMContentLoaded', function() {
-            const removeButtons = document.querySelectorAll('.remove-from-cart-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+        const removeButtons = document.querySelectorAll('.remove-from-cart-btn');
+        const totalFeeSpan = document.getElementById('totalFee');
 
-            removeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const postId = this.dataset.postId;
-                    const postCard = this.closest('.p-2.bg-white');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.dataset.postId;
+                const postCard = this.closest('.p-2.bg-white');
+                const url = `/remove-from-cart/${postId}`;
 
-                    if (confirm('Are you sure you want to remove this item?')) {
-                        // Construct the URL with the ID
-                        const url = `/remove-from-cart/${postId}`;
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        if (postCard) {
+                            const fee = parseFloat(postCard.dataset.fee) || 0;
+                            const currentTotal = parseFloat(totalFeeSpan.textContent.replace(/,/g, '')) || 0;
+                            const newTotal = Math.max(currentTotal - fee, 0).toFixed(2);
 
-                        fetch(url, { // Use the constructed URL
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json', // Still good practice, though not strictly needed for the ID
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            // No 'body' needed for the ID now, as it's in the URL
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === 'success') {
-                                alert(data.message);
-                                if (postCard) {
-                                    postCard.remove();
-                                }
-                            } else {
-                                alert('Error: ' + data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('An error occurred while removing the item.');
-                        });
+                            totalFeeSpan.textContent = newTotal;
+
+                            postCard.remove();
+                        }
+                    } else {
+                        alert('Error: ' + data.message);
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while removing the item.');
                 });
             });
         });
-    </script>
+    });
+</script>
+
+
 
 @endsection

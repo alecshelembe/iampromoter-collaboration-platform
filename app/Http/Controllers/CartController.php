@@ -122,15 +122,30 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-        public function viewCart()
+    
+    public function viewCart()
     {
+        // Retrieve the array of post IDs stored in the session cart.
+        // Defaults to an empty array if the 'cart' session variable doesn't exist.
         $cartIds = Session::get('cart', []);
 
+        // Fetch all SocialPost models where their 'id' is present in the $cartIds array.
+        // This efficiently retrieves all cart items from the database.
         $results = SocialPost::whereIn('id', $cartIds)->get();
 
-        return view('layouts.checkout', compact('results'));
+        // Initialize a variable to store the total fee.
+        $totalFee = 0;
 
-       
+        // Loop through each SocialPost object retrieved from the database.
+        foreach ($results as $post) {
+            // Add the 'fee' of each post to the totalFee.
+            // Ensure the 'fee' column in your database is a numeric type (e.g., decimal, float, integer).
+            $totalFee += $post->fee;
+        }
+
+        // Return the 'layouts.checkout' view, passing both the fetched posts ($results)
+        // and the calculated total fee ($totalFee) to the view.
+        return view('layouts.checkout', compact('results', 'totalFee'));
     }
 
 }
