@@ -18,7 +18,7 @@
 
     <div class="flex justify-end">
         <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
-            <i class="fa-regular fa-eye"></i> View
+            <i class="fa-regular fa-eye"></i> 
         </button>
     </div>
 

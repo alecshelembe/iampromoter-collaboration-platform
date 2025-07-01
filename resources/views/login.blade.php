@@ -43,7 +43,7 @@
                 <a href="{{ route('landing') }}" class="bg-blue-500 text-white btn-sm mx-1 py-2 px-2 rounded-full hover:bg-blue-600">
                 <!-- Plus icon -->
                 <i class="fa-solid fa-magnifying-glass"></i>
-                Find 
+                Go to Feed 
                 </a>
 
                 <a href="{{ route('show-map') }}" class="bg-blue-500 text-white btn-sm mx-1 py-2 px-2 rounded-full hover:bg-blue-600">

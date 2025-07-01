@@ -193,6 +193,8 @@ Route::get('/send-transaction-email/{id}', [TransactionPayfastController::class,
 
 Route::post('/add-to-cart/{id}', [CartController::class, 'addtocart'])->name('add_to_cart');
 
+Route::post('/remove-from-cart/{id}', [CartController::class, 'removefromcart'])->name('remove_from_cart');
+
 // In web.php
 Route::get('/checkout', [CartController::class, 'viewCart'])->name('checkout');
 

@@ -78,7 +78,7 @@
              <!-- Message box for displaying success or error messages -->
              
             </div>
-        <div class="flex justify-center my-4">
+        <div class="flex justify-center">
             <div id="message-box" class="rounded-full shadow-lg px-2 text-sm py-2 message-box"></div>
         </div>
         
@@ -277,12 +277,12 @@
 <script>
     const phrases = [
         "Buy Now!",
-        "Shop Now!",
-        "Get Yours!",
-        "Grab It!",
-        "Claim Yours!",
-        "Limited Time Offer!",
-        "Act Fast!",
+        // "Shop Now!",
+        // "Get Yours!",
+        // "Grab It!",
+        // "Claim Yours!",
+        // "Limited Time Offer!",
+        // "Act Fast!",
     ];
 
     // Function to update the button text randomly
@@ -350,7 +350,7 @@
                         console.error('AJAX request failed:', status, error);
                         console.error('Response Text:', xhr.responseText);
                         // Display an error message to the user
-                        showMessage('Error adding item to cart. Please try again23.', 'error');
+                        showMessage('Error adding item to cart. Please try again.', 'error');
                     }
                 });
             });

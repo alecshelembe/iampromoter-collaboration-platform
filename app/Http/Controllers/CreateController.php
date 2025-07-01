@@ -11,8 +11,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class CreateController extends Controller
 {
     // Apply the auth middleware to all methods in this controller

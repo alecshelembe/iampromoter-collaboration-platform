@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SocialPost;
 use Illuminate\Support\Facades\Session; // Import the Session facade
 
 class CartController extends Controller
 {
+     // Apply the auth middleware to all methods in this controller
+    public function __construct()
+    {
+         $this->middleware('auth');
+    }
     /**
      * Adds a social post to the shopping cart.
      *
@@ -14,6 +20,55 @@ class CartController extends Controller
      * @param \Illuminate\Http\Request $request The current HTTP request instance.
      * @return \Illuminate\Http\JsonResponse
      */
+    public function removefromcart(Request $request, $idToRemove) // Change here: $idToRemove is now a route parameter
+    {
+        // No need for $idToRemove = $request->input('id'); anymore, it's already available
+
+        if (is_null($idToRemove)) {
+            // This check is technically less likely to be hit now if the route is defined correctly,
+            // but can still be useful for defensive programming.
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Item ID is required for removal.'
+            ], 400); // Bad Request
+        }
+
+        try {
+            $cart = Session::get('cart', []);
+            $initialCartCount = count($cart);
+
+            $cart = array_values(array_filter($cart, function($itemId) use ($idToRemove) {
+                return $itemId != $idToRemove;
+            }));
+
+            Session::put('cart', $cart);
+
+            if (count($cart) < $initialCartCount) {
+                \Log::info("Item with ID {$idToRemove} removed from cart. Current cart: ", $cart);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Item removed from cart successfully!',
+                    'cart_count' => count($cart)
+                ]);
+            } else {
+                \Log::info("Item with ID {$idToRemove} was not found in cart.");
+                return response()->json([
+                    'status' => 'info',
+                    'message' => 'Item not found in cart.',
+                    'cart_count' => count($cart)
+                ]);
+            }
+
+        } catch (\Exception $e) {
+            \Log::error("Error removing item from cart: " . $e->getMessage(), ['id' => $idToRemove]);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to remove item from cart. Please try again later.'
+            ], 500);
+        }
+    }
+
+
     public function addtocart($id, Request $request)
     {
         // For demonstration, we'll use a simple session-based cart.
@@ -67,14 +122,15 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function viewCart()
+        public function viewCart()
     {
-        $cart = Session::get('cart', []);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Current cart contents',
-            'cart_items' => $cart,
-            'cart_count' => count($cart)
-        ]);
+        $cartIds = Session::get('cart', []);
+
+        $results = SocialPost::whereIn('id', $cartIds)->get();
+
+        return view('layouts.checkout', compact('results'));
+
+       
     }
+
 }
