@@ -341,6 +341,8 @@
                         if (response.status === 'success') {
                             showMessage('Item added to cart successfully!', 'success');
                             // Optionally, update UI here, like disabling the button or changing its text
+                            setTimeout(function() {window.history.back();}, 5000);
+
                         } else {
                             showMessage('' + (response.message || 'Unknown error'), 'error');
                         }

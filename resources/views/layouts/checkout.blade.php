@@ -4,7 +4,7 @@
 
 @section('content')
     
-    <div class="flex justify-end">
+    <div class="flex justify-end my-2">
         <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
             <i class="fa-regular fa-eye"></i> 
         </button>
