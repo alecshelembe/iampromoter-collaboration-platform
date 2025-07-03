@@ -170,7 +170,7 @@ class CreateController extends Controller
         // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('created_at', 'desc')
-            ->limit(8)
+            ->limit(12)
             ->get();
 
         foreach ($socialPosts as $post) {
@@ -185,7 +185,7 @@ class CreateController extends Controller
 
         // Fetch normal posts
         $posts = Post::where('status', 'show')
-            ->limit(8)
+            ->limit(12)
             ->get();
 
         foreach ($posts as $post) {
@@ -206,7 +206,7 @@ class CreateController extends Controller
         // Fetch data from the 'posts' table
         $posts = Post::where('status', 'show')
         ->orderBy('created_at', 'desc')
-        ->limit(8)
+        ->limit(12)
         ->get();
 
         foreach ($posts as $post) {
