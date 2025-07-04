@@ -105,7 +105,7 @@ class UserController extends Controller
         // Handle image upload if provided
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '_'.auth()->user()->email.'_'.$image->getClientOriginalExtension();
+            $imageName = time() . '_'.auth()->user()->email.'.'.$image->getClientOriginalExtension();
             $image->storeAs('public/images', $imageName);
             $imagePath = 'images/' . $imageName;
         } else {
