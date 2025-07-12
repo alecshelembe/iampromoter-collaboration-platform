@@ -80,7 +80,7 @@
                 @endphp
                 <div class="p-4 bg-white shadow-md rounded-lg">
 
-                    {{--@if (is_array($images) && count($images) > 0)
+                    @if (is_array($images) && count($images) > 0)
                         <div class="grid grid-cols-2 gap-2">
                             @foreach ($images as $image)
                                 <figure class="relative">
@@ -88,7 +88,7 @@
                                 </figure>
                             @endforeach
                         </div>
-                    @endif --}}
+                    @endif 
                     <div class="mt-4 flex items-center space-x-3">
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
@@ -97,7 +97,7 @@
                             <p class="text-sm">{{ $post->place_name }}</p>
                             <p class="text-sm">R {{ $post->fee }}</p>
                             <!-- <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p> -->
-                            <p class="text-sm text-gray-700">{{ $post->address }}</p>
+                            <!-- <p class="text-sm text-gray-700">{{ $post->address }}</p> -->
                             @if (!empty($post->note))
                             <div class="flex flex-col leading-1.5 p-2 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
                                 <p class="text-sm font-normal text-gray-900 dark:text-white "  title="{{ $post->note }}">  {{ Str::limit($post->note, 25) }}</p>

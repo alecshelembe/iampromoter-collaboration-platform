@@ -91,7 +91,7 @@
     <div>
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">11. Contact Us</h2>
         <p class="text-gray-600">
-            If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:support@Visitmyjoburg.co.za" class="text-blue-600 underline">support@Visitmyjoburg.co.za</a>.
+            If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:alec@Visitmyjoburg.co.za" class="text-blue-600 underline">alec@Visitmyjoburg.co.za</a>.
         </p>
     </div>
 </div>

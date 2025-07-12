@@ -77,7 +77,7 @@
         if (existingModal) {
             existingModal.remove(); // Close the modal if it exists
             return;
-        }
+    }
 
         // Create modal container with gray background
         let modal = document.createElement("div");

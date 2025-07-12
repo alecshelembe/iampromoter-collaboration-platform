@@ -21,7 +21,7 @@
         <ol class="list-decimal list-inside text-gray-600 space-y-4">
             <li>
                 <span class="font-bold">Refund Request Submission:</span> Customers must submit a refund request within 14 days of the transaction date. Requests can be made via our refunds team at 
-                <a href="mailto:refunds@visitmyjoburg.co.za" class="text-blue-600 underline">refunds@visitmyjoburg.co.za</a>.
+                <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>.
             </li>
             <li>
                 <span class="font-bold">Investigation Period:</span> Once your request is received, we will review and investigate the issue. Please allow <span class="font-semibold">3-5 business days</span> for the investigation to be completed.
@@ -59,7 +59,7 @@
         <h2 class="text-2xl font-semibold text-gray-700 mb-3">Contact Us</h2>
         <p class="text-gray-600">
             If you have questions about our refund policy or wish to submit a request, please contact us at 
-            <a href="mailto:refunds@visitmyjoburg.co.za" class="text-blue-600 underline">refunds@visitmyjoburg.co.za</a>.  
+            <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>.  
         </p>
         <p class="text-gray-600 mt-3">
             We’re here to help and ensure a fair resolution to any issues you may experience.

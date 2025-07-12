@@ -286,7 +286,7 @@ class CreateController extends Controller
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description' => 'required|string',
-            'floating_address' => 'required|string|max:255',
+            'floating_address' => 'required|string|max:500',
             'place_name' => 'required|string|max:255',
             'extras' => 'nullable|array', // Ensure it's an array if present
             'extras.*' => 'string|max:255', // Validate each selected checkbox value
