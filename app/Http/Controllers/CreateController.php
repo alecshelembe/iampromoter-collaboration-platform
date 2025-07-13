@@ -284,7 +284,7 @@ class CreateController extends Controller
     {
         // Validate inputs
         $validatedData = $request->validate([
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'images.*' => 'nullable|image|mimes:jpg,webp,jpeg,png|max:2048',
             'description' => 'required|string',
             'floating_address' => 'required|string|max:500',
             'place_name' => 'required|string|max:255',

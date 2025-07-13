@@ -26,7 +26,7 @@
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>Pre sales Only</h2>
+            <h2 class='text-xl font-bold mb-2 text-gray-800'>Promotions</h2>
             <h1 class="text-gray-600">
             <h1 class="text-gray-600">
                 <!-- Welcome <br>

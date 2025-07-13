@@ -95,7 +95,7 @@ class UserController extends Controller
             'x_handle' => 'nullable|string|max:255',
             'youtube_handle' => 'nullable|string|max:255',
             'other_handle' => 'nullable|string|max:255',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,webp,gif|max:10240',
 
         ]);
 
@@ -162,7 +162,7 @@ class UserController extends Controller
             'floating_first_name' => 'required|string|max:255',
             'floating_last_name' => 'required|string|max:255',
             'floating_phone' => 'required|digits:10',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:10240',
             'position' => 'required|string|max:255',
             'ref' => 'sometimes|email|max:255', // Optional ref field
 
