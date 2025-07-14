@@ -282,6 +282,9 @@ class CreateController extends Controller
 
     public function saveSocialPost(Request $request)
     {
+        if (auth()->user()->email !== 'alec@visitmyjoburg.co.za') {
+        abort(403, 'Unauthorized.');
+        }
         // Validate inputs
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,webp,jpeg,png|max:2048',
@@ -355,6 +358,10 @@ class CreateController extends Controller
 
     public function savePost(Request $request)
     {
+        if (auth()->user()->email !== 'alec@visitmyjoburg.co.za') {
+        abort(403, 'Unauthorized.');
+        }
+
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'title' => 'required|string|max:255',

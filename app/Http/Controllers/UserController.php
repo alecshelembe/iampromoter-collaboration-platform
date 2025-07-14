@@ -16,7 +16,7 @@ class UserController extends Controller
         // $this->middleware('auth');
         // to specific methods 
         // $this->middleware('auth')->only(['create', 'store']);
-        $this->middleware('auth')->except(['create', 'store']);
+        $this->middleware('auth')->except(['create', 'store','viewPublicprofile']);
 
     }
 
