@@ -21,7 +21,8 @@ class SpeechController extends Controller
         // Get the current date
         $today = Carbon::today();
         
-        $text = $request->input('text'); // Get the text from the request
+        $text = $request->input('text'); // HTML content
+        $text = html_entity_decode(strip_tags($text)); // Remove tags and decode entities
         $audio_id = $request->input('audio_id'); // Get the text from the request
         $outputFile = public_path('audio/' . $audio_id . '.wav'); // Absolute path to store the audio file
 

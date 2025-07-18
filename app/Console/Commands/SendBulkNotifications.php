@@ -14,7 +14,7 @@ class SendBulkNotifications extends Command
                             {--body= Zure Wholesale has clothes for you!}';
 
     protected $description = 'Send a bulk Expo push notification to all users with registered Expo tokens';
-    // php artisan notifications:send-bulk --title="New Content Uploaded!" --body="1 sale 1 therapy session Deal!"
+    // php artisan notifications:send-bulk --title="Permanent settings" --body="From now on... Keep it flowing like da wader! Easy, Smooth, natural."
 
 
     public function handle()
