@@ -72,7 +72,7 @@ class CreateController extends Controller
             ->firstOrFail();
 
         // Convert the timestamp to a readable format
-        $socialPost->formatted_time = Carbon::parse($socialPost->created_at)->diffForHumans();
+        $socialPost->formatted_time = Carbon::parse($socialPost->updated_at)->diffForHumans();
 
         // Format the email to extract the author
         $emailParts = explode('@', $socialPost->email); // Assuming you have an 'email' column
@@ -109,7 +109,7 @@ class CreateController extends Controller
             ->firstOrFail();
 
         // Convert the timestamp to a readable format
-        $Post->formatted_time = Carbon::parse($Post->created_at)->diffForHumans();
+        $Post->formatted_time = Carbon::parse($Post->updated_at)->diffForHumans();
 
         // Format the email to extract the author
         $Post->email = $Post->author; 
@@ -124,12 +124,12 @@ class CreateController extends Controller
     public function showMap(){
   // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
-            ->orderBy('created_at', 'desc')
-           // ->limit(8)
+            ->orderBy('updated_at', 'desc')
+           // ->limit(16
             ->get();
 
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Extract username from email
             $post->author = $emailParts[0];
 
@@ -148,13 +148,13 @@ class CreateController extends Controller
     {
             // Fetch all social posts with status 'show'
             $socialPosts = SocialPost::where('status', 'show')
-            ->orderBy('created_at', 'desc')
-            ->limit(8)
+            ->orderBy('updated_at', 'desc')
+            ->limit(16)
             ->get();
             
         // Convert the timestamps to a readable format
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
             $post->author = $emailParts[0]; // Get the part before the '@'
             $post->email = $post->email;// Get the part before the '@'
@@ -169,12 +169,12 @@ class CreateController extends Controller
     {
         // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
-            ->orderBy('created_at', 'desc')
-            ->limit(12)
+            ->orderBy('updated_at', 'desc')
+            ->limit(16)
             ->get();
 
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Extract username from email
             $post->author = $emailParts[0];
 
@@ -185,11 +185,11 @@ class CreateController extends Controller
 
         // Fetch normal posts
         $posts = Post::where('status', 'show')
-            ->limit(12)
+            ->limit(16)
             ->get();
 
         foreach ($posts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Extract username from email
             $post->author = $emailParts[0];
         }
@@ -205,12 +205,12 @@ class CreateController extends Controller
     {
         // Fetch data from the 'posts' table
         $posts = Post::where('status', 'show')
-        ->orderBy('created_at', 'desc')
-        ->limit(12)
+        ->orderBy('updated_at', 'desc')
+        ->limit(16)
         ->get();
 
         foreach ($posts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             // Extract the author's name from the email
             $post->email = $post->author; // Get the part before the '@'
             $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
@@ -414,12 +414,12 @@ class CreateController extends Controller
         // Fetch all social posts for the specified user with status 'show'
         $socialPosts = SocialPost::where('email', $email)
             ->where('status', 'show') // Only fetch posts with status 'show'
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->get();
 
         // Convert timestamps to readable format and extract author name
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email);
             $post->author = $emailParts[0]; // Get the part before the '@'
         }
@@ -432,12 +432,12 @@ class CreateController extends Controller
 
     // Fetch all social posts 
         $socialPosts = SocialPost::where('email', auth()->user()->email)
-        ->orderBy('created_at', 'desc')
+        ->orderBy('updated_at', 'desc')
         ->get();
 
             // Convert the timestamps to a readable format
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
             $post->author = $emailParts[0]; // Get the part before the '@'
             $post->email = $post->email;// Get the part before the '@'
@@ -500,7 +500,7 @@ class CreateController extends Controller
             'id' => rand(),  // Automatically use the logged-in user's email
             'author' => auth()->user()->email,  // Automatically use the logged-in user's email
             'content' => $request->content,
-            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         // Save the updated comments to the post

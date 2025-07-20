@@ -27,13 +27,13 @@ class DirectorController extends Controller
     {
         // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->where('social_p', '>', 1) // Add this line
             ->limit(20)
             ->get();
 
         foreach ($socialPosts as $post) {
-            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Extract username from email
             $post->author = $emailParts[0];
 

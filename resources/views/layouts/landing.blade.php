@@ -35,7 +35,7 @@
                 </a> -->
                 <a href="https://github.com/alecshelembe/collaborations/releases/tag/ANDROID" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-android text-2xl mr-2"></i>
-                    Download our Android app
+                    Download our Android App | Show our app in store for selected discounts | T & Cs apply 
                 </a>
             </h1>
 
@@ -60,7 +60,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="find" required />
+                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Search for a social post" required />
                 </div>
             </form>
         </div>
@@ -104,7 +104,7 @@
                             </div>
                             @endif
                             <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
-                            <!-- <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p> -->
+                            <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
                         </div>
                         <div>
                         @if(Auth::check())

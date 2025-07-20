@@ -74,9 +74,9 @@
                         {{-- Verification Status --}}
                         <p class="text-sm mt-2">
                             @if ($post->verified == 1 || $post->plate == 1)
-                                <i class="fa-solid fa-circle-check"></i> Verified
+                                <i class="fa-solid fa-clipboard-check"></i> App + Web 
                             @else
-                                <i class="fa-regular fa-circle-question"></i> Not Verified
+                                <i class="fa-solid fa-square-check"></i> Web
                             @endif
                         </p>
 
