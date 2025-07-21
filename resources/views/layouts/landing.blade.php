@@ -92,20 +92,20 @@
                     <div class="mt-4 flex items-center space-x-3">
                         <img src="{{ $post->profile_image_url ? Storage::url($post->profile_image_url) : asset('default-profile.png') }}" 
                              alt="Profile Image" class="object-cover shadow-md"                                 style="width: 50px; height: 50px; border-radius: 50%;"/>
-                        <div class="flex-1">
-                           
-                            <p class="text-sm">{{ $post->place_name }}</p>
-                            <p class="text-sm">R {{ $post->fee }}</p>
-                            <!-- <p class="text-sm font-semibold text-grey-500">R {{ $post->fee }}</p> -->
-                            <!-- <p class="text-sm text-gray-700">{{ $post->address }}</p> -->
-                            @if (!empty($post->note))
-                            <div class="flex flex-col leading-1.5 p-2 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-                                <p class="text-sm font-normal text-gray-900 dark:text-white "  title="{{ $post->note }}">  {{ Str::limit($post->note, 25) }}</p>
+                         <div class="flex-1">
+                                <p class="">{{ $post->place_name }}</p>
+                                <p class="text-sm text-grey-500">R {{ $post->fee }}</p>
+                                <!-- <p class="text-sm font-bold">R {{ $post->fee }}</p> -->
+                                <p class="text-sm text-gray-700 my-2">  {{ Str::limit($post->description, 100) }}</p>
+                                <p class="text-sm text-gray-600">{{ $post->address }}</p>
+                                <p class="text-xs text-gray-500">Posted by {{ $post->author }}</p>
+                                @if (!empty($post->note))
+                                <div class="flex flex-col leading-1.5 p-2 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                                    <p class="text-sm font-normal text-gray-900 dark:text-white "  title="{{ $post->note }}">  {{ Str::limit($post->note, 25) }}</p>
+                                </div>
+                                @endif
+                                <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
                             </div>
-                            @endif
-                            <p class="text-xs text-gray-400">Posted by {{ $post->author }}</p>
-                            <p class="text-xs text-gray-400">{{ $post->formatted_time }}</p>
-                        </div>
                         <div>
                         @if(Auth::check())
                             <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm bg-green-500 text-white rounded-full shadow-lg hover:bg-blue-600">
