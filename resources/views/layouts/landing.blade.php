@@ -7,26 +7,26 @@
     @if (Auth::check()) 
         <div class="text-center my-2">
             <a href="{{ route('home') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 dark:text-white">
-                <i class="fa-solid fa-check"></i> You're signed in
+                <i class="fa-solid fa-check"></i> Return to homepage
             </a>
         </div>
     @elseif (Auth::guard('google_users')->check())
-        <div class="text-center my-2">
+        <div class="text-center my-1">
             <a href="{{ route('users.logout') }}" class="inline-flex items-center bg-white hover:bg-gray-100 border border-gray-300 rounded-md py-2 px-4 font-medium text-sm text-gray-700 shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 <i class="fab fa-google mr-2"></i> Log out (Google)
             </a>
         </div>
     @else
-        <div class="text-center my-2">
+        <div class="text-center my-1">
             <a href="{{ route('login') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 dark:text-white">
-                <i class="fa-solid fa-door-open"></i> Sign In
+                <i class="fa-solid fa-door-open"></i> Click here to see more content
             </a>
         </div>
     @endif
 
     <div class='flex justify-center text-center'>
         <div class='max-w-3xl mx-auto p-3 bg-white'>
-            <h2 class='text-xl font-bold mb-2 text-gray-800'>Promotions</h2>
+            <h2 class='text-xl font-bold mb-1 text-gray-800'>Welcome to Collaborations</h2>
             <h1 class="text-gray-600">
             <h1 class="text-gray-600">
                 <!-- Welcome <br>
@@ -60,7 +60,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="searchQuery" class="block w-full my-2 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Search for a social post" required />
+                    <input type="search" id="searchQuery" class="block w-full my-1 p-2 ps-10 text-gray-900 border rounded-lg" placeholder="Search for a social post" required />
                 </div>
             </form>
         </div>

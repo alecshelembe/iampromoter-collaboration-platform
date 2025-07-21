@@ -106,7 +106,7 @@
             <iframe class="video-stream html5-main-video border-4 border-gray-300 rounded-lg" 
                 src="{{ $socialPost->video_link }}" 
                 frameborder="0" 
-                style="width: 500px; height: 282px;" 
+                style="width: 100%; height: 500px;" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
@@ -239,7 +239,7 @@
 
                     <p><strong>{{ $author }}</strong> {{ $comment['content'] }}</p>
                     <p class="text-xs text-gray-500">
-                        Posted {{ \Carbon\Carbon::parse($comment['created_at'])->diffForHumans() }}
+                        Posted {{ \Carbon\Carbon::parse($comment['updated_at'])->diffForHumans() }}
                     </p>
         @if(Auth::check())
 
