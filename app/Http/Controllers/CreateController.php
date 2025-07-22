@@ -517,19 +517,19 @@ class CreateController extends Controller
     public function myrawposts(){
 
     // Fetch all social posts 
-        $socialPosts = Post::where('author', auth()->user()->email)
+        $Posts = Post::where('author', auth()->user()->email)
         ->orderBy('updated_at', 'desc')
         ->get();
 
             // Convert the timestamps to a readable format
-        foreach ($socialPosts as $post) {
+        foreach ($Posts as $post) {
             $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
-            $authorParts = explode('@', $post->author); // Assuming you have an 'author' column
-            $post->author = $authorParts[0]; // Get the part before the '@'
+            $emailParts = explode('@', $post->author); // Assuming you have an 'author' column
+            $post->author = $emailParts[0]; // Get the part before the '@'
             $post->author = $post->author;// Get the part before the '@'
         }
             
-        return view('mobile.home', compact('socialPosts'));
+        return view('mobile.raw', compact('Posts'));
     }
     
     public function clearComments(Request $request, $postId)
