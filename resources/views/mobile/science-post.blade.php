@@ -34,17 +34,16 @@
         </div>
             <p class="text-2xl font-bold my-2">{{ $Post->title }}</p>
             <p class="text-gray-700 my-2">{!! $Post->description !!}</p>
-            <form action={{ route('returnSpeech') }} target="_blank" method="POST">
-                @csrf
-                <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$Post->description}}</textarea>
-                <input type="text" name="audio_id" value="<?php echo(rand());?>" hidden>
-                <button class=" my-4 p-2 text-sm rounded-full shadow-lg" type="submit">Speech (develpment) <i class=" fa-solid fa-volume-high"></i></button>
-            </form>
+                <form action={{ route('returnSpeech') }} target="_blank" method="POST">
+                    @csrf
+                    <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$Post->description}}</textarea>
+                    <input type="text" name="audio_id" value="<?php echo(rand());?>" hidden>
+                    <button class=" my-4 p-2 text-sm rounded-full shadow-lg" type="submit">Speech (develpment) <i class=" fa-solid fa-volume-high"></i></button>
+                </form>
             <p class="text-xs text-gray-500">Posted by {{ $Post->author }}</p>
             <p class="text-xs text-gray-500">{{ $Post->formatted_time }}</p>
         </div>
-        
-        
+          
         <div class="text-right">
             <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $Post->id])) }}" 
                 target="_blank" 
@@ -52,6 +51,12 @@
                 <i class="fa-brands fa-whatsapp"></i> Share
             </a>
         </div>
+
+        @if(Auth::check())
+        {{-- Toggle post visibility if user is the author --}}
+        @if (auth()->user()->email === $socialPost->email)
+                
+        @endif
 
         {{-- Hide Post Option for the User --}}
         @if (auth()->user()->email === $Post->email)

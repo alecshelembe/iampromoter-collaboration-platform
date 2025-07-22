@@ -9,7 +9,7 @@
 @endif
 
 
-{{-- <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg "> --}}
+{{-- <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg "> --}}
     <div class="flex justify-end">
         <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg"><i class="fa-regular fa-eye"></i> View</button>
     </div>

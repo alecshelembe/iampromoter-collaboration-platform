@@ -6,7 +6,7 @@
 <script defer src="{{ asset('js/get-user-location.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&loading=async&libraries=places" defer></script>
 
-<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg mt-10">
 <h1 class="text-3xl font-bold mb-6">Create a post</h1>
 
 <h1 class="text-xl font-bold mb-6">Step 1</h1>
