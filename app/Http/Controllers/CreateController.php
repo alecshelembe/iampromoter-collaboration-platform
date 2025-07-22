@@ -39,6 +39,38 @@ class CreateController extends Controller
 
     }
 
+    public function saveSocialPostDescription(Request $request, $id){
+       
+        $validatedData = $request->validate([
+            'description' => 'required|string',
+        ]);
+        
+        // Fetch the social post by ID
+        $socialPost = SocialPost::where('id', $id)->firstOrFail();
+        
+        // Update the description field with the validated data
+        $socialPost->update(['description' => $validatedData['description']]);
+
+        return redirect()->back()->with('success', 'Post description updated successfully.');
+
+    }
+
+    public function saveSocialPostName(Request $request, $id){
+       
+        $validatedData = $request->validate([
+            'place_name' => 'required|string|max:70',
+        ]);
+        
+        // Fetch the social post by ID
+        $socialPost = SocialPost::where('id', $id)->firstOrFail();
+        
+        // Update the place_name field with the validated data
+        $socialPost->update(['place_name' => $validatedData['place_name']]);
+
+        return redirect()->back()->with('success', 'Post place_name updated successfully.');
+
+    }
+
     public function saveSocialPostVideoLink(Request $request, $id){
        
         $validatedData = $request->validate([
@@ -149,7 +181,7 @@ class CreateController extends Controller
             // Fetch all social posts with status 'show'
             $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('updated_at', 'desc')
-            ->limit(16)
+            // ->limit(16)
             ->get();
             
         // Convert the timestamps to a readable format
@@ -170,7 +202,7 @@ class CreateController extends Controller
         // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('updated_at', 'desc')
-            ->limit(16)
+            // ->limit(16)
             ->get();
 
         foreach ($socialPosts as $post) {
@@ -185,7 +217,7 @@ class CreateController extends Controller
 
         // Fetch normal posts
         $posts = Post::where('status', 'show')
-            ->limit(16)
+            // ->limit(16)
             ->get();
 
         foreach ($posts as $post) {
@@ -206,7 +238,7 @@ class CreateController extends Controller
         // Fetch data from the 'posts' table
         $posts = Post::where('status', 'show')
         ->orderBy('updated_at', 'desc')
-        ->limit(16)
+        // ->limit(16)
         ->get();
 
         foreach ($posts as $post) {

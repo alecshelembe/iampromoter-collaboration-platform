@@ -123,6 +123,10 @@ Route::get('/google-view-social-post/{id}', [GoogleController::class, 'googlevie
 
 Route::post('/save-social-post-note/{id}', [CreateController::class, 'saveSocialPostNote'])->name('social.save.post.note');
 
+Route::post('/save-social-post-name/{id}', [CreateController::class, 'saveSocialPostName'])->name('social.save.post.name');
+
+Route::post('/save-social-post-description/{id}', [CreateController::class, 'saveSocialPostDescription'])->name('social.save.post.description');
+
 Route::post('/save-social-post-video-link/{id}', [CreateController::class, 'saveSocialPostVideoLink'])->name('social.save.post.link');
 
 Route::get('/view-science-post/{id}', [CreateController::class, 'viewSciencePost'])->name('science.view.post');

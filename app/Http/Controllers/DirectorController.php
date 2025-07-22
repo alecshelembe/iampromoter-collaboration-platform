@@ -28,8 +28,8 @@ class DirectorController extends Controller
         // Fetch social posts
         $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('updated_at', 'desc')
-            ->where('social_p', '>', 1) // Add this line
-            ->limit(20)
+            // ->where('social_p', '>', 1) // Add this line
+            // ->limit(20)
             ->get();
 
         foreach ($socialPosts as $post) {
