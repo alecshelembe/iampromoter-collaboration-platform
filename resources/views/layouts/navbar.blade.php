@@ -114,10 +114,22 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
               <!-- Dropdown menu -->
               <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                   <ul class="py-2 text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                     <li>
+                      <a href="{{ route('create.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                        <span class="">Create post</span>
+                      </a>
+                    </li>
                     <li>
                       <a href="{{ route('create.mobile.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        <span class="">Create a post</span>
+                        <span class="">Create a social post</span>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{ route('create.raw.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                        <span class="">Create a raw post</span>
                       </a>
                     </li>
                     <li>
@@ -192,9 +204,15 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     </a>
                 </li>
                 <li>
-                  <a href="{{ route('my.posts') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <a href="{{ route('my.social.posts') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       <!-- Plus icon -->
-                     My uploads
+                     My social uploads
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('my.raw.posts') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <!-- Plus icon -->
+                     My raw uploads
                   </a>
               </li>
                   

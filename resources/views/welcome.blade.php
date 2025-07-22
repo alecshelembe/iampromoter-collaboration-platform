@@ -33,7 +33,14 @@
     <link rel="stylesheet" href="{{ asset('css/output.css') }}">
     <link rel="icon" href="{{ config('services.project.logo_image') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet">
-    <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    
+    <!-- ---------------------- -->
+     <!-- More sources -->
+    <!-- <script defer src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> -->
+    <!-- <script src="{{ asset('js/offline-ckeditor.js') }}"></script> -->
+    <script defer src="https://cdn.ckeditor.com/4.21.0/full/ckeditor.js"></script>
+    <!-- ----------------------- -->
+
 
     <!-- --------- Does not work with defer -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->

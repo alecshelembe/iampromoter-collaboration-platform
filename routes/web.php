@@ -135,6 +135,8 @@ Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'
 
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
 
+Route::post('/update-post/{id}', [CreateController::class, 'updatePost'])->name('update.raw.post');
+
 Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
 Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
 
@@ -150,10 +152,12 @@ Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery
 Route::post('/posts/{id}/hide', [CreateController::class, 'hide'])->name('posts.hide');
 Route::post('/posts/{id}/show', [CreateController::class, 'show'])->name('posts.show');
 Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide'])->name('science.posts.hide');
+Route::post('/science-posts/{id}/show', [CreateController::class, 'scienceShow'])->name('science.posts.show');
 
 Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');
 
-Route::get('/my-social-posts', [CreateController::class, 'myposts'])->name('my.posts');
+Route::get('/my-social-posts', [CreateController::class, 'mysocialposts'])->name('my.social.posts');
+Route::get('/my-raw-posts', [CreateController::class, 'myrawposts'])->name('my.raw.posts');
 
 Route::get('/public-user-posts/{email}', [CreateController::class, 'viewPublicUserPosts'])->name('public.user.posts');
 Route::get('/my-public-profile/{email}', [UserController::class, 'viewPublicprofile'])->name('my.public.profile');

@@ -33,13 +33,14 @@
                             </figure>
                         @endforeach
                     @else
-                        <p>No images found.</p>
+                        <!-- <p>No images found.</p> -->
                     @endif
                 </div>
      
                 {{-- Display post  --}}
                 <div class="mt-4">
-                    <p class="text-sm text-gray-700">{{ $post->description }}</p>
+                    <p class="text-sm text-gray-700">{{ $post->title }}</p>
+                    <!-- <p class="text-sm text-gray-700">{{ $post->description }}</p> -->
                     <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
                     {{-- <p class="text-xs text-gray-500">{{ $post->created_at }}</p> --}}
                     <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>

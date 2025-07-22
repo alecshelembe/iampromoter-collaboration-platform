@@ -273,6 +273,25 @@ class CreateController extends Controller
         return redirect()->back()->with('error', 'You are not authorized to hide this post.');
     }
 
+    public function scienceShow($id)
+    {
+        // Find the post by ID
+        $post = Post::findOrFail($id);
+        
+        // Check if the logged-in user's author matches the post's email
+        if (auth()->user()->email === $post->author) {
+            // Update the status to 'hide' (or however you want to handle hiding)
+            $post->status = 'show';
+            $post->save();
+            
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Post viewable successfully.');
+        }
+
+        // Redirect back with an error message if the user doesn't match
+        return redirect()->back()->with('error', 'You are not authorized to hide this post.');
+    }
+
     public function hide($id)
     {
         // Find the post by ID
@@ -314,9 +333,7 @@ class CreateController extends Controller
 
     public function saveSocialPost(Request $request)
     {
-        // if (auth()->user()->email !== 'alec@visitmyjoburg.co.za') {
-        // abort(403, 'Unauthorized.');
-        // }
+       
         // Validate inputs
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,webp,jpeg,png|max:2048',
@@ -390,9 +407,7 @@ class CreateController extends Controller
 
     public function savePost(Request $request)
     {
-        // if (auth()->user()->email !== 'alec@visitmyjoburg.co.za') {
-        // abort(403, 'Unauthorized.');
-        // }
+       
 
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -436,6 +451,27 @@ class CreateController extends Controller
         
     }
 
+     public function updatePost(Request $request, $id)
+    {
+        // Validate input
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:70',
+            'description' => 'required|string',
+        ]);
+
+        // Find post or fail
+        $post = Post::findOrFail($id);
+
+        // Update post with validated data
+        $post->update([
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description'],
+        ]);
+
+        // Optional: return response or redirect
+        return redirect()->back()->with('success', 'Post updated successfully.');
+    }
+
     public function create()
     {
         return view('layouts.create');
@@ -460,7 +496,7 @@ class CreateController extends Controller
         return view('mobile.home', compact('socialPosts'));
     }
 
-    public function myposts(){
+    public function mysocialposts(){
 
     // Fetch all social posts 
         $socialPosts = SocialPost::where('email', auth()->user()->email)
@@ -473,6 +509,24 @@ class CreateController extends Controller
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
             $post->author = $emailParts[0]; // Get the part before the '@'
             $post->email = $post->email;// Get the part before the '@'
+        }
+            
+        return view('mobile.home', compact('socialPosts'));
+    }
+
+    public function myrawposts(){
+
+    // Fetch all social posts 
+        $socialPosts = Post::where('author', auth()->user()->email)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+            // Convert the timestamps to a readable format
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->updated_at)->diffForHumans();
+            $authorParts = explode('@', $post->author); // Assuming you have an 'author' column
+            $post->author = $authorParts[0]; // Get the part before the '@'
+            $post->author = $post->author;// Get the part before the '@'
         }
             
         return view('mobile.home', compact('socialPosts'));
