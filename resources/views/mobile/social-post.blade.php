@@ -18,6 +18,16 @@
 
 <div class="max-w-4xl mx-auto bg-white rounded-lg">
 
+    {{-- Display post description and email --}}
+    <div class="flex justify-center my-4">
+        <a 
+            href="https://www.google.com/maps/search/?api=1&query={{ urlencode($socialPost->address) }}" 
+            target="_blank" 
+            class="w-4/5 text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+            <i class="fa-solid fa-location-dot"></i> {{ $socialPost->address }}
+        </a>
+    </div>
+
     <div class="flex justify-center my-2">
         <p class="text-gray-700 rounded-full text-xs shadow-lg px-3 py-3 flex flex-wrap items-center gap-2">
             @foreach($socialPost->extras as $extra)
@@ -54,14 +64,8 @@
             @endif
         </div>
 
-        {{-- Display post description and email --}}
-        <div class="flex justify-center my-4">
-            <a 
-                href="https://www.google.com/maps/search/?api=1&query={{ urlencode($socialPost->address) }}" 
-                target="_blank" 
-                class="w-4/5 text-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                <i class="fa-solid fa-location-dot"></i> {{ $socialPost->address }}
-            </a>
+        <div class="flex justify-center">
+                <p class="rounded-full shadow-lg px-2 text-2xl font-semibold my-2 py-2">R {{ $socialPost->fee }}</p>
         </div>
         
         @if ($socialPost->status === 'show')
@@ -79,13 +83,10 @@
              <!-- Message box for displaying success or error messages -->
              
             </div>
-        <div class="flex justify-center">
-            <div id="message-box" class="rounded-full shadow-lg px-2 text-sm py-2 message-box"></div>
-        </div>
-        
-        <div class="flex justify-center">
-            <p class="text-sm font-bold rounded-full shadow-lg px-2 text-sm py-2">R {{ $socialPost->fee }}</p>
-        </div>
+
+            <div class="flex justify-center">
+                <div id="message-box" class="rounded-full shadow-lg px-2 text-sm py-2 message-box"></div>
+            </div>
 
         @endif
 
@@ -99,6 +100,18 @@
             <p class="text-lg font-medium my-2">{{ $socialPost->place_name }}</p>
             <p class="text-gray-700 my-2">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }} {{ $socialPost->formatted_time }}</p>
+        </div>
+
+        <div class="flex justify-center my-2 items-center space-x-2">
+            <p class="text-gray-700 rounded shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
+        </div>
+
+        <div class="text-right my-4">
+            <a href="https://wa.me/?text={{ urlencode(route('social.view.post', ['id' => $socialPost->id])) }}" 
+                target="_blank" 
+                class="p-2 text-sm rounded-full shadow-lg">
+                <i class="fa-brands fa-whatsapp"></i> Share
+            </a>
         </div>
 
         <div class="flex justify-center p-2">
@@ -115,20 +128,9 @@
         @endif
     </div>
 
-        <div class="flex justify-center my-2 items-center space-x-2">
-            <p class="text-gray-700 rounded shadow-lg px-2 text-sm py-2">{{ $socialPost->floating_sectors_value }}</p>
-        </div>
-
         {{-- Comments Section --}}
         
         <div class="mt-4">
-            <div class="text-right my-4">
-                    <a href="https://wa.me/?text={{ urlencode(route('social.view.post', ['id' => $socialPost->id])) }}" 
-                        target="_blank" 
-                        class="p-2 text-sm rounded-full shadow-lg">
-                        <i class="fa-brands fa-whatsapp"></i> Share
-                    </a>
-                </div>
                 @if ($influencer && $influencer->influencer && $socialPost->status == 'show')
                     <div class="p-2 bg-white border border-gray-200 rounded-lg shadow mb-6 dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex flex-col items-center pb-10">
