@@ -1,25 +1,29 @@
 @extends('welcome')
 
-@include('layouts.navbar')  
-
 @section('content')
-    
-    <div class="flex justify-end my-2">
-        <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
-            <i class="fa-regular fa-eye"></i> 
-        </button>
-    </div>
-    {{-- Total Fee and Checkout Button --}}
-    @if (count($results) > 0)
-        <div class="flex justify-center">
-            <button class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white py-2 px-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2">
-                <h2>
-                    R <span id="totalFee">{{ number_format($totalFee, 2) }}</span>
-                </h2>
-                <i class="fa-solid fa-fire-flame-curved"></i> Proceed to Checkout!
-            </button>
+
+@include('layouts.navbar') 
+
+<div class="flex justify-end my-2">
+    <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
+        <i class="fa-regular fa-eye"></i> 
+    </button>
+</div>
+{{-- Total Fee and Checkout Button --}}
+@if (count($results) > 0)
+    <div class="flex justify-center">
+        <div class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white py-2 px-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2">    
+            <form action="{{ route('payfast.book-now.checkout') }}" method="POST">
+                @csrf
+                @foreach ($results as $result)
+                    <input type="hidden" name="results[]" value="{{ $result->id }}">
+                @endforeach
+                    <button type="submit" class="p-2">R <span id="totalFee">{{ number_format($totalFee, 2) }}</span> <i class="fa-solid fa-fire-flame-curved"></i> Proceed to Checkout! </button>
+                </form>
+            </div>
         </div>
     @endif
+
 
     <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4 lg:grid-cols-4">
         @foreach ($results as $post)

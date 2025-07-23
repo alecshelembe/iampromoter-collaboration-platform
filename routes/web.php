@@ -169,6 +169,8 @@ Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('pa
 
 Route::post('/book-now/{id}', [TransactionPayfastController::class, 'createPayfastPaymentforBookNow'])->name('payfast.book-now');
 
+Route::post('/book-now', [TransactionPayfastController::class, 'createPayfastPaymentforBookNowCheckout'])->name('payfast.book-now.checkout');
+
 Route::get('/transaction-history/{email}', [TransactionPayfastController::class, 'history'])->name('history_transaction');
 
 Route::get('/payfast-cancel-transaction', [TransactionPayfastController::class, 'cancel_url'])->name('cancel_url_transaction');

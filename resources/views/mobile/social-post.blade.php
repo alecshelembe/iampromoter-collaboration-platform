@@ -201,7 +201,7 @@
                                 <!-- Name -->
                                 <div class="my-4">
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Post Name</label>
-                                    <input type="text" name="place_name" value="{{ old('place_name') }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of your venture" />
+                                    <input type="text" name="place_name" value="{{$socialPost->place_name }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of your venture" />
                                     @error('name')
                                     <p class="text-red-600 mt-1">{{ $message }}</p>
                                     @enderror
@@ -214,7 +214,7 @@
                                     @csrf
                                     <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                                     <p class="my-3">Here you can update your post description how you make the experiance memorable. </p>
-                                    <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion."></textarea>
+                                    <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Write your promotion."> {{$socialPost->description }}</textarea>
                                     @error('description')
                                     <p class="text-red-600 mt-1">{{ $message }}</p>
                                     @enderror
@@ -227,7 +227,7 @@
                                 <!-- Name -->
                                 <div class="my-4">
                                     <label for="Note" class="block text-sm font-medium text-gray-700 mb-2">Add a note (250)</label>
-                                    <input type="text" maxlength="250" name="note" value="{{ old('note') }}" id="note" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="05 March 2025" />
+                                    <input type="text" maxlength="250" name="note" value="{{$socialPost->note }}" id="note" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Add an update here" />
                                     @error('note')
                                     <p class="text-red-600 mt-1">{{ $message }}</p>
                                     @enderror
@@ -241,7 +241,7 @@
                                 <!-- Name -->
                                 <div class="my-4">
                                     <label for="Video" class="block text-sm font-medium text-gray-700 mb-2">Link extranal video (Convert to Embeded (Youtube) link before upload)</label>
-                                    <input type="text" maxlength="250" name="video-link" value="{{ old('video-link') }}" id="video-link" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Click Share on Youtube video for the embeded link" />
+                                    <input type="text" maxlength="250" name="video-link" value="{{$socialPost->video_link }}" id="video-link" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Click Share on Youtube video for the embeded link" />
                                     @error('video-link')
                                     <p class="text-red-600 mt-1">{{ $message }}</p>
                                     @enderror

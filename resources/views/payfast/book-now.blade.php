@@ -3,7 +3,7 @@
 @section('content')
 {{-- @include('layouts.navbar') --}} 
 
-<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
+<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
     <h2 class="text-2xl font-bold text-center text-gray-800">
         {{ $socialPost->place_name ?? 'N/A' }}
     </h2>
@@ -26,29 +26,29 @@
     
     <form id="initialForm" action="{{ route('payment.process') }}" method="POST">
     @csrf
-    @php
-        $transaction = json_decode($transaction);
-    @endphp
+            @php
+                $transaction = json_decode($transaction);
+            @endphp
 
-    @if ($transaction)
-    <div class="hidden">
+            @if ($transaction)
+            <div class="hidden">
 
-            @foreach ($transaction as $key => $value)
-                <label for="{{ $key }}">{{ ucfirst($key) }}:</label>
-                <input type="text" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}" />
-                <br />
-            @endforeach
-        </div>
-    @else
-        <p>No User found.</p>
-    @endif
+                    @foreach ($transaction as $key => $value)
+                        <label for="{{ $key }}">{{ ucfirst($key) }}:</label>
+                        <input type="text" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}" />
+                        <br />
+                    @endforeach
+                </div>
+            @else
+                <p>No User found.</p>
+            @endif
 
         <button type="submit" id="old_button" class="mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm</button>
     </form>
 
     <div id="paymentFormContainer"></div> <!-- This will hold the payment form -->
 </div>
-<p class="text-center text-gray-500 mt-4 text-sm">Your payment is 100% secure with PayFast.</p>
+<p class="text-center text-gray-500 mt-4 text-sm">Your payment is secure with PayFast.</p>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

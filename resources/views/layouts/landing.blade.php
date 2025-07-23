@@ -35,7 +35,7 @@
                 </a> -->
                 <a href="https://github.com/alecshelembe/collaborations/releases/tag/ANDROID" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-android text-2xl mr-2"></i>
-                    Download our Android App | Show our app in store for selected discounts | T & Cs apply 
+                    Download our Android App | T & Cs apply 
                 </a>
             </h1>
 

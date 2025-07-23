@@ -60,6 +60,52 @@ class TransactionPayfastController extends Controller
             return view('payfast.book-now', compact('socialPost', 'transaction'));
             
     }
+
+    public function createPayfastPaymentforBookNowCheckout(Request $request)
+    {
+        dd($request->all());
+        $email = auth()->user()->email;
+
+        // Validate incoming request data
+        $request->validate([
+            'amount' => 'required|numeric',
+            'item_description' => 'required|string',
+            'email_address' => 'required|email',
+            // Add more validation rules as necessary
+        ]);
+
+        // Collect all form data from the request
+        $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
+        
+        $transaction = PayfastTransaction::where('email_address', $data['email_address'])
+            ->where('created_at', '>=', Carbon::now()->subDay())
+            ->orderBy('created_at', 'desc') // Sort by newest first
+            ->first();
+        
+        if ($transaction) {
+            $transaction->update([
+                'amount' => $data['amount'],
+                'item_description' => $data['item_description'],
+            ]);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'No transaction found']);
+        }
+
+        // Passphrase and testing mode from environment variables
+        $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
+        $testingMode = env('PAYFAST_TESTING_MODE', true);
+        // Generate the signature
+        $signature = $this->generateSignature($data, $passPhrase);
+
+        // Add the signature to the data
+        $data['signature'] = $signature;
+
+        // Determine PayFast host
+        $pfHost = 'www.payfast.co.za';
+
+        // Return the payment form partial as HTML
+        return view('payfast.form', compact('data', 'pfHost'))->render();
+    }
     
     public function payfastPaymentTransations(Request $request)
     {
