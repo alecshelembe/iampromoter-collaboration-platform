@@ -5,22 +5,22 @@
 
 <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
     <h2 class="text-2xl font-bold text-center text-gray-800">
-        {{ $socialPost->place_name ?? 'N/A' }}
+        {{ $transaction->item_name ?? 'N/A' }}
     </h2>
     <p class="text-center text-gray-600 mt-2">
-        {{ $socialPost->address ?? 'No address provided' }}
+        {{ $transaction->item_description ?? 'No address provided' }}
     </p>
 
     <div class="mt-6 border rounded-lg p-4 bg-gray-100">
-        <h3 class="text-lg font-semibold text-gray-700">Your booking</h3>
+        <h3 class="text-lg font-semibold text-gray-700">Booking</h3>
       
-        <div class="  mt-2 text-gray-600">
+        <div class=" mt-2 text-gray-600">
             <p>Contact </p>
-            <p>{{ $socialPost->email ?? 'N/A' }}</p>
+            <p>{{ $transaction->email ?? 'N/A' }}</p>
         </div>
-        <div class="  mt-2 text-gray-600">
+        <div class=" mt-2 text-gray-600">
             <p>Total</p>
-            <p>R {{ $socialPost->fee ?? 'N/A' }}</p>
+            <p>R {{ $transaction->amount ?? 'N/A' }}</p>
         </div>
     </div>
     

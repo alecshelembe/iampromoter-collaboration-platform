@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-<div class="max-w-5xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg mt-10">
+<div class="max-w-4xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg mt-10">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">Refund Policy</h1>
     <p class="text-gray-600 mb-6">
         At Visitmyjoburg, we value your satisfaction and aim to provide a seamless experience. However, we understand that issues may arise. This policy outlines our approach to refunds, including applicable fees and investigation timelines.
@@ -21,7 +21,8 @@
         <ol class="list-decimal list-inside text-gray-600 space-y-4">
             <li>
                 <span class="font-bold">Refund Request Submission:</span> Customers must submit a refund request within 14 days of the transaction date. Requests can be made via our refunds team at 
-                <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>.
+                <!-- <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>. -->
+                <a href="mailto:alecshelembe@gmail.com" class="text-blue-600 underline">Alec</a>.
             </li>
             <li>
                 <span class="font-bold">Investigation Period:</span> Once your request is received, we will review and investigate the issue. Please allow <span class="font-semibold">3-5 business days</span> for the investigation to be completed.
@@ -59,7 +60,8 @@
         <h2 class="text-2xl font-semibold text-gray-700 mb-3">Contact Us</h2>
         <p class="text-gray-600">
             If you have questions about our refund policy or wish to submit a request, please contact us at 
-            <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>.  
+            <!-- <a href="mailto:alec@visitmyjoburg.co.za" class="text-blue-600 underline">alec@visitmyjoburg.co.za</a>.   -->
+            <a href="mailto:alecshelembe@gmail.com" class="text-blue-600 underline">Alec</a>.  
         </p>
         <p class="text-gray-600 mt-3">
             We’re here to help and ensure a fair resolution to any issues you may experience.

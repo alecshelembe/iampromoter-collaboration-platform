@@ -15,6 +15,7 @@
         <div class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white py-2 px-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2">    
             <form action="{{ route('payfast.book-now.checkout') }}" method="POST">
                 @csrf
+                <input type="hidden" name="amount" value="{{ number_format($totalFee, 2) }}">
                 @foreach ($results as $result)
                     <input type="hidden" name="results[]" value="{{ $result->id }}">
                 @endforeach

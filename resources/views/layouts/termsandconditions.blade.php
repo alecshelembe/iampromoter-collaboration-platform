@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-<div class="max-w-5xl mx-auto p-8 bg-gray-50 rounded-lg shadow-lg mt-10">
+<div class="max-w-4xl mx-auto p-8 bg-gray-50 rounded-lg shadow-lg mt-10">
     <h1 class="text-4xl font-bold text-gray-800 mb-6">Terms and Conditions</h1>
     <p class="text-gray-600 mb-4">
         Welcome to Visitmyjoburg. By accessing or using our platform, you agree to comply with and be bound by the following terms and conditions. Please read them carefully. If you do not agree with these terms, you may not use our platform.
@@ -91,7 +91,8 @@
     <div>
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">11. Contact Us</h2>
         <p class="text-gray-600">
-            If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:alec@Visitmyjoburg.co.za" class="text-blue-600 underline">alec@Visitmyjoburg.co.za</a>.
+            <!-- If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:alec@Visitmyjoburg.co.za" class="text-blue-600 underline">alec@Visitmyjoburg.co.za</a>. -->
+            If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:alecshelembe@gmail.com" class="text-blue-600 underline">Alec</a>.
         </p>
     </div>
 </div>

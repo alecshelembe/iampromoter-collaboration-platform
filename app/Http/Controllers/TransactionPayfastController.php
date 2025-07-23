@@ -61,51 +61,55 @@ class TransactionPayfastController extends Controller
             
     }
 
-    public function createPayfastPaymentforBookNowCheckout(Request $request)
-    {
-        dd($request->all());
-        $email = auth()->user()->email;
+    public function createPayfastPaymentforBookNowCheckout(Request $request) {
 
+        $email = auth()->user()->email;
         // Validate incoming request data
-        $request->validate([
+        $results = $request->input('results'); // or $request->results
+        
+        $validated = $request->validate([
             'amount' => 'required|numeric',
-            'item_description' => 'required|string',
-            'email_address' => 'required|email',
-            // Add more validation rules as necessary
         ]);
 
-        // Collect all form data from the request
-        $data = $request->except('_token','email','id','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
-        
-        $transaction = PayfastTransaction::where('email_address', $data['email_address'])
+        $amount = $validated['amount'];
+
+        $posts = SocialPost::whereIn('id', $results)->get();
+
+$postIds = $request->results;        
+        try {
+            PayfastTransaction::create([
+                'email' => env('CONFIRMATION_ADDRESS'),
+                'login_time' => now(),
+                'name_first' => auth()->user()->first_name,
+                'name_last' => auth()->user()->last_name,
+                'email_address' => auth()->user()->email,
+                'cell_number' => auth()->user()->phone,
+                'm_payment_id' => Str::uuid()->toString(),
+                'item_description' => $postIds, // Use the PHP variable here
+                'item_name' => "Cart-Checkout", // Use the PHP variable here
+                'amount' => $amount, // Use the PHP variable here
+                'custom_int1' => rand(),
+                'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
+                'payment_method' => env('PAYMENT_METHOD', true),
+            ]);
+
+            } catch (\Exception $e) {
+                \Log::error('Error inserting: ' . $e->getMessage());
+                // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
+            }
+
+            $exists = PayfastTransaction::where('email_address', $email)
             ->where('created_at', '>=', Carbon::now()->subDay())
             ->orderBy('created_at', 'desc') // Sort by newest first
             ->first();
-        
-        if ($transaction) {
-            $transaction->update([
-                'amount' => $data['amount'],
-                'item_description' => $data['item_description'],
-            ]);
-        } else {
-            return redirect()->back()->withErrors(['error' => 'No transaction found']);
-        }
 
-        // Passphrase and testing mode from environment variables
-        $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
-        $testingMode = env('PAYFAST_TESTING_MODE', true);
-        // Generate the signature
-        $signature = $this->generateSignature($data, $passPhrase);
+            $transaction = $exists ? $exists->toJson() : json_encode(null);
 
-        // Add the signature to the data
-        $data['signature'] = $signature;
-
-        // Determine PayFast host
-        $pfHost = 'www.payfast.co.za';
-
-        // Return the payment form partial as HTML
-        return view('payfast.form', compact('data', 'pfHost'))->render();
+            // Pass both $socialPost and $transaction to the view
+            return view('payfast.checkout-now', compact('transaction'));
+            
     }
+
     
     public function payfastPaymentTransations(Request $request)
     {
