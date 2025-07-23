@@ -65,8 +65,9 @@ class TransactionPayfastController extends Controller
 
         $email = auth()->user()->email;
         // Validate incoming request data
-        $results = $request->input('results'); // or $request->results
-        
+        $results = $request->input('results'); // assume: ['26', '27', '28']
+        $resultsString = implode(', ', $results);
+
         $validated = $request->validate([
             'amount' => 'required|numeric',
         ]);
@@ -74,8 +75,7 @@ class TransactionPayfastController extends Controller
         $amount = $validated['amount'];
 
         $posts = SocialPost::whereIn('id', $results)->get();
-
-$postIds = $request->results;        
+       
         try {
             PayfastTransaction::create([
                 'email' => env('CONFIRMATION_ADDRESS'),
@@ -85,7 +85,7 @@ $postIds = $request->results;
                 'email_address' => auth()->user()->email,
                 'cell_number' => auth()->user()->phone,
                 'm_payment_id' => Str::uuid()->toString(),
-                'item_description' => $postIds, // Use the PHP variable here
+                'item_description' => $resultsString, // Use the PHP variable here
                 'item_name' => "Cart-Checkout", // Use the PHP variable here
                 'amount' => $amount, // Use the PHP variable here
                 'custom_int1' => rand(),

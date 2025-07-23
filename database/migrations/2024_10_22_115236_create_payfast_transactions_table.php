@@ -22,7 +22,7 @@ class CreatePayfastTransactionsTable extends Migration
             $table->string('m_payment_id')->nullable();
             $table->decimal('amount', 10, 2)->nullable()->default(env('AMOUNT', ''));
             $table->string('item_name')->nullable();
-            $table->text('item_description')->nullable();
+            $table->string('item_description')->nullable();
             $table->integer('custom_int1')->nullable();
             $table->string('custom_str1')->nullable();
             $table->boolean('email_confirmation')->default(env('EMAIL_CONFIRMATION', '')); // Default to confirmed
