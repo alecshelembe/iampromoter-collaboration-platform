@@ -27,7 +27,7 @@ class ApiController extends Controller
         $query = $request->input('query');
         $results = SocialPost::where('place_name', 'LIKE', '%' . $query . '%') // Adjust 'name' to your column
             ->where('status', 'show') // Only fetch posts with status 'show'
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->take(5) // Limit the results to 3
             ->get()
             ->unique('place_name'); // Filter duplicates using collection method
@@ -131,7 +131,7 @@ class ApiController extends Controller
             $longitude = $validated['longitude'] ?? null;
 
             $addresses = SocialPost::where('status', 'show')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('updated_at', 'desc')
                 ->limit(8)
                 ->select('address', 'lat', 'lng')
                 ->get();
@@ -145,7 +145,7 @@ class ApiController extends Controller
 
             $post = SocialPost::where('status', 'show')
                 ->where('address', 'like', $nearest['address'])
-                ->orderBy('created_at', 'desc')
+                ->orderBy('updated_at', 'desc')
                 ->first();
 
             
@@ -346,10 +346,10 @@ class ApiController extends Controller
             // Fetch all users ordered by creation date (latest first)
 
             //  $users = User::where('influencer', 1)
-            //     ->orderBy('created_at', 'desc')
+            //     ->orderBy('updated_at', 'desc')
             //     ->get();
 
-            $users = User::orderBy('created_at', 'desc')->get();
+            $users = User::orderBy('updated_at', 'desc')->get();
 
             // Return the user data as JSON
             return response()->json([
@@ -369,7 +369,7 @@ class ApiController extends Controller
         try {
            // Fetch data from the 'posts' table
             $posts = Post::where('status', 'show')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->where('verified', 1)
             ->get();
         
@@ -394,7 +394,7 @@ class ApiController extends Controller
            // Fetch data from the 'posts' table
             $posts = Post::where('status', 'show')
             ->where('plate', 1)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->get();
         
             // Return the user data as JSON
@@ -418,7 +418,7 @@ class ApiController extends Controller
             // Fetch all social posts with status 'show' and 'social_p' greater than 1
             $socialPosts = SocialPost::where('status', 'show')
                 ->where('social_p', '>', 1) // Add this line
-                ->orderBy('created_at', 'desc')
+                ->orderBy('updated_at', 'desc')
                 ->get();
         
             // Collect all emails from the posts
