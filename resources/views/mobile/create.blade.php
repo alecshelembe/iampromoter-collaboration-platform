@@ -24,7 +24,7 @@
     </div>
 
     <!-- Options -->
-    <h1 class="text-xl font-bold mb-6">Step 2</h1>
+    <h1 class="text-xl font-bold mb-6">Step 2 * No edits (later changes)</h1>
     
     <p for="description" class="block text-sm font-medium text-gray-700 mb-2">Select topics and or amenities </p>
     
@@ -300,7 +300,7 @@
       @enderror
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 4</h1>
+    <h1 class="text-xl font-bold mb-6">Step 4 * No edits (later changes)</h1>
     
     <div class="my-4">
     <span class="text-gray-500"> Finish the above then choose sectors to link with your post (Optional) </span>
@@ -309,7 +309,7 @@
       <!-- Checkboxes will be populated dynamically -->
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 5</h1>
+    <h1 class="text-xl font-bold mb-6">Step 5 * Contact supprt to change</h1>
 
     <div id="location-result" class="mt-4 text-gray-700"></div>
     <div id="address-result" class="mt-4 text-gray-700"></div>
@@ -345,7 +345,7 @@
         </div>
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 6 (Images last)</h1>
+    <h1 class="text-xl font-bold mb-6">Step 6 (Images last) * No edits (later changes)</h1>
 
     <div class="grid grid-cols-2 gap-4">
         @for ($i = 1; $i <= 4; $i++)

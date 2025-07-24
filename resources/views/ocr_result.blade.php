@@ -37,7 +37,7 @@
         </script> 
 
          <!-- Image Upload -->
-         <p>Upload Images</p>
+         <p>Upload Images * No edits (later changes)</p>
         <div class="grid grid-cols-2 gap-4 my-4">
             @for ($i = 1; $i <= 4; $i++)
                 <figure class="max-w-lg relative">

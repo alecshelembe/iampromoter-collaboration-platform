@@ -112,6 +112,6 @@
     }
 </script>
 <footer class="sticky text-xs bottom-0 w-full text-center py-2 text-gray-600 dark:text-gray-400">
-            &copy;
-        </footer>
-   </html>
+        &copy;
+    </footer>
+</html>
