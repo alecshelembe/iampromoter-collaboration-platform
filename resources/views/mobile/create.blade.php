@@ -23,8 +23,25 @@
       @enderror
     </div>
 
+    <h1 class="text-xl font-bold mb-6">Step 2 </h1>
+    <!-- Price -->
+    <div class="my-4">
+      <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price (R)</label>
+      <input 
+        type="number" 
+        name="fee" 
+        value="50.00" 
+        step="25.00" 
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" 
+        placeholder="Enter price e.g. 99.99" 
+      />
+      @error('fee')
+        <p class="text-red-600 mt-1">{{ $message }}</p>
+      @enderror
+    </div>
+
     <!-- Options -->
-    <h1 class="text-xl font-bold mb-6">Step 2 * No edits (later changes)</h1>
+    <h1 class="text-xl font-bold mb-6">Step 3 * No edits (later changes)</h1>
     
     <p for="description" class="block text-sm font-medium text-gray-700 mb-2">Select topics and or amenities </p>
     
@@ -289,7 +306,7 @@
     @enderror
     
     <!-- Description -->
-    <h1 class="text-xl font-bold mb-6">Step 3</h1>
+    <h1 class="text-xl font-bold mb-6">Step 4</h1>
 
     <div class="my-4">
         <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
@@ -300,7 +317,7 @@
       @enderror
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 4 * No edits (later changes)</h1>
+    <h1 class="text-xl font-bold mb-6">Step 5 * No edits (later changes)</h1>
     
     <div class="my-4">
     <span class="text-gray-500"> Finish the above then choose sectors to link with your post (Optional) </span>
@@ -309,7 +326,7 @@
       <!-- Checkboxes will be populated dynamically -->
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 5 * Contact supprt to change</h1>
+    <h1 class="text-xl font-bold mb-6">Step 6 * Contact supprt to change</h1>
 
     <div id="location-result" class="mt-4 text-gray-700"></div>
     <div id="address-result" class="mt-4 text-gray-700"></div>
@@ -345,7 +362,7 @@
         </div>
     </div>
 
-    <h1 class="text-xl font-bold mb-6">Step 6 (Images last) * No edits (later changes)</h1>
+    <h1 class="text-xl font-bold mb-6">Step 7 (Images last) * No edits (later changes)</h1>
 
     <div class="grid grid-cols-2 gap-4">
         @for ($i = 1; $i <= 4; $i++)

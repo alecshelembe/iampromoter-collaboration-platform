@@ -35,7 +35,23 @@ class CreateController extends Controller
         // Update the note field with the validated data
         $socialPost->update(['note' => $validatedData['note']]);
 
-        return redirect()->back()->with('success', 'Post note added successfully.');
+        return redirect()->back()->with('success', 'Post note updated successfully.');
+
+    }
+
+    public function saveSocialPostFee(Request $request, $id){
+       
+        $validatedData = $request->validate([
+            'fee' => 'required|string|max:250',
+        ]);
+        
+        // Fetch the social post by ID
+        $socialPost = SocialPost::where('id', $id)->firstOrFail();
+        
+        // Update the fee field with the validated data
+        $socialPost->update(['fee' => $validatedData['fee']]);
+
+        return redirect()->back()->with('success', 'Post fee updated successfully.');
 
     }
 
@@ -338,6 +354,7 @@ class CreateController extends Controller
         $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,webp,jpeg,png|max:2048',
             'description' => 'required|string',
+            'fee' => 'required|numeric|min:0', // Ensure fee is a number and non-negative
             'floating_address' => 'required|string|max:500',
             'place_name' => 'required|string|max:255',
             'extras' => 'nullable|array', // Ensure it's an array if present
@@ -385,6 +402,7 @@ class CreateController extends Controller
         // Save the description and image paths to the database
 
         $postData = [
+            'fee' => $validatedData['fee'],
             'place_name' => $validatedData['place_name'],
             'address' => $validatedData['floating_address'],
             'description' => $validatedData['description'],

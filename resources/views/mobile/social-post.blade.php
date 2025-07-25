@@ -202,9 +202,29 @@
                                 <div class="my-4">
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Post Name</label>
                                     <input type="text" name="place_name" value="{{$socialPost->place_name }}" id="place_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Name of your venture" />
-                                    @error('name')
+                                    @error('place_name')
                                     <p class="text-red-600 mt-1">{{ $message }}</p>
                                     @enderror
+                                    <button class="text-right rounded-full text-right shadow-lg px-2 text-sm py-2"> Update</button>
+                                </div>
+                            </form>
+
+                            <form id="upload-post-fee" action="{{ route('social.save.post.fee', $socialPost->id) }}" method="POST">
+                                @csrf
+                               <!-- Price -->
+                                <div class="my-4">
+                                    <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price (R)</label>
+                                    <input 
+                                        type="number" 
+                                        name="fee" 
+                                        value="50.00" 
+                                        step="25.00" 
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" 
+                                        placeholder="Enter price e.g. 99.99" 
+                                    />
+                                @error('fee')
+                                    <p class="text-red-600 mt-1">{{ $message }}</p>
+                                @enderror
                                     <button class="text-right rounded-full text-right shadow-lg px-2 text-sm py-2"> Update</button>
                                 </div>
                             </form>
@@ -269,7 +289,7 @@
                                     <p class="text-xs text-gray-500">
                                         Posted {{ \Carbon\Carbon::parse($comment['updated_at'])->diffForHumans() }}
                                     </p>
-                        @if(Auth::check())
+                                @if(Auth::check())
 
                                     @if (auth()->user()->email === $socialPost->email)
                                         <form class="text-right mt-4" action="{{ route('comments.clear', [$socialPost->id]) }}" method="POST">
@@ -278,7 +298,7 @@
                                             <button type="submit" class="p-2 text-sm rounded-full shadow-lg">  <i class="fa-solid fa-xmark"></i> Clear </button>
                                         </form>
                                     @endif
-                        @endif
+                                @endif
                                 </div>
                                 @endforeach
                             @else
