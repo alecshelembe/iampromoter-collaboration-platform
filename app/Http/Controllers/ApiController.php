@@ -345,11 +345,11 @@ class ApiController extends Controller
         try {
             // Fetch all users ordered by creation date (latest first)
 
-            //  $users = User::where('influencer', 1)
-            //     ->orderBy('updated_at', 'desc')
-            //     ->get();
+             $users = User::where('influencer', 1)
+                ->orderBy('updated_at', 'desc')
+                ->get();
 
-            $users = User::orderBy('updated_at', 'desc')->get();
+            // $users = User::orderBy('updated_at', 'desc')->get();
 
             // Return the user data as JSON
             return response()->json([
