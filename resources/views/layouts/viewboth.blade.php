@@ -169,7 +169,7 @@
                             <!-- Post Details -->
                             <div class="flex-1">
                                 <p class="">{{ $post->place_name }}</p>
-                                <!-- <p class="text-sm font-bold">R {{ $post->fee }}</p> -->
+                                <p class="text-sm font-bold">R {{ $post->fee }}</p>
                                 <p class="text-sm text-gray-700 my-2">  {{ Str::limit($post->description, 100) }}</p>
                                 <!-- <p class="text-sm text-grey-500">R {{ $post->fee }}</p> -->
                                 <p class="text-sm text-gray-600">{{ $post->address }}</p>

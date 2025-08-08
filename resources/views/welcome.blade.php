@@ -24,7 +24,7 @@
     <meta name="robots" content="index, follow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Collabz</title>
+    <title>@more_collabz</title>
 
     <link rel="canonical" href="https://visitmyjoburg.co.za">
     <link rel="preconnect" href="https://fonts.bunny.net">
