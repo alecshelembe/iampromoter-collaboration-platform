@@ -33,7 +33,7 @@
 
 <script>
     function initMap() {
-        const johannesburg = { lat: -26.205874, lng:  28.037327 };
+        const johannesburg = { lat: -26.000000, lng:  28.000000 };
 
         const map = new google.maps.Map(document.getElementById("map"), {
             center: johannesburg,
