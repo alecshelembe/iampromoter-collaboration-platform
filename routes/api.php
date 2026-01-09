@@ -31,7 +31,7 @@ Route::get('/images', function () {
     return response()->json(['images' => $images]);
 });
 
-Route::get('/users', [ApiController::class, 'getusers']);
+/*Route::get('/users', [ApiController::class, 'getusers']);*/
 Route::get('/get-social-posts', [ApiController::class, 'getSocialPosts']);
 Route::get('/getData', [ApiController::class, 'getData']);
 Route::get('/main-notification', [ApiController::class, 'main_notification']);
