@@ -1,4 +1,5 @@
 /resources/views/'~'
+/storage
 /vendor
 /node_modules
 /.env
