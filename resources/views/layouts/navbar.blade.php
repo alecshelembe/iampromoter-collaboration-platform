@@ -257,9 +257,4 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         </form>
         <div id="searchResults"></div>
     </div>
-  
-<<<<<<< HEAD
-  
-=======
-  
->>>>>>> 4ad2555 (Linking local project to existing repo)
+
