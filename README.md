@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -----------------------------------------------------------------------------
 Hi, from the author.
 
@@ -6,6 +7,24 @@ I Welcome you to collaboration software. May it serve you well thank you, its my
 - Have a look at the blueprint pdf for images and the videoguide for the post tutorial.
 
 JOB 22:22 
+=======
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+
+
+-----------------------------------------------------------------------------
+## Hi, from the author, Always give back
+
+CLICK here for images of project
+
+I suggest you install phpmyadmin for quick access to database
+
+1. create your env file and connect to your mysql database
+3. migrate your database 
+4. run db seed 
+
+>>>>>>> 4ad2555 (Linking local project to existing repo)
 -----------------------------------------------------------------------------
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
