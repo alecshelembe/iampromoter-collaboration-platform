@@ -1,19 +1,11 @@
-php artisan route:clear
-php artisan view:clear
-php artisan cache:clear
-
-
 -----------------------------------------------------------------------------
-## Hi, from the author, Always give back
+Hi, from the author.
 
-CLICK here for images of project
+I Welcome you to collaboration software. May it serve you well thank you, its my pleasure. 
 
-I suggest you install phpmyadmin for quick access to database
+- Have a look at the blueprint pdf for images and the videoguide for the post tutorial.
 
-1. create your env file and connect to your mysql database
-3. migrate your database 
-4. run db seed 
-
+JOB 22:22 
 -----------------------------------------------------------------------------
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
