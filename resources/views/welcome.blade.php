@@ -26,7 +26,7 @@
 
     <title>@more_collabz</title>
 
-    <link rel="canonical" href="https://visitmyjoburg.co.za">
+    <link rel="canonical" href="http://127.0.0.1/"">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -59,11 +59,11 @@
             /* Background color */
             /* background-color: #f0f0f0; */
 
-            /* Background image 
+            
             background-image: url('{{ asset('storage/sci-bono-content/browser-fill-2.png') }}');
             background-size: cover;
             background-repeat: no-repeat;
-             background-position: center; */
+             background-position: center; 
             }
            
         }
