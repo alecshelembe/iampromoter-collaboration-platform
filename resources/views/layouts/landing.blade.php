@@ -35,7 +35,7 @@
                 </a> -->
                 <a href="https://github.com/alecshelembe/collaborations/releases/tag/ANDROID" class="inline-flex items-center mt-4 text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-android text-2xl mr-2"></i>
-                   Pre-release Android App | <a href="mailto:alecshelembe@gmail.com" class="text-green-600"> Email <i class="fa-solid fa-at"></i> Help me! | T & Cs apply </a>
+                   Pre-release Android App </a>
                 </a>
             </h1>
 

@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <script defer async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VZ02ZX88"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-Y5VZ02ZX88');
-    </script>
-
-    <!-- Pixel Code - https://social-proof.acalytica.com/ -->
-    <script defer src="https://social-proof.acalytica.com/pixel/DE30Dy8HM6mmSeYg91c8qWg9Kbjb9Iy8"></script>
-    <!-- END Pixel Code -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -56,13 +44,10 @@
     <style>
         @media (max-width: 700px) { /* Tailwind's sm breakpoint */
         .Scibono-background {
-            /* Background color */
-            /* background-color: #f0f0f0; */
-
             
-            background-image: url('{{ asset('storage/sci-bono-content/browser-fill-2.png') }}');
-            background-size: cover;
-            background-repeat: no-repeat;
+             background-image: url('{{ asset('storage/sci-bono-content/browser-fill-2.png') }}');
+             background-size: cover;
+             background-repeat: no-repeat;
              background-position: center; 
             }
            
