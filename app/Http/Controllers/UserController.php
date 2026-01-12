@@ -200,7 +200,7 @@ class UserController extends Controller
         ]);
 
         // Call the sendEmail function with necessary data
-        $this->sendEmail($validatedData);
+       // $this->sendEmail($validatedData);
 
         // Redirect with a success message and email
         return redirect()->route('login')->with([
